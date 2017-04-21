@@ -1,0 +1,118 @@
+html {
+	height: 100%;
+	font-family: 'Roboto';
+}
+
+body {
+	margin: 0;
+	height: 100%;
+}
+
+aside {
+	width: 260px;
+	background-color: #474747;
+	height: 100%;
+	overflow: auto;
+	color: #FFF;
+}
+
+/* SIDENAVBAR */
+
+.brand-logo {
+	color: #E7E7E7;
+	font-weight: 300;
+	min-height: 64px;
+	line-height: 64px;
+	font-size: 16px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.brand-logo #logo {
+	display: inline-block;
+}
+
+.brand-logo #logo img {
+	margin-bottom: -12px;
+	margin-right: 7px;
+}
+
+aside .user-logged-in {
+	min-height: 100px;
+	position: relative;
+	display: table;
+	width: 100%;
+	background-color: #666;
+}
+
+aside .user-logged-in .content {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 22px;
+	text-transform: uppercase;
+}
+
+aside .user-logged-in .content .user-name {
+	font-size: 16px;
+	line-height: 18px;
+}
+
+aside .user-logged-in .content .user-name span{
+	font-size: 9px;
+	color: #bbb;
+}
+
+aside .user-logged-in .content .user-email {
+	font-size: 13px;
+	color: #999;
+	line-height: 15px;
+}
+
+aside .user-logged-in .content .user-actions {
+	font-size: 10px;
+	margin-top: 7px;
+}
+
+aside .user-logged-in a {
+	color: #90CAF9;
+	margin-right: 5px;
+}
+
+aside ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+aside ul li a {
+	margin: 0;
+	padding: 15px 0 15px 15px;
+	color: #E7E7E7;
+	display: block;
+	position: relative;
+	text-decoration: none;
+	transition-duration: 0.2s;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+aside ul li a:hover, aside ul li a.active {
+	background: rgba(0,0,0,0.2);
+}
+
+aside ul li a:hover {	
+	transition-duration: 0.2s; 
+}
+
+aside i.fa {
+	font-size: 20px;
+	line-height: 23px;
+	margin-right: 5px;
+	color: #BEBEBE;
+}
+
+aside ul li a .fa.fa-angle-right {
+	right: 0;
+	position: absolute;
+	margin-right: 10px;
+}
