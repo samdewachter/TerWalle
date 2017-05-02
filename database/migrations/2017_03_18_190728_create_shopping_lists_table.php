@@ -14,7 +14,7 @@ class CreateShoppingListsTable extends Migration
     public function up()
     {
         Schema::create('shopping_lists', function (Blueprint $table) {
-            $table->increments('slid');
+            $table->increments('id');
             $table->string('items'); // json string of items to get
             $table->date('needed_at'); // when do we need the items
             $table->timestamps();

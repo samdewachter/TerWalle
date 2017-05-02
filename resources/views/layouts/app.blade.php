@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
     <!-- Scripts -->
     <script>
@@ -55,7 +56,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->first_name .' '. Auth::user()->last_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -81,7 +82,87 @@
         @yield('content')
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade login" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLogin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    TER WALLE
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="body-header">
+                        <div class="body-title">
+                            Login
+                        </div>
+                        <span class="body-info">Welkom! Gelieve je hieronder aan te melden.</span>
+                    </div>
+                        <form method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <input type="text" name="email" placeholder="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Paswoord" class="form-control">
+                            </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-custom">LOGIN</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade register" id="myRegister" tabindex="-1" role="dialog" aria-labelledby="myModalRegister">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    TER WALLE
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="body-header">
+                        <div class="body-title">
+                            Registreer
+                        </div>
+                        <span class="body-info">Welkom! Gelieve je hieronder te registreren.</span>
+                    </div>
+                        <form method="POST" action="{{ route('register') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <input type="text" name="first_name" placeholder="Voornaam" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="last_name" placeholder="Achternaam" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="email" placeholder="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="date" name="birth_year" placeholder="Geboortedatum" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="photo" placeholder="Foto" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Paswoord" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Bevestig paswoord" name="password_confirmation">
+                            </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-custom">REGISTREER</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

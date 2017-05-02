@@ -14,7 +14,7 @@ class CreateSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->increments('sid');
+            $table->increments('id');
             $table->string('email'); // email of subscriber
             $table->date('subscribed_at'); // begin date of subscription
             $table->boolean('active'); // subscription still active or not

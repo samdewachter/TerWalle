@@ -14,7 +14,7 @@ class CreateFileUploadsTable extends Migration
     public function up()
     {
         Schema::create('file_uploads', function (Blueprint $table) {
-            $table->increments('fuid');
+            $table->increments('id');
             $table->string('title'); // title name of document
             $table->string('file'); // path to file
             $table->string('downloaded'); // json code of who downloaded file

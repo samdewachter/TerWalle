@@ -14,7 +14,7 @@ class CreateCoreEventsTable extends Migration
     public function up()
     {
         Schema::create('core_events', function (Blueprint $table) {
-            $table->increments('ceid');
+            $table->increments('id');
             $table->string('name'); // event name
             $table->date('start_date'); // start date of event
             $table->date('end_date'); // end date of event

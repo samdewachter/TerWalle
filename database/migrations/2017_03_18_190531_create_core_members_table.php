@@ -14,7 +14,7 @@ class CreateCoreMembersTable extends Migration
     public function up()
     {
         Schema::create('core_members', function (Blueprint $table) {
-            $table->increments('cmid');
+            $table->increments('id');
             $table->string('first_name'); // first name of core member
             $table->string('last_name'); // last name of core member
             $table->string('function'); // function of core member

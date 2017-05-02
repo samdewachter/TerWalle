@@ -1,7 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="login-wrapper">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            TER WALLE
+        </div>
+        <div class="panel-body">
+            <div class="body-header">
+                <div class="body-title">
+                    Login
+                </div>
+                <span class="body-info">Welkom! Gelieve je hieronder aan te melden.</span>
+            </div>
+            <form method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <input type="text" name="email" placeholder="Email" class="form-control">
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <input type="password" name="password" placeholder="Paswoord" class="form-control">
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <button type="submit" class="btn-custom pull-right">LOGIN</button>
+            </form>
+        </div>       
+    </div>
+</div>
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -64,5 +99,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

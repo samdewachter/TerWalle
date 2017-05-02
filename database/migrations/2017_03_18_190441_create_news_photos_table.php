@@ -14,7 +14,7 @@ class CreateNewsPhotosTable extends Migration
     public function up()
     {
         Schema::create('news_photos', function (Blueprint $table) {
-            $table->increments('npid');
+            $table->increments('id');
             $table->string('photo'); // photo of news article
             $table->timestamps();
         });
