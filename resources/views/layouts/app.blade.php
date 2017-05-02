@@ -71,6 +71,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    @if(Auth::user()->isHeadAdmin() || Auth::user()->isSubAdmin())
+                                        <li>
+                                            <a href="{{ url('/admin') }}">Admin dashboard</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif

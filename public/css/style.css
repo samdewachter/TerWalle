@@ -21,6 +21,11 @@ aside {
 	transition-duration: 0.3s;
 }
 
+.admin-content {
+	margin-left: 260px;
+	transition-duration: 0.3s;
+}
+
 /* SIDENAVBAR */
 
 .brand-logo {
@@ -186,31 +191,32 @@ nav.dashboard-nav {
 	transition-duration: 0.3s;
 }
 
-nav .navbar {
+nav.dashboard-nav .navbar {
 	padding: 0 15px;
+	margin-bottom: 0;
 }
 
-nav .navbar-left .breadcrumb {
+nav.dashboard-nav .navbar-left .breadcrumb {
 	background-color: transparent;
 	margin: 12px 0;
 	white-space: nowrap;
 }
 
-nav .navbar-right ul {
+nav.dashboard-nav .navbar-right ul {
 	padding: 0;
 	list-style-type: none;
 }
 
-nav .navbar-right ul li {
+nav.dashboard-nav .navbar-right ul li {
 	display: inline-block;
 	padding: 20px 10px 0 10px;
 }
 
-nav .navbar-right {
+nav.dashboard-nav .navbar-right {
 	float: right;
 }
 
-nav .navbar-left .hamburger-button {
+nav.dashboard-nav .navbar-left .hamburger-button {
 	padding: 10px;
 	margin: 10px 10px 10px 0;
 	display: none;
@@ -218,17 +224,17 @@ nav .navbar-left .hamburger-button {
 }
 
 @media (max-width: 990px){
-	nav.dashboard-nav {
+	nav.dashboard-nav, .admin-content {
 		margin-left: 0;
 	}
 
-	nav .navbar-left .hamburger-button {
+	nav.dashboard-nav .navbar-left .hamburger-button {
 	display: block;
 	}
 }
 
 @media (max-width: 770px){
-	nav .navbar-left .breadcrumb {
+	nav.dashboard-nav .navbar-left .breadcrumb {
 		display: none;
 	}
 }
@@ -346,6 +352,34 @@ nav .navbar-left .hamburger-button {
 	border-top-color: #F0F0F0;
 }
 
+/* CRUD MEMBERS */
+
+
+
+/* OVERALL DASHBOARD STYLING */
+
+.admin-content .admin-header {
+	padding: 40px;
+	background-color: #f9f9f9;
+}
+
+.admin-content .admin-header h1 {
+	font-size: 20px;
+	margin-top: 0;
+	margin-bottom: 5px;
+	color: orange;
+}
+
+.admin-content .admin-header p {
+	color: #9B9B9B;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+.admin-content .admin-header h1 i {
+	color: #9e9e9e;
+	margin-right: 8px;
+}
 
 /*.btn-custom span {
 	position: absolute;
