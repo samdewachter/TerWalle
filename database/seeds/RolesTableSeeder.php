@@ -25,7 +25,7 @@ class RolesTableSeeder extends Seeder
     		],
     		[
     			"role" => "guest",
-                "display_name" => "",
+                "display_name" => "lid",
     			"created_at" => Carbon::now()->format('Y-m-d H:i:s')
     		],
     		[

@@ -354,6 +354,137 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 
 /* CRUD MEMBERS */
 
+.members-wrapper .table-title {
+	padding: 20px 20px 20px 40px;
+	font-size: 24px;
+	color: #9B9B9B;
+	font-weight: 300;
+}
+
+.members-wrapper .table {
+	color: #666;
+}
+
+.members-wrapper .admin-body {
+	overflow-x: auto;
+}
+
+.members-wrapper .table thead {
+	background-color: #FAFAFA;
+	vertical-align: middle;
+}
+
+.members-wrapper .table thead tr th:first-child, .members-wrapper .table tr td:first-child {
+	padding-left: 40px;
+}
+
+/*.members-wrapper .table input[type='checkbox'] {
+	display: none;
+}
+
+.members-wrapper .table input[type='checkbox']:checked + label {
+	background-color: orange;
+	border-color: orange;
+}
+
+.members-wrapper .table thead .checkbox-label {
+	height: 16px;
+	width: 16px;
+}
+
+.checkbox-label {
+	height: 25px;
+	width: 25px;
+	border: 2px solid #dbdbdb;
+	border-radius: 2px;
+	margin: 0;
+	transition-duration: 0.15s;
+}*/
+
+.members-wrapper .table thead tr th {
+	border-bottom: 1px solid #F0F0F0;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.members-wrapper .table .table-checkbox {
+	min-width: 78px;
+}
+
+.members-wrapper .table .table-photo {
+	min-width: 51px;
+}
+
+.members-wrapper .table .table-name {
+	min-width: 75px;
+}
+
+.members-wrapper .table .table-last {
+	min-width: 86px
+}
+
+.members-wrapper .table .table-email {
+	width: 463px;
+}
+
+.members-wrapper .table .table-role {
+	min-width: 100px;
+}
+
+.members-wrapper .table .table-actions {
+	min-width: 155px;
+}
+
+.members-wrapper .table tbody img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	transition-duration: 0.2s;
+}
+
+.members-wrapper .table ul li {
+	display: inline-block;
+}
+
+.members-wrapper .table ul {
+	margin: 0;
+	padding: 0;
+}
+
+.members-wrapper .table td {
+	vertical-align: middle;
+	padding: 8px;
+}
+
+.members-wrapper .table tr:hover img {
+	border-radius: 10px;
+}
+
+.members-wrapper .table ul li a {
+	display: block;
+	height: 40px;
+	width: 40px;
+	color: orange;
+}
+
+.members-wrapper .table ul li a i {
+	font-size: 16px;
+}
+
+.btn-round {
+	border-radius: 50%;
+	padding: 0;
+	line-height: 40px;
+	text-align: center;
+}
+
+/*.members-wrapper .table .btn-custom {
+	border-radius: 50%;
+}
+
+.members-wrapper .table .btn-custom i {
+	height: 40px;
+}*/
 
 
 /* OVERALL DASHBOARD STYLING */

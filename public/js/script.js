@@ -53,7 +53,7 @@ $( document ).ready(function() {
 		
 		//get click coordinates
 		//logic = click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center;
-		x = e.pageX - parent.offset().left - ink.width()/2 - 300;
+		x = e.pageX - parent.offset().left - ink.width()/2;
 		y = e.pageY - parent.offset().top - ink.height()/2;
 		
 		//set the position and add class .animate
