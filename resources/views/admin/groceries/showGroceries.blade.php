@@ -19,7 +19,7 @@
 							<div class="card-body clearfix">
 								<ul>
 									@foreach($grocery->items as $item)
-										<li>{{ $item }}</li>
+										<li>{{ $item->quantity }} {{ $item->item }}</li>
 									@endforeach
 								</ul>
 								<form class="pull-right" action="{{ url('/admin/boodschappen', [$grocery->id, 'delete']) }}" method="POST">

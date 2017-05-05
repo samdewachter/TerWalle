@@ -58,10 +58,20 @@ class AdminController extends Controller
     public function addGrocery(Request $request) {
         $grocery = new Grocery();
 
-        $items = array_filter($request->items);
-        $items = json_encode($items);
+        // $items = array_filter($request->items);
+        $itemsWithQuantity = [];
 
-        $grocery->items = $items;
+        $items = $request->items;
+        $quantity = $request->quantity;
+
+        for ($i=0; $i < count($items); $i++) { 
+            $itemsWithQuantity[] = ["item" => $items[$i], "quantity" => $quantity[$i]];
+        }
+
+        // var_dump($itemsWithQuantity);
+
+        $grocery->name = $request->name;
+        $grocery->items = json_encode($itemsWithQuantity);
         $grocery->needed_at = $request->needed_at;
         if ($grocery->save()) {
             return redirect('/admin/boodschappen')->with('message', ['success', 'Boodschappenlijst succesvol aangemaakt.']);
@@ -90,11 +100,17 @@ class AdminController extends Controller
     }
 
     public function updateGrocery(Grocery $grocery, Request $request) {
-        $items = array_filter($request->items);
-        $items = json_encode($items);
 
+        $items = $request->items;
+        $quantity = $request->quantity;
+
+        for ($i=0; $i < count($items); $i++) { 
+            $itemsWithQuantity[] = ["item" => $items[$i], "quantity" => $quantity[$i]];
+        }
+
+        $grocery->name = $request->name;
         $grocery->needed_at = $request->needed_at;
-        $grocery->items = $items;
+        $grocery->items = json_encode($itemsWithQuantity);
 
         if ($grocery->save()) {
             return redirect('/admin/boodschappen')->with('message', ['success', 'Boodschappenlijst succesvol aangepast.']);

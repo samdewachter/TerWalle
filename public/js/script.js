@@ -88,7 +88,7 @@ $( document ).ready(function() {
 		}
 	});
 
-	$('.input-label-float').blur(function(){
+	$(document).on("blur", '.input-label-float',function(){
 		value = $(this).val();
 		if (value.length > 0) {
 			$(this).addClass('valid');
