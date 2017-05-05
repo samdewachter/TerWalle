@@ -2,6 +2,7 @@
 
 @section('content')
 	
-	<pre>{{ $user }}</pre>
+	<div class="admin-wrapper">
+	</div>
 
 @endsection

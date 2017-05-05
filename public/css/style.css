@@ -1,3 +1,9 @@
+/* COLORS
+
+orange: #f58019;
+
+*/
+
 html {
 	height: 100%;
 	font-family: 'Roboto';
@@ -6,6 +12,7 @@ html {
 body {
 	margin: 0;
 	height: 100%;
+	font-family: 'Roboto';
 }
 
 aside {
@@ -24,6 +31,36 @@ aside {
 .admin-content {
 	margin-left: 260px;
 	transition-duration: 0.3s;
+}
+
+.well {
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+	border-radius: 0;
+	margin: 20px 0;
+	border: 1px solid transparent;
+	background-color: #f0f0f0;
+	padding: 20px;
+}
+
+.white {
+	background-color: #FFF;
+	color: #666;
+}
+
+.admin-form form .form-group, .btn-ripple-wrapper, .card-body {
+	position: relative;
+}
+
+.admin-form form input, .admin-form form select {
+	background-color: inherit;
+}
+
+.admin-body {
+	padding: 0 25px;
+}
+
+.row {
+	margin: 0;
 }
 
 /* SIDENAVBAR */
@@ -187,13 +224,14 @@ aside ul li .treeview {
 nav.dashboard-nav {
 	margin-left: 260px;
 	min-height: 64px;
-	box-shadow: 0 0 1px rgba(0,0,0,.3);
 	transition-duration: 0.3s;
 }
 
 nav.dashboard-nav .navbar {
 	padding: 0 15px;
 	margin-bottom: 0;
+	box-shadow: 0 0 1px rgba(0,0,0,.3);
+	border-radius: 0;
 }
 
 nav.dashboard-nav .navbar-left .breadcrumb {
@@ -284,23 +322,77 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	background-color: #fcfcfc;
 }
 */
+
 .btn-custom {
 	background: none;
 	border: none;
 	padding: 6px 16px;
 	font-size: 13px;
-	font-weight: 800;
+	font-weight: 700;
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
 	transition-duration: 0.3s;
 	outline: none;
+	border-radius: 2px;
+	background-color: white;
+	text-transform: uppercase;
 }
 
 .btn-custom:hover {
 	background-color: #eee;
 	transition-duration: 0.3s;
+}
+
+a.btn-custom {
+	text-decoration: none;
+	color: inherit;
+	display: inline-block;
+	margin-bottom: -11px;
+}
+
+.btn-custom-login:hover {
+	background-color: #eee;
+	transition-duration: 0.3s;
 	color: orange;
+}
+
+.btn-custom-primary {
+	background-color: #ffa500;
+	color: white;
+}
+
+.btn-custom-primary:hover {
+	background-color: #e59400;
+	color: white;
+}
+
+.btn-custom-success {
+	background-color: #2fb32f;
+	color: white;
+}
+
+.btn-custom-success:hover {
+	background-color: #2a9f2a;
+	color: white;
+}
+
+.btn-custom-danger {
+	background-color: #F44336;
+	color: white;
+}
+
+.btn-custom-danger:hover {
+	background-color: #c3352b;
+	color: white;
+}
+
+.btn-fat {
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+}
+
+.btn-fat:hover {
+	box-shadow: 0px 6px 20px 1px rgba(0,0,0,.3);
 }
 
 .login-wrapper .panel, .register-wrapper .panel {
@@ -308,6 +400,11 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	margin: 0 auto;
 	border: none;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	position: relative;
+}
+
+.login-wrapper .panel .form-group, .register-wrapper .panel .form-group {
+	position: relative;
 }
 
 .login-wrapper .panel .panel-heading, .register-wrapper .panel .panel-heading {
@@ -334,13 +431,13 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	margin-bottom: 30px;
 }
 
-.login-wrapper .panel .panel-body form input[type='text'], .login-wrapper .panel .panel-body form input[type='password'], .register-wrapper .panel .panel-body form input[type='text'], .register-wrapper .panel .panel-body form input[type='password'], .register-wrapper .panel .panel-body form input[type='text'], .register-wrapper .panel .panel-body form input[type='date'] {
+.login-wrapper .panel .panel-body form input, .register-wrapper .panel .panel-body form input, .admin-form form input, .admin-form form select {
 	border-radius: 0;
 	border: none;
 	box-shadow: inset 0 -1px 0 #ddd;
 }
 
-.login-wrapper .panel .panel-body form input[type='text']:focus, .login-wrapper .panel .panel-body form input[type='password']:focus, .register-wrapper .panel .panel-body form input[type='text']:focus, .register-wrapper .panel .panel-body form input[type='password']:focus, .register-wrapper .panel .panel-body form input[type='date']:focus {
+.login-wrapper .panel .panel-body form input:focus, .register-wrapper .panel .panel-body form input:focus, .admin-form form input:focus, .admin-form form select:focus {
 	box-shadow: inset 0 -2px 0 orange;
 }
 
@@ -367,6 +464,7 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 
 .members-wrapper .admin-body {
 	overflow-x: auto;
+	padding: 0;
 }
 
 .members-wrapper .table thead {
@@ -460,29 +558,41 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	border-radius: 10px;
 }
 
-.members-wrapper .table ul li a {
+.members-wrapper .table ul li a, .members-wrapper .table ul li button {
 	display: block;
 	height: 40px;
 	width: 40px;
 	color: orange;
 }
 
-.members-wrapper .table ul li a i {
+.members-wrapper .table ul li a {
+	margin-bottom: -16px;
+}
+
+.members-wrapper .table ul li i {
 	font-size: 16px;
 }
 
-.btn-round {
-	border-radius: 50%;
+.members-wrapper .table .btn-round {
 	padding: 0;
+}
+
+.btn-round {
+	padding: 0;
+	border-radius: 50%;
 	line-height: 40px;
 	text-align: center;
+	height: 40px;
+	width: 40px;
+	font-size: 16px;
+	vertical-align: middle;
 }
 
-/*.members-wrapper .table .btn-custom {
+/*.members-wrapper .table .btn-custom-default-default {
 	border-radius: 50%;
 }
 
-.members-wrapper .table .btn-custom i {
+.members-wrapper .table .btn-custom-default-default i {
 	height: 40px;
 }*/
 
@@ -512,22 +622,71 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	margin-right: 8px;
 }
 
-/*.btn-custom span {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}*/
+/* TOOLTIP CSS */
 
-/*.btn-custom:hover {
-	background-color: 
+/* Tooltip container */
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
 }
-*/
-/* TEST */
 
-.tester {
+/* Tooltip text */
+.custom-tooltip .tooltip-text {
+    visibility: hidden;
+    /*width: 120px;*/
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    text-align: center;
+    padding: 2px 7px;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.custom-tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.custom-tooltip-arrow-right .tooltip-text-arrow-right {
+	top: 8px;
+    right: 115%;
+}
+
+.custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
+    bottom: 115%;
+    left: 50%; 
+    margin-left: -65px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+
+.custom-tooltip-arrow-right .tooltip-text-arrow-right::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(0,0,0,0.4);
+}
+
+.custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 75%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.4) transparent transparent transparent;
+}
+
+/* HAMBURGER BACKGROUND FADE */
+
+.background-fade {
 	background: rgba(0,0,0,0.5);
 	height: 100%;
 	width: 100%;
@@ -537,8 +696,229 @@ nav.dashboard-nav .navbar-left .hamburger-button {
 	transition-duration: 0.3s;
 }
 
-.tester-show {
+.background-fade-show {
 	z-index: 99;
 	opacity: 1;
 	transition-duration: 0.3s;
+}
+
+/* label */
+
+.label-float {
+  color:#999; 
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+.label-float-date {
+	left: auto;
+	right: 0;
+}
+
+.input-label-float:focus ~ .label-float, .input-label-float.valid ~ .label-float{
+  top: -10px;
+  font-size: 12px;
+  color: orange;
+}
+
+/* ALERTS */
+
+.alert {
+	right: 0;
+	margin-right: 10px;
+	margin-top: 10px;
+	padding: 15px;
+	color: white;
+	position: fixed;
+	z-index: 100;
+}
+
+.alert-dismissible {
+	padding-right: 35px;
+}
+
+.alert h4 {
+	font-size: 17px;
+	margin-bottom: 11.5px;
+	text-transform: capitalize;
+}
+
+.alert-dismissible .close {
+	position: relative;
+	top: -2px;
+	right: -21px;
+}
+
+.alert .close {
+	color: white;
+}
+
+button.close {
+	padding: 0;
+	background: none;
+	border: none;
+}
+
+.close {
+	font-size: 34px;
+	font-weight: 300;
+	line-height: 24px;
+	opacity: 0.6;
+	float: right;
+	text-shadow: none;
+}
+
+.alert-success {
+	background-color: #2196F3;
+}
+
+/* PAGINATION */
+
+.pagination {
+	float: right;
+	margin-right: 10px;
+}
+
+.pagination li span, .pagination li a{
+	border: 0;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+	transition-duration: 0.2s;
+}
+
+.pagination li.disabled span:hover {
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+}
+
+.pagination li span:hover, .pagination li a:hover{
+	box-shadow: 0px 8px 20px 0px rgba(0,0,0,.3);
+	transition-duration: 0.2s;
+}
+
+/* FOOTER BUTTONS */
+
+.footer-buttons {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+
+.footer-buttons .btn-round {
+	width: 50px;
+	height: 50px;
+	background-color: #f58019;
+	color: white;
+	padding-top: 5px;
+}
+
+.footer-buttons .btn-round:hover {
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+.footer-buttons .btn-round {
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+}
+
+/* ADMIN WRAPPER */
+
+.admin-wrapper {
+	min-height: 100%;
+	width: 100%;
+	background-color: #f9f9f9;
+}
+
+.admin-content {
+	height: calc(100% - 64px);
+}
+
+/* CARDS */
+
+.card {
+	background-color: white;
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+	border-radius: 2px;
+	margin-bottom: 15px;
+}
+
+.card .card-title {
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 16px;
+}
+
+.card.bordered .card-header {
+	border-bottom: 1px solid #F0F0F0;
+}
+
+.card .card-header {
+	padding: 20px;
+	background-color: #FCFCFC;
+}
+
+.card .card-header p {
+	font-size: 13px;
+	font-weight: 400;
+	margin-bottom: 0;
+}
+
+.card .card-body {
+	padding: 20px;
+}
+
+.card.bordered .card-footer {
+	border-top: 1px solid #F0F0F0;
+}
+
+.card .card-footer {
+	padding: 20px;
+}
+
+/* GROCERIES */
+
+.show-groceries-wrapper .card .fa.fa-check {
+	color: #35c735;
+}
+
+.show-groceries-wrapper .card .btn-custom {
+	color: white;
+}
+
+.show-groceries-wrapper .card .not-done {
+	font-size: 30px;
+	color: #F44336;
+}
+
+.show-groceries-wrapper .card .not-done .tooltip-text {
+	font-size: 14px;
+}
+
+.show-groceries-wrapper .card .not-done.custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
+	margin-left: -46px;
+	bottom: 140%;
+}
+
+.show-groceries-wrapper .card .done.custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
+	margin-left: -50px;
+	bottom: 140%;
+}
+
+.show-groceries-wrapper .card i span {
+	font-family: 'Roboto';
+	font-size: 14px;
+}
+
+.show-groceries-wrapper .card .card-body .pull-right {
+	margin-left: 10px;
+}
+
+/* ADD GROCERY */
+
+.add-grocery-wrapper form .custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
+	margin-left: -58px;
 }

@@ -6,11 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 		
 </head>
 <body>
-	<div class="tester">
+	<div class="background-fade">
 	</div>
 	<aside>
 		<div class="brand-logo">
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<ul>
-			<li><a class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+			<li><a href="{{ url('/admin') }}" class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
 			<li>
 				<a class="treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
@@ -49,7 +49,7 @@
 			</li>
 			<li><a><i class="fa fa-pencil-square-o"></i>Polls</a></li>
 			<li><a><i class="fa fa-upload"></i>Uploads</a></li>
-			<li><a><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
+			<li><a href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
@@ -79,6 +79,18 @@
 		</div>
 	</nav>
 	<div class="admin-content">
+		@if(Session::has('message'))
+		    <div class="alert alert-{{ Session::get('message')[0] }}">
+		    	<button type="button" class="close">×</button>
+		    	<h4>{{ Session::get('message')[0] }}!</h4>
+		        {{ Session::get('message')[1] }}
+		    </div>
+		@endif
+		<!-- <div class="alert alert-success">
+			<button type="button" class="close">×</button>
+			<h4>Success!</h4>
+	        Profiel succesvol aangepast
+	    </div> -->
 		@yield('content')
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

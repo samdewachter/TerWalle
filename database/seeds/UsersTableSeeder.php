@@ -55,6 +55,23 @@ class UsersTableSeeder extends Seeder
         	]
         ];
 
+        $users2 = [];
+
+        for ($i=0; $i < 10; $i++) { 
+            $random = [
+                "first_name" => str_random(10),
+                "last_name" => str_random(10),
+                "email" => str_random(10),
+                "birth_year" => "1994-07-07",
+                "photo" => str_random(10),
+                "role_id" => 1,
+                "password" => Hash::make('test'),
+                "created_at" => Carbon::now()->format('Y-m-d H:i:s')
+            ];
+
+            $users2[] = $random;
+        }
+        DB::table('users')->insert($users2);
         DB::table('users')->insert($users);
     }
 }

@@ -74,11 +74,71 @@ $( document ).ready(function() {
 
 	$('.hamburger-button').click(function(){
 		$('aside').toggleClass('sidenav-active');
-		$('.tester').toggleClass('tester-show');
+		$('.background-fade').toggleClass('background-fade-show');
 	});
 
-	$('.tester').click(function(){
+	$('.background-fade').click(function(){
 		$('aside').toggleClass('sidenav-active');
-		$('.tester').toggleClass('tester-show');
+		$('.background-fade').toggleClass('background-fade-show');
 	});
+
+	$('.input-label-float').each(function() {
+		if ($(this).val() != '') {
+	    	$(this).addClass('valid');
+		}
+	});
+
+	$('.input-label-float').blur(function(){
+		value = $(this).val();
+		if (value.length > 0) {
+			$(this).addClass('valid');
+		} else if (value.length == 0 && $(this).hasClass('valid')) {
+			$(this).removeClass('valid');
+		} 
+	});
+
+	$('.alert button.close').click(function(){
+		$(".alert").fadeOut();
+	});
+
+	setTimeout(function() {
+        $(".alert").fadeOut();
+    }, 10000);
+
+    itemNumber = $('.grocery-items').find(".form-group").length;
+
+    if (itemNumber <= 1) {
+    	$('.delete-grocery-item').hide();
+    }
+
+    $('.extra-grocery-item').click(function(){    	
+    	itemNumber = $('.grocery-items').find(".form-group").length;
+    	
+    	$('.grocery-items').append('<div class="form-group clearfix">\
+									<div class="col-md-2">\
+										<input type="number" name="quantity[]" class="form-control input-label-float">\
+										<label class="label-float">Hoeveel</label>\
+									</div>\
+									<div class="col-md-10">\
+										<input type="text" name="items[]" class="form-control input-label-float">\
+										<label class="label-float">Item '+ (itemNumber+1) +'</label>\
+									</div>\
+								</div>');
+
+    	if (itemNumber +1 > 1) {
+    		$('.delete-grocery-item').show();
+    	}
+    });
+
+    $('.delete-grocery-item').click(function(){
+    	itemNumber = $('.grocery-items').find(".form-group").length;
+
+    	if (itemNumber > 1) {
+    		$('.grocery-items .form-group').last().remove();
+    	}
+
+    	if(itemNumber-1 <= 1) {
+    		$('.delete-grocery-item').hide();
+    	}
+    });
 });

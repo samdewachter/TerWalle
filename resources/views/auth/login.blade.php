@@ -16,7 +16,8 @@
             <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="text" name="email" placeholder="Email" class="form-control">
+                    <input type="text" name="email" class="form-control input-label-float" value="{{ old('email') }}">
+                    <label class="label-float">Email</label>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -24,14 +25,15 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" name="password" placeholder="Paswoord" class="form-control">
+                    <input type="password" name="password" class="form-control input-label-float">
+                    <label class="label-float">Paswoord</label>
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
                 </div>
-                <button type="submit" class="btn-custom pull-right">LOGIN</button>
+                <button type="submit" class="btn-custom btn-custom-login pull-right">LOGIN</button>
             </form>
         </div>       
     </div>

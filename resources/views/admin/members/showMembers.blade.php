@@ -29,18 +29,25 @@
 							<td>{{ $user->first_name }}</td>
 							<td>{{ $user->last_name }}</td>
 							<td>{{ $user->email }}</td>
-							<td>{{ $user->Role->display_name }}</td> <!-- <a class="btn-custom"><i class="fa fa-edit"></i></a> -->
+							<td>{{ $user->Role->display_name }}</td> <!-- <a class="btn-custom-default"><i class="fa fa-edit"></i></a> -->
 							<td class="text-right">
 								<ul>
-									<li><a class="btn-custom btn-round"><i class="fa fa-edit"></i></a></li>
-									<li><a class="btn-custom btn-round"><i class="fa fa-trash"></i></a></li>
+									<li class="custom-tooltip custom-tooltip-arrow-right"><a href="{{ url('/admin/leden', [$user->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-right">Aanpassen</span></li>
+									<!-- <li class="custom-tooltip custom-tooltip-arrow-bottom"><a class="btn-custom btn-round"><i class="fa fa-trash"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Verwijderen</span></li> -->
+									<li class="custom-tooltip custom-tooltip-arrow-bottom">
+										<form action="{{ url('/admin/leden', [$user->id, 'delete']) }}" method="POST">
+											{{ csrf_field() }}
+											<input type="hidden" name="_method" value="DELETE" />
+			                                <button class="btn-custom btn-round"><i class="fa fa-trash"></i></button><span class="tooltip-text tooltip-text-arrow-bottom">Verwijderen</span>
+										</form>
+									</li>
 								</ul>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-
+			{{ $users->links() }}
 		</div>
 	</div>
 

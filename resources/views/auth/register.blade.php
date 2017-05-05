@@ -16,7 +16,8 @@
             <form method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                    <input type="text" name="first_name" placeholder="Voornaam" class="form-control" value="{{ old('first_name') }}">
+                    <input type="text" name="first_name" class="form-control input-label-float" value="{{ old('first_name') }}">
+                    <label class="label-float">Voornaam</label>
                     @if ($errors->has('first_name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('first_name') }}</strong>
@@ -24,7 +25,8 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                    <input type="text" name="last_name" placeholder="Achternaam" class="form-control" value="{{ old('last_name') }}">
+                    <input type="text" name="last_name" class="form-control input-label-float" value="{{ old('last_name') }}">
+                    <label class="label-float">Achternaam</label>
                     @if ($errors->has('last_name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('last_name') }}</strong>
@@ -32,7 +34,8 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="text" name="email" placeholder="Email" class="form-control" value="{{ old('email') }}">
+                    <input type="text" name="email" class="form-control input-label-float" value="{{ old('email') }}">
+                    <label class="label-float">Email</label>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -40,7 +43,8 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('birth_year') ? ' has-error' : '' }}">
-                    <input type="date" name="birth_year" placeholder="Geboortedatum" class="form-control" value="{{ old('birth_year') }}">
+                    <input type="date" name="birth_year" class="form-control input-label-float" value="{{ old('birth_year') }}">
+                    <label class="label-float label-float-date">Geboortedatum</label>
                     @if ($errors->has('birth_year'))
                         <span class="help-block">
                             <strong>{{ $errors->first('birth_year') }}</strong>
@@ -48,10 +52,12 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <input type="text" name="photo" placeholder="Foto" class="form-control" value="{{ old('photo') }}">
+                    <input type="text" name="photo" class="form-control input-label-float" value="{{ old('photo') }}">
+                    <label class="label-float">Foto</label>
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" name="password" placeholder="Paswoord" class="form-control">
+                    <input type="password" name="password" class="form-control input-label-float">
+                    <label class="label-float">Paswoord</label>
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
@@ -59,9 +65,10 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Bevestig paswoord" name="password_confirmation">
+                    <input type="password" class="form-control input-label-float" name="password_confirmation">
+                    <label class="label-float">Bevestig paswoord</label>
                 </div>
-                <button type="submit" class="btn-custom pull-right">REGISTREER</button>
+                <button type="submit" class="btn-custom btn-custom-login pull-right">REGISTREER</button>
             </form>
         </div>
     </div>

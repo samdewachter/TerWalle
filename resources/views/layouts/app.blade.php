@@ -113,7 +113,7 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-custom">LOGIN</button>
+                    <button type="submit" class="btn-custom-default">LOGIN</button>
                 </div>
                 </form>
             </div>
@@ -159,7 +159,7 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn-custom">REGISTREER</button>
+                    <button type="submit" class="btn-custom-default">REGISTREER</button>
                 </div>
                 </form>
             </div>
