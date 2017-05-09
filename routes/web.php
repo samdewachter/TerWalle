@@ -19,15 +19,26 @@ Route::get('/test', 'AdminController@test');
 
 Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    Route::get('/leden', 'AdminController@showMembers');
-    Route::get('/leden/{user}/edit', 'AdminController@editMember');
-    Route::post('/leden/{user}/edit', 'AdminController@updateMember');
-    Route::delete('/leden/{user}/delete', 'AdminController@deleteMember');
-    Route::get('/boodschappen', 'AdminController@showGroceries');
-    Route::get('/boodschappen/add', 'AdminController@newGrocery');
-    Route::post('/boodschappen/add', 'AdminController@addGrocery');
-    Route::get('/boodschappen/{grocery}/toggledone', 'AdminController@toggleGrocery');
-    Route::delete('/boodschappen/{grocery}/delete', 'AdminController@deleteGrocery');
-    Route::get('/boodschappen/{grocery}/edit', 'AdminController@editGrocery');
-    Route::post('/boodschappen/{grocery}/edit', 'AdminController@updateGrocery');
+
+    /* MEMBER ROUTES */
+    Route::get('/leden', 'MemberController@showMembers');
+    Route::get('/leden/{user}/edit', 'MemberController@editMember');
+    Route::post('/leden/{user}/edit', 'MemberController@updateMember');
+    Route::delete('/leden/{user}/delete', 'MemberController@deleteMember');
+
+    /* GROCERY ROUTES */
+    Route::get('/boodschappen', 'GroceryController@showGroceries');
+    Route::get('/boodschappen/add', 'GroceryController@newGrocery');
+    Route::post('/boodschappen/add', 'GroceryController@addGrocery');
+    Route::get('/boodschappen/{grocery}/toggledone', 'GroceryController@toggleGrocery');
+    Route::delete('/boodschappen/{grocery}/delete', 'GroceryController@deleteGrocery');
+    Route::get('/boodschappen/{grocery}/edit', 'GroceryController@editGrocery');
+    Route::post('/boodschappen/{grocery}/edit', 'GroceryController@updateGrocery');
+
+    /* TAP ROUTES */
+    Route::get('/taplijst', 'TapController@index');
+    Route::post('/taplijst/save', 'TapController@saveEvent');
+    Route::get('/taplijst/getTapList', 'TapController@getTapList');
+    Route::delete('/taplijst/{event}/delete', 'TapController@deleteEvent');
+    Route::post('/taplijst/{event}/update', 'TapController@updateEvent');
 });

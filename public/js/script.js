@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+	$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 	$('.treeview-menu').hide();
 
     //Ripple effect when you click on a button
@@ -97,13 +103,13 @@ $( document ).ready(function() {
 		} 
 	});
 
-	$('.alert button.close').click(function(){
+	$(document).on("click", '.alert button.close',function(){
 		$(".alert").fadeOut();
 	});
 
-	setTimeout(function() {
-        $(".alert").fadeOut();
-    }, 10000);
+	// setTimeout(function() {
+ //        $(".alert").fadeOut();
+ //    }, 10000);
 
     itemNumber = $('.grocery-items').find(".form-group").length;
 
@@ -141,4 +147,108 @@ $( document ).ready(function() {
     		$('.delete-grocery-item').hide();
     	}
     });
+
+    /* FULLCALENDAR */
+
+    $('.draggable-events .fc-event').each(function() {
+      
+  		// store data so the calendar knows to render an event upon drop
+  		$(this).data('event', {
+  			title: $.trim($(this).text()), // use the element's text as the event title
+  			stick: false // maintain when user navigates (see docs on the renderEvent method)
+  		});
+  
+  		// make the event draggable using jQuery UI
+  		$(this).draggable({
+  			zIndex: 999,
+  			revert: true,      // will cause the event to go back to its
+  			revertDuration: 0  //  original position after the drag
+  		});
+  
+  	});
+
+    $('#calendar').fullCalendar({
+        header: {
+  			left: 'title',
+  			center: 'none',
+  			right: 'prev,next today'
+  		},
+  		events: 'taplijst/getTapList',
+  		droppable: true,
+  		editable: true,
+  		eventClick: function(calEvent, jsEvent, view)
+        {
+            var r=confirm("Delete " + calEvent.title);
+            if (r===true)
+            {
+            	$.ajax({
+	        		url: 'taplijst/'+ calEvent.id +'/delete',
+	        		data: {
+	        			'_method': 'DELETE',
+	        		},
+	        		type: 'DELETE',
+	        		success: function() {
+	        			$('.alert.alert-success').remove();
+	        			$('.alert-wrapper').append('<div class="alert alert-success">\
+							<button type="button" class="close">×</button>\
+							<h4>Success!</h4>\
+					        Tapper succesvol verwijderd\
+					    </div>');
+	        		},
+	        		error: function() {
+	        			console.log('error');
+	        		}
+	        	});
+                $('#calendar').fullCalendar('removeEvents', calEvent._id);
+            }
+        },
+        eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) 
+        {
+        	$.ajax({
+        		url: 'taplijst/'+ event.id +'/update',
+        		data: {
+        			'start': event.start.format(),
+        		},
+        		type: 'POST',
+        		success: function() {
+        			$('.alert.alert-success').remove();
+        			$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+				        Tapper succesvol aangepast\
+				    </div>');
+        		},
+        		error: function() {
+        			console.log('error');
+        		}
+        	});
+        },
+        drop: function(date, jsEvent, ui, resourceId)
+        {
+        	var originalEventObject = $(this).data('event');
+        	var eventTitle = originalEventObject.title;
+        	var eventDate = date.format();
+
+        	$.ajax({
+        		url: 'taplijst/save',
+        		data: {
+        			'start': eventDate,
+        			'title': eventTitle
+        		},
+        		type: 'POST',
+        		success: function() {
+        			$('.alert.alert-success').remove();
+        			$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+				        Tapper succesvol Toegevoegd\
+				    </div>');
+				    $('#calendar').fullCalendar('refetchEvents' );
+        		},
+        		error: function() {
+        			console.log('error');
+        		}
+        	});
+        }
+    })
 });

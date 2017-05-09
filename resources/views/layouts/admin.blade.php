@@ -3,10 +3,13 @@
 <head>
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
 		
 </head>
 <body>
@@ -43,7 +46,7 @@
 			<li>
 				<a class="treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
-					<li><a>Overzicht</a></li>
+					<li><a href="{{ url('/admin/taplijst') }}">Overzicht</a></li>
 					<li><a>Grafieken</a></li>
 				</ul>
 			</li>
@@ -79,13 +82,15 @@
 		</div>
 	</nav>
 	<div class="admin-content">
-		@if(Session::has('message'))
-		    <div class="alert alert-{{ Session::get('message')[0] }}">
-		    	<button type="button" class="close">×</button>
-		    	<h4>{{ Session::get('message')[0] }}!</h4>
-		        {{ Session::get('message')[1] }}
-		    </div>
-		@endif
+		<div class="alert-wrapper">
+			@if(Session::has('message'))
+			    <div class="alert alert-{{ Session::get('message')[0] }}">
+			    	<button type="button" class="close">×</button>
+			    	<h4>{{ Session::get('message')[0] }}!</h4>
+			        {{ Session::get('message')[1] }}
+			    </div>
+			@endif
+		</div>
 		<!-- <div class="alert alert-success">
 			<button type="button" class="close">×</button>
 			<h4>Success!</h4>
@@ -96,5 +101,7 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+	<script src="{{ asset('js/libs/moment.min.js') }}"></script>
+	<script src="{{ asset('js/libs/fullcalendar.min.js') }}"></script>
 </body>
 </html>

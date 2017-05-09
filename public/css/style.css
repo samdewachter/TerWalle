@@ -922,3 +922,32 @@ button.close {
 .add-grocery-wrapper form .custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
 	margin-left: -58px;
 }
+
+/* TAPLIST */
+
+.taplist-wrapper .calendar-wrapper{
+	background-color: white;
+	margin: 0 15px;
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+	margin-bottom: 20px;
+	border-radius: 2px;
+}
+
+.taplist-wrapper .calendar-wrapper .col-md-9, .taplist-wrapper .calendar-wrapper .col-md-3, .taplist-wrapper .calendar-wrapper .col-md-12 {
+	padding: 20px;
+}
+
+.taplist-wrapper .draggable-events h3 {
+	margin-top: 0;
+}
+
+/* CALENDAR STYLING */
+
+.fc-event {
+	padding: 5px;
+	margin: 5px 0;
+}
+
+.fc-event:hover {
+	cursor: move;
+}

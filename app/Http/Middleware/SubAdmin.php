@@ -16,7 +16,7 @@ class SubAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ( Auth::check() && Auth::user()->isHeadAdmin() || Auth::user()->isSubAdmin() ) {
+        if ( Auth::check() && Auth::user()->isHeadAdmin() || Auth::check() && Auth::user()->isSubAdmin() ) {
             return $next($request);
         }
         return redirect('/');
