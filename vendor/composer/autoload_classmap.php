@@ -6,16 +6,19 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateAnswerPollsTable' => $baseDir . '/database/migrations/2017_05_16_161855_create_answer_polls_table.php',
     'CreateCoreEventsTable' => $baseDir . '/database/migrations/2017_03_18_191157_create_core_events_table.php',
     'CreateCoreMembersTable' => $baseDir . '/database/migrations/2017_03_18_190531_create_core_members_table.php',
     'CreateEventPhotosTable' => $baseDir . '/database/migrations/2017_03_18_190300_create_event_photos_table.php',
     'CreateEventsTable' => $baseDir . '/database/migrations/2017_03_18_185916_create_events_table.php',
-    'CreateFileUploadsTable' => $baseDir . '/database/migrations/2017_03_18_191250_create_file_uploads_table.php',
     'CreateGroceriesTable' => $baseDir . '/database/migrations/2017_05_04_162404_create_groceries_table.php',
+    'CreateKindOfReportsTable' => $baseDir . '/database/migrations/2017_05_12_120405_create_kind_of_reports_table.php',
     'CreateNewsPhotosTable' => $baseDir . '/database/migrations/2017_03_18_190441_create_news_photos_table.php',
     'CreateNewsTable' => $baseDir . '/database/migrations/2017_03_18_190334_create_news_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePollResultsTable' => $baseDir . '/database/migrations/2017_05_16_184904_create_poll_results_table.php',
     'CreatePollsTable' => $baseDir . '/database/migrations/2017_03_18_191052_create_polls_table.php',
+    'CreateReportsTable' => $baseDir . '/database/migrations/2017_05_11_161221_create_reports_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2017_03_18_190643_create_roles_table.php',
     'CreateSubscriptionsTable' => $baseDir . '/database/migrations/2017_03_18_191004_create_subscriptions_table.php',
     'CreateTapListsTable' => $baseDir . '/database/migrations/2017_03_18_190918_create_tap_lists_table.php',
@@ -92,6 +95,7 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+    'KindOfReportsTableSeeder' => $baseDir . '/database/seeds/KindOfReportsTableSeeder.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
     'PHPUnit\\Framework\\TestCase' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',

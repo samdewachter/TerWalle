@@ -250,5 +250,114 @@ $( document ).ready(function() {
         		}
         	});
         }
-    })
+    });
+
+    /* REUPLOAD BTN */
+
+    $('#reupload-report').click(function(){
+    	$('.input-report-upload').show();
+    	$(this).hide();
+    });
+
+    /* CHARTS */
+
+    function loadChart(chartBind, xColumn, yColumn){
+    	var chart = c3.generate({
+		    bindto: '#'+chartBind,
+		    data: {
+		    	x: 'x',
+		      columns: [
+		      	xColumn,
+		        yColumn,
+		      ],
+		      type: 'bar'
+		    },
+		    axis: {
+		    	x: {
+		    		type: 'category'
+		    	},
+		    	rotated: true
+		    },
+		    bar: {
+		    	width:{
+		    		ratio: 0.5
+		    	}
+		    }
+		});
+    }
+
+    // numberOfCharts = $('.chart-wrapper').find(".chart").length;
+    numberOfCharts = $('.chart-wrapper').find(".chart");
+
+    
+
+    $.each(numberOfCharts, function(chartIndex, chart){
+    	// console.log('CHARTS: ', value.id);
+    	console.log(chart.id.slice(-1));
+    	$.ajax({
+    		url: 'polls/'+ chart.id.slice(-1) +'/results',
+    		type: 'GET',
+    		success: function(data) {
+    			xColumn = ['x'];
+    			yColumn = ['Votes'];
+
+    			$.each(data['answers'], function(answerIndex, answer){
+    				xColumn.push(answer);
+    			});
+
+    			$.each(data['votes'], function(votesIndex, vote){
+    				yColumn.push(vote);
+    			});
+
+    			loadChart(chart.id, xColumn, yColumn);
+    		},
+    		error: function() {
+    			console.log('error');
+    		}
+    	});
+    });
+
+	/* ADD POLL QUESTION */
+
+	itemNumber = $('.poll-answers').find(".form-group").length;
+
+    if (itemNumber <= 1) {
+    	$('.delete-poll-answer').hide();
+    }
+
+    $('.extra-poll-answer').click(function(){    	
+    	console.log('clicked');
+    	itemNumber = $('.poll-answers').find(".form-group").length;
+    	
+    	$('.poll-answers').append('<div class="form-group clearfix">\
+										<input type="text" name="answers[]" class="form-control input-label-float">\
+										<label class="label-float">Antwoord '+ (itemNumber+1) +'</label>\
+								</div>');
+
+    	if (itemNumber +1 > 1) {
+    		$('.delete-poll-answer').show();
+    	}
+    });
+
+    $('.delete-poll-answer').click(function(){
+    	itemNumber = $('.poll-answers').find(".form-group").length;
+
+    	if (itemNumber > 1) {
+    		$('.poll-answers .form-group').last().remove();
+    	}
+
+    	if(itemNumber-1 <= 1) {
+    		$('.delete-poll-answer').hide();
+    	}
+    });
+
+    // $(".chart").c3({
+    // 	data: {
+    //     	columns: [
+	   //          ['data1', 30, 200, 100, 400, 150, 250],
+	   //          ['data2', 50, 20, 10, 40, 15, 25]
+	   //      ]
+	   //  }
+    // });
+
 });

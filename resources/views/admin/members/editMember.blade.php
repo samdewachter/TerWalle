@@ -45,7 +45,7 @@
 					</div>
 					<div class="form-group">
 						<span class="btn-ripple-wrapper"><button type="submit" class="btn-custom btn-custom-primary btn-fat">BEWERK</button></span>
-						<span class="btn-ripple-wrapper"><a href="{{ url('/admin/leden') }}" class="btn-custom btn-fat">ga terug</a></span>
+						<span class="btn-ripple-wrapper"><a href="{{ URL::previous() }}" class="btn-custom btn-fat">ga terug</a></span>
 					</div>
 				</form>
 			</div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTapListsTable extends Migration
+class CreatePollResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTapListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tap_lists', function (Blueprint $table) {
+        Schema::create('poll_results', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title'); // name of user that opens TW
-            $table->date('start'); // date of opening
+            $table->integer('answer_poll_id');
+            $table->integer('poll_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTapListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tap_lists');
+        Schema::dropIfExists('poll_results');
     }
 }

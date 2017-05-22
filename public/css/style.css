@@ -387,6 +387,16 @@ a.btn-custom {
 	color: white;
 }
 
+.btn-custom-grey {
+	background-color: silver;
+	color: white;
+}
+
+.btn-custom-grey:hover {
+	background-color: grey;
+	color: white;
+}
+
 .btn-fat {
 	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
 }
@@ -812,7 +822,6 @@ button.close {
 .footer-buttons .btn-round {
 	width: 50px;
 	height: 50px;
-	background-color: #f58019;
 	color: white;
 	padding-top: 5px;
 }
@@ -950,4 +959,88 @@ button.close {
 
 .fc-event:hover {
 	cursor: move;
+}
+
+/* REPORT STYLING */
+
+.reports-wrapper .core-reports {
+	padding: 0 15px;
+}
+
+/*.report {
+	background-color: white;
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+}*/
+
+.report .card-body {
+	text-align: center;
+}
+
+.report .card-body-header {
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+}
+
+.report .card-body-hover .hover-footer {
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+	width: 100%;
+	color: white;
+}
+
+.report .card-body-hover .hover-footer ul li {
+	display: inline-block;
+}
+
+.report .card-body-hover .hover-footer ul {
+	padding: 0;
+}
+
+.report .card-body-hover .hover-footer ul li form span button {
+	margin-top: 11px;
+}
+
+.report .card-body-hover {
+	transition-duration: 0.2s;
+	/*opacity: 0;*/
+}
+
+.report:hover .card-body-hover {
+	opacity: 1;
+}
+
+.report-date {
+	left: 0;
+	top: 0;	
+}
+
+.report img {
+	width: 100%;
+	max-width: 200px;
+}
+
+.core-reports h3 a, .activity-reports h3 a, .other-reports h3 a {
+	font-size: 14px;
+}
+
+.all-reports-wrapper .admin-header h1 {
+	text-transform: capitalize;
+}
+
+.edit-report-wrapper .input-report-upload {
+	display: none;
+}
+
+/* POLL STYLING */
+
+.card-body .tztzetze {
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }

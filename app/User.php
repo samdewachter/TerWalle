@@ -28,7 +28,11 @@ class User extends Authenticatable
     ];
 
     public function Role() {
-        return $this->belongsTo('App\role');
+        return $this->belongsTo('App\Role');
+    }
+
+    public function Results() {
+        return $this->hasMany('App\PollResult');
     }
 
     public function isHeadAdmin(){

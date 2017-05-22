@@ -41,4 +41,25 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/taplijst/getTapList', 'TapController@getTapList');
     Route::delete('/taplijst/{event}/delete', 'TapController@deleteEvent');
     Route::post('/taplijst/{event}/update', 'TapController@updateEvent');
+
+    /* FILE UPLOAD ROUTES */
+    Route::get('/verslagen', 'ReportController@showReports');
+    Route::get('/verslagen/add', 'ReportController@newReport');
+    Route::post('/verslagen/add', 'ReportController@addReport');
+    Route::get('/verslagen/{report}/download', 'ReportController@downloadReport');
+    Route::get('/verslagen/{kind_of_report}/all', 'ReportController@allReports');
+    Route::get('/verslagen/{report}/edit', 'ReportController@editReport');
+    Route::post('/verslagen/{report}/edit', 'ReportController@updateReport');
+    Route::delete('/verslagen/{report}/delete', 'ReportController@deleteReport');
+
+    /* POLL ROUTES */
+    Route::get('/polls', 'PollController@showPolls');
+    Route::get('/polls/add', 'PollController@newPoll');
+    Route::post('/polls/add', 'PollController@addPoll');
+    Route::post('/polls/{poll}/answer', 'PollController@addResult');
+    Route::get('/polls/{poll}/results', 'PollController@getResults');
+
+    /* EVENT ROUTES */
+    Route::get('/evenementen', 'EventController@showEvents');
+    Route::get('/evenementen/facebook', 'EventController@getFacebookEvents');
 });

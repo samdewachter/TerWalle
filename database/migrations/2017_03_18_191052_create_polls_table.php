@@ -15,9 +15,8 @@ class CreatePollsTable extends Migration
     {
         Schema::create('polls', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name'); // title name of poll
-            $table->string('dates'); // dates of poll
-            $table->boolean('active'); // poll active or expired
+            $table->string('title'); // title name of poll
+            // $table->boolean('active'); // poll active or expired
             $table->date('deadline'); // deadline to fill in form
             $table->timestamps();
         });

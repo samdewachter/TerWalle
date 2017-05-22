@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFileUploadsTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFileUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_uploads', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title'); // title name of document
-            $table->string('file'); // path to file
-            $table->string('downloaded'); // json code of who downloaded file
+            $table->string('name'); // title name of document
+            $table->string('file_path'); // uploaded file name
+            $table->date('date'); // date of report
+            $table->string('kind_of_report'); // what kind of report
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateFileUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_uploads');
+        Schema::dropIfExists('reports');
     }
 }

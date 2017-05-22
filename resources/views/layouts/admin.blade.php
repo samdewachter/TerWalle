@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/c3.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
@@ -50,13 +51,15 @@
 					<li><a>Grafieken</a></li>
 				</ul>
 			</li>
-			<li><a><i class="fa fa-pencil-square-o"></i>Polls</a></li>
-			<li><a><i class="fa fa-upload"></i>Uploads</a></li>
+			<li><a href="{{ url('/admin/polls') }}"><i class="fa fa-pencil-square-o"></i>Polls</a></li>
+			<li>
+				<a href="{{ url('/admin/verslagen') }}"><i class="fa fa-upload"></i>Verslagen</a>
+			</li>
 			<li><a href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
-					<li><a>Evenementen</a></li>
+					<li><a href="{{ url('admin/evenementen') }}">Evenementen</a></li>
 					<li><a>Nieuwtjes</a></li>
 					<li><a>Foto's</a></li>
 					<li><a href="{{ url('/admin/leden') }}">Leden</a></li>
@@ -103,5 +106,8 @@
 	<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 	<script src="{{ asset('js/libs/moment.min.js') }}"></script>
 	<script src="{{ asset('js/libs/fullcalendar.min.js') }}"></script>
+	<script src="{{ asset('js/libs/d3.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/libs/c3.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/libs/bootstrap.min.js') }}" type="text/javascript"></script>
 </body>
 </html>

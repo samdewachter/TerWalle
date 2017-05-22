@@ -10,7 +10,7 @@ use App\TapList;
 class TapController extends Controller
 {
     public function index(){
-    	$users = User::with('role')->where('role_id', 1)->orWhere('role_id', 2)->get();
+    	$users = User::with('Role')->where('role_id', 1)->orWhere('role_id', 2)->get();
 
     	return view('admin.taplist.showTaplist', compact('users'));
     }

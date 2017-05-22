@@ -15,6 +15,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '381c1f7485be5ec909ca0fe1ede4b928' => __DIR__ . '/../..' . '/app/Helpers/Helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -272,16 +273,19 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
     );
 
     public static $classMap = array (
+        'CreateAnswerPollsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_16_161855_create_answer_polls_table.php',
         'CreateCoreEventsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191157_create_core_events_table.php',
         'CreateCoreMembersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190531_create_core_members_table.php',
         'CreateEventPhotosTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190300_create_event_photos_table.php',
         'CreateEventsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_185916_create_events_table.php',
-        'CreateFileUploadsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191250_create_file_uploads_table.php',
         'CreateGroceriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_162404_create_groceries_table.php',
+        'CreateKindOfReportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_12_120405_create_kind_of_reports_table.php',
         'CreateNewsPhotosTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190441_create_news_photos_table.php',
         'CreateNewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190334_create_news_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePollResultsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_16_184904_create_poll_results_table.php',
         'CreatePollsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191052_create_polls_table.php',
+        'CreateReportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_161221_create_reports_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190643_create_roles_table.php',
         'CreateSubscriptionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191004_create_subscriptions_table.php',
         'CreateTapListsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190918_create_tap_lists_table.php',
@@ -358,6 +362,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'KindOfReportsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/KindOfReportsTableSeeder.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
