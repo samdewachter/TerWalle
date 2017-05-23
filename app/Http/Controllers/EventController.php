@@ -13,18 +13,24 @@ class EventController extends Controller
 
     public function getFacebookEvents()
     {
-    	$url = "https://graph.facebook.com/v2.9/404178786353325/events?access_token=EAACEdEose0cBAFNOXZBeks88AzoaHZCFjX6d91NcNpXWJ33RJZCNwruk1HDfRBWd8ZBdKPJsji1xVQcvWk5zalsfXAZBxBtSPGJ0WZAiTbOZCUFtn1pBeZB9BAZBex7zMDnsz6Ivif9Nl5grecwPKxUWXD6oVh018pGrQPPsOU1VXvKJHijLgFIsa0u7LjgWsJPUZD";
+    	$graph_url = "https://graph.facebook.com/v2.9/404178786353325/events?access_token=EAADGadxtjdABAILwDECdzzhaveNDQJ7F6ABFe1H4ZCqbU2TZCJQQLmDwxlT6uvnvpZAyN7LAZAepXr4KafWkrVPX6YtROhlxN0bbV57sokI49RZCLbTxZCcwZAOTWqge627JhlyGGuOcS1PHbnXLnrcCOksZBndl12gZD";
 
-		$ch = curl_init($url);
+    	$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-		curl_setopt($ch, CURLOPT_URL,$url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$output = curl_exec($ch);
-		$info = curl_getinfo($ch);
-		$http_result = $info['http_code'];
-		curl_close($ch);
+        curl_setopt($ch, CURLOPT_URL, $graph_url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-		var_dump($http_result);
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        $data = json_decode($output);
+
+
+        echo "<pre>";
+        var_dump($data->data[0]);
+        echo "</pre>";		
     }
 }

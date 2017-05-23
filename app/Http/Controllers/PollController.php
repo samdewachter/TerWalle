@@ -14,10 +14,10 @@ class PollController extends Controller
     {
     	$polls = Poll::all();
 
-        echo "<pre>";
-        var_dump($polls[0]->answers[1]->Results[0]->User);
-        echo "</pre>";
-    	// return view('admin.polls.showPolls', compact('polls'));
+        // echo "<pre>";
+        // var_dump($polls[0]->answers[1]->Results[0]->User);
+        // echo "</pre>";
+    	return view('admin.polls.showPolls', compact('polls'));
     }
 
     public function newPoll()
