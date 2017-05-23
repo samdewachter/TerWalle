@@ -5,7 +5,7 @@
 	<div class="admin-wrapper polls-wrapper">
 
 		<div class="admin-header">
-			<h1>Polls</h1>
+			<h1><i class="fa fa-pencil-square-o"></i>Polls</h1>
 			<p>Hier heb je een overzicht van alle polls.</p>
 		</div>
 		<div class="admin-body clearfix">

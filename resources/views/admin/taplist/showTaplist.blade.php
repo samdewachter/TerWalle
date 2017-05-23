@@ -4,7 +4,7 @@
 
 	<div class="taplist-wrapper admin-wrapper">
 		<div class="admin-header">
-			<h1>Taplijst</h1>
+			<h1><i class="fa fa-beer"></i>Taplijst</h1>
 			<p>Hier kan je de taplijst aanpassen</p>
 		</div>
 		<div class="admin-body">

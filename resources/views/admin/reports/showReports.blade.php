@@ -4,7 +4,7 @@
 
 	<div class="reports-wrapper admin-wrapper">
 		<div class="admin-header">
-			<h1>Verslagen</h1>
+			<h1><i class="fa fa-upload"></i>Verslagen</h1>
 			<p>Hier heb je een overzicht van alle verslagen.</p>
 		</div>
 		<div class="admin-body">
@@ -113,7 +113,7 @@
 		</div>
 		<div class="footer-buttons">
 			<ul>
-				<li class="custom-tooltip custom-tooltip-arrow-bottom"><a href="{{ url('/admin/verslagen/add') }}" class="btn-custom btn-round"><i class="fa fa-plus"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Nieuw item</span></li>
+				<li class="custom-tooltip custom-tooltip-arrow-bottom"><a href="{{ url('/admin/verslagen/add') }}" class="btn-custom btn-round btn-custom-primary"><i class="fa fa-plus"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Nieuw item</span></li>
 			</ul>
 		</div>
 	</div>

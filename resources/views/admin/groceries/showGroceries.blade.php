@@ -3,7 +3,7 @@
 @section('content')
 	<div class="show-groceries-wrapper admin-wrapper">
 		<div class="admin-header">
-			<h1>Boodschappen</h1>
+			<h1><i class="fa fa-list"></i>Boodschappen</h1>
 			<p>Hier heb je een overzicht van alle boodschappenlijstjes.</p>
 		</div>
 		<div class="admin-body clearfix">
@@ -14,7 +14,7 @@
 						<div class="card bordered white">
 							<div class="card-header">
 								<span class="card-title">Boodschappenlijst<?= ($grocery->done)? '<i class="fa fa-check done pull-right custom-tooltip custom-tooltip-arrow-bottom"><span class="tooltip-text tooltip-text-arrow-bottom">Gedaan!</span></i>' : '<span class="not-done pull-right custom-tooltip custom-tooltip-arrow-bottom">×<span class="tooltip-text tooltip-text-arrow-bottom">Nog niet gedaan</span></span>'; ?></span>
-								<p>{{ $grocery->needed_at }}</p>
+								<p>Tenlaatste nodig op: {{ $grocery->needed_at }}</p>
 							</div>
 							<div class="card-body clearfix">
 								<ul>
