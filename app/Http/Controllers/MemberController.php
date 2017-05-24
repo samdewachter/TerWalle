@@ -33,4 +33,9 @@ class MemberController extends Controller
         }
         return back()->with('message', ['error', 'Er liep iets fout bij het verwijderen van het profiel.']);
     }
+
+    public function searchMembers(Request $request)
+    {
+        // return view('admin.members.searchMembers');
+    }
 }

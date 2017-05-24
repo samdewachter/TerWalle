@@ -351,13 +351,49 @@ $( document ).ready(function() {
     	}
     });
 
-    // $(".chart").c3({
-    // 	data: {
-    //     	columns: [
-	   //          ['data1', 30, 200, 100, 400, 150, 250],
-	   //          ['data2', 50, 20, 10, 40, 15, 25]
-	   //      ]
-	   //  }
-    // });
+    // publish event checkbox
 
+    $(".publish").change(function(){
+    	var publish = $(this).prop('checked');
+    	var id = $(this).attr('id');
+
+    	$.ajax({
+    		url: 'evenementen/publish',
+    		data: {
+    			'publish': publish,
+    			'id': id
+    		},
+    		type: 'POST',
+    		success: function() {
+    			if (publish) {
+    				$('.alert.alert-success').remove();
+	    			$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+				        Evenement succesvol gepubliceerd.\
+				    </div>');
+    			} else {
+    				$('.alert.alert-success').remove();
+	    			$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+				        Evenement succesvol verborgen.\
+				    </div>');
+    			}
+    			
+    		},
+    		error: function() {
+    			console.log('error');
+    		}
+    	});
+    });
+
+    /* SEARCH BUTTON */
+
+    $('.search-button').click(function(){
+    	var visible = $('.search input').toggleClass('search-active').is(':visible');
+    	if (visible) {
+    		$('.search input').focus();
+    	}
+    });
 });

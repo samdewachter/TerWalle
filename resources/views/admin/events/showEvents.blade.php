@@ -9,7 +9,7 @@
 			<p>Hier heb je een overzicht van alle evenementen.</p>
 		</div>
 		<div class="admin-body">
-			<h3 class="table-title">{{ count($events) }} Leden</h3>
+			<h3 class="table-title">{{ count($events) }} Evenementen</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -31,7 +31,7 @@
 							<td>{{ substr($event->description, 0, 100) . '...' }}</td>
 							<td>{{ $event->start_time }}</td>
 							<td>{{ $event->end_time }}</td>
-							<td class="table-publish"><input type="checkbox" id="{{ $event->id }}" class="regular-checkbox" name="publish_check" <?= ($event->publish)? 'checked' : ''; ?> /><label for="{{ $event->id }}"><i class="fa fa-check"></i></label></td>
+							<td class="table-publish"><input type="checkbox" id="{{ $event->id }}" class="regular-checkbox publish" name="publish_check" <?= ($event->publish)? 'checked' : ''; ?> /><label for="{{ $event->id }}"><i class="fa fa-check"></i></label></td>
 							<td class="text-right">
 								<ul>
 									<li class="custom-tooltip custom-tooltip-arrow-right"><a href="{{ url('/admin/leden', [$event->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-right">Aanpassen</span></li>

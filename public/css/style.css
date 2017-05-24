@@ -441,13 +441,14 @@ a.btn-custom {
 	margin-bottom: 30px;
 }
 
-.login-wrapper .panel .panel-body form input, .register-wrapper .panel .panel-body form input, .admin-form form input, .admin-form form select {
+.login-wrapper .panel .panel-body form input, .register-wrapper .panel .panel-body form input, .admin-form form input, .admin-form form select, .search input {
+	outline: none;
 	border-radius: 0;
 	border: none;
 	box-shadow: inset 0 -1px 0 #ddd;
 }
 
-.login-wrapper .panel .panel-body form input:focus, .register-wrapper .panel .panel-body form input:focus, .admin-form form input:focus, .admin-form form select:focus {
+.login-wrapper .panel .panel-body form input:focus, .register-wrapper .panel .panel-body form input:focus, .admin-form form input:focus, .admin-form form select:focus, .search input:focus {
 	box-shadow: inset 0 -2px 0 orange;
 }
 
@@ -575,14 +576,21 @@ a.btn-custom {
 	vertical-align: middle;
 }
 
-/*.members-wrapper .table .btn-custom-default-default {
-	border-radius: 50%;
+.search-members {
+	margin: 20px 0 10px 0;
+	padding: 20px 40px 20px 20px;
 }
 
-.members-wrapper .table .btn-custom-default-default i {
-	height: 40px;
-}*/
+.search-members input {
+	width: 0px;
+	transition-duration: 0.2s;
+}
 
+.search-members .search-active {
+	width: 200px;
+	margin-left: 5px;
+	transition-duration: 0.2s;
+}
 
 /* OVERALL DASHBOARD STYLING */
 

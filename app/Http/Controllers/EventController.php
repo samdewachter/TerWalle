@@ -30,34 +30,36 @@ class EventController extends Controller
         curl_close($ch);
 
         $events = json_decode($output);
+        $count = 0;
 
-        foreach ($events->data as $data) {
-        	if (!$this->checkEventExists($data->id)) {
-        		$event = new Event();
+        if (count($events->data) > 0) {
+            foreach ($events->data as $data) {
+                if (!$this->checkEventExists($data->id)) {
+                    $event = new Event();
 
-        		$event->title = $data->name;
-        		$event->cover = $data->cover->source;
-        		$event->description = $data->description;
-        		$event->facebook_id = $data->id;
-        		date_default_timezone_set('Europe/Brussels');
-        		$start_time = date('Y-m-d H:i:s', strtotime($data->start_time));
-        		$event->start_time = $start_time;
-        		$end_time = date('Y-m-d H:i:s', strtotime($data->end_time));
-        		$event->end_time = $end_time;
-        		$event->publish = false;
+                    $event->title = $data->name;
+                    $event->cover = $data->cover->source;
+                    $event->description = $data->description;
+                    $event->facebook_id = $data->id;
+                    date_default_timezone_set('Europe/Brussels');
+                    $start_time = date('Y-m-d H:i:s', strtotime($data->start_time));
+                    $event->start_time = $start_time;
+                    $end_time = date('Y-m-d H:i:s', strtotime($data->end_time));
+                    $event->end_time = $end_time;
+                    $event->publish = false;
 
-        		$event->save();
-        	}    	
+                    $event->save();
+                } else {
+                    $count++;
+                }
+            }
+            if ($count == 10) {
+                return back()->with('message', ['success', 'Er zijn geen nieuwe facebook evenementen om toe te voegen.']);
+            }
+            return back()->with('message', ['success', 'Facebook evenementen succesvol toegevoegd.']);
         }
 
-        // $event = new Event();
-
-        // $event->title = $data->name;
-        // $event->cover = $data->cover->source;
-
-        // echo "<pre>";
-        // var_dump($events->data[0]->id);
-        // echo "</pre>";		
+        return back()->with('message', ['success', 'Er zijn geen facebook evenementen gevonden.']);		
     }
 
     private function checkEventExists($facebook_id)
@@ -66,5 +68,17 @@ class EventController extends Controller
     		return true;
     	}
     	return false;
+    }
+
+    public function publishEvent(Request $request)
+    {
+        $event = Event::find($request->id);
+        if ($request->publish) {
+            $event->publish = true;
+        } else {
+            $event->publish = false;
+        }
+        $event->save();
+        var_dump((integer)$request->publish);
     }
 }

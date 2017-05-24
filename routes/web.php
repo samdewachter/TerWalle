@@ -25,6 +25,7 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/leden/{user}/edit', 'MemberController@editMember');
     Route::post('/leden/{user}/edit', 'MemberController@updateMember');
     Route::delete('/leden/{user}/delete', 'MemberController@deleteMember');
+    Route::post('/leden/zoeken', 'MemberController@searchMembers');
 
     /* GROCERY ROUTES */
     Route::get('/boodschappen', 'GroceryController@showGroceries');
@@ -62,4 +63,5 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     /* EVENT ROUTES */
     Route::get('/evenementen', 'EventController@showEvents');
     Route::get('/evenementen/facebook', 'EventController@getFacebookEvents');
+    Route::post('/evenementen/publish', 'EventController@publishEvent');
 });
