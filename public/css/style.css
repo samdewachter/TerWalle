@@ -461,59 +461,36 @@ a.btn-custom {
 
 /* CRUD MEMBERS */
 
-.members-wrapper .table-title {
+.admin-body .table-title {
 	padding: 20px 20px 20px 40px;
 	font-size: 24px;
 	color: #9B9B9B;
 	font-weight: 300;
-}
+}/**/
 
-.members-wrapper .table {
+.admin-body .table {
 	color: #666;
-}
+}/**/
 
 .members-wrapper .admin-body {
 	overflow-x: auto;
 	padding: 0;
 }
 
-.members-wrapper .table thead {
+.admin-body .table thead {
 	background-color: #FAFAFA;
 	vertical-align: middle;
-}
+}/**/
 
-.members-wrapper .table thead tr th:first-child, .members-wrapper .table tr td:first-child {
+.admin-body .table thead tr th:first-child, .admin-body .table tr td:first-child {
 	padding-left: 40px;
-}
+}/**/
 
-/*.members-wrapper .table input[type='checkbox'] {
-	display: none;
-}
-
-.members-wrapper .table input[type='checkbox']:checked + label {
-	background-color: orange;
-	border-color: orange;
-}
-
-.members-wrapper .table thead .checkbox-label {
-	height: 16px;
-	width: 16px;
-}
-
-.checkbox-label {
-	height: 25px;
-	width: 25px;
-	border: 2px solid #dbdbdb;
-	border-radius: 2px;
-	margin: 0;
-	transition-duration: 0.15s;
-}*/
-
-.members-wrapper .table thead tr th {
+.admin-body .table thead tr th {
 	border-bottom: 1px solid #F0F0F0;
 	font-size: 11px;
 	font-weight: 700;
-}
+}/**/
 
 .members-wrapper .table .table-checkbox {
 	min-width: 78px;
@@ -543,47 +520,47 @@ a.btn-custom {
 	min-width: 155px;
 }
 
-.members-wrapper .table tbody img {
+.admin-body .table tbody img {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
 	transition-duration: 0.2s;
 }
 
-.members-wrapper .table ul li {
+.admin-body .table ul li {
 	display: inline-block;
 }
 
-.members-wrapper .table ul {
+.admin-body .table ul {
 	margin: 0;
 	padding: 0;
 }
 
-.members-wrapper .table td {
+.admin-body .table td {
 	vertical-align: middle;
 	padding: 8px;
 }
 
-.members-wrapper .table tr:hover img {
+.admin-body .table tr:hover img {
 	border-radius: 10px;
 }
 
-.members-wrapper .table ul li a, .members-wrapper .table ul li button {
+.admin-body .table ul li a, .admin-body .table ul li button {
 	display: block;
 	height: 40px;
 	width: 40px;
 	color: orange;
 }
 
-.members-wrapper .table ul li a {
+.admin-body .table ul li a {
 	margin-bottom: -16px;
 }
 
-.members-wrapper .table ul li i {
+.admin-body .table ul li i {
 	font-size: 16px;
 }
 
-.members-wrapper .table .btn-round {
+.admin-body .table .btn-round {
 	padding: 0;
 }
 
@@ -1043,4 +1020,76 @@ button.close {
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+
+/* EVENT STYLING */
+
+.events-wrapper .admin-body {
+	overflow-x: auto;
+	padding: 0;
+}
+
+.events-wrapper .table .table-photo {
+	min-width: 51px;
+}
+
+.events-wrapper .table .table-name {
+	min-width: 75px;
+}
+
+.events-wrapper .table .table-description {
+	width: 463px;
+}
+
+.events-wrapper .table .table-start {
+	min-width: 100px;
+}
+
+.events-wrapper .table .table-end {
+	min-width: 100px;
+}
+
+.events-wrapper .table .table-actions {
+	min-width: 155px;
+}
+
+.events-wrapper .table .table-publish {
+	min-width: 50px;
+	text-align: center;
+}
+
+/* checkbox */
+
+.regular-checkbox {
+    display: none;
+}
+
+.regular-checkbox + label {
+    /*background-color: #151515;*/
+    border: 2px solid #666;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition-duration: 0.1s;
+}
+
+.regular-checkbox + label i {
+	opacity: 0;
+	color: white;
+	font-size: 18px;
+	margin-top: 3px;
+}
+
+.regular-checkbox:checked + label {
+    background: #ffa500;
+    border: 2px solid #ffa500;
+	transition-duration: 0.1s;
+}
+
+.regular-checkbox:checked + label i {
+	opacity: 1;
 }

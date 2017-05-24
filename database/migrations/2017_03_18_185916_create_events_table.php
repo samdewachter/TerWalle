@@ -17,9 +17,11 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('title'); // title of event
             $table->text('description'); // description or body of event
-            $table->date('start_date'); // start date of event
-            $table->date('end_date'); // end date of event
-            $table->string('photo'); // main photo of event (banner)
+            $table->datetime('start_time'); // start date of event
+            $table->datetime('end_time'); // end date of event
+            $table->string('cover'); // main photo of event (banner)
+            $table->biginteger('facebook_id');
+            $table->boolean('publish');
             $table->timestamps();
         });
     }
