@@ -25,7 +25,8 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/leden/{user}/edit', 'MemberController@editMember');
     Route::post('/leden/{user}/edit', 'MemberController@updateMember');
     Route::delete('/leden/{user}/delete', 'MemberController@deleteMember');
-    Route::post('/leden/zoeken', 'MemberController@searchMembers');
+    Route::get('/leden/zoeken', 'MemberController@searchMembers');
+    Route::post('/leden/betaald', 'MemberController@paidMember');
 
     /* GROCERY ROUTES */
     Route::get('/boodschappen', 'GroceryController@showGroceries');

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Create2017PaidUsersTable' => $baseDir . '/database/migrations/2017_05_25_144635_create_2017_paid_users_table.php',
     'CreateAnswerPollsTable' => $baseDir . '/database/migrations/2017_05_16_161855_create_answer_polls_table.php',
     'CreateCoreEventsTable' => $baseDir . '/database/migrations/2017_03_18_191157_create_core_events_table.php',
     'CreateCoreMembersTable' => $baseDir . '/database/migrations/2017_03_18_190531_create_core_members_table.php',
@@ -15,6 +16,7 @@ return array(
     'CreateKindOfReportsTable' => $baseDir . '/database/migrations/2017_05_12_120405_create_kind_of_reports_table.php',
     'CreateNewsPhotosTable' => $baseDir . '/database/migrations/2017_03_18_190441_create_news_photos_table.php',
     'CreateNewsTable' => $baseDir . '/database/migrations/2017_03_18_190334_create_news_table.php',
+    'CreatePaidUsersTable' => $baseDir . '/database/migrations/2017_05_25_145808_create_paid_users_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePollResultsTable' => $baseDir . '/database/migrations/2017_05_16_184904_create_poll_results_table.php',
     'CreatePollsTable' => $baseDir . '/database/migrations/2017_03_18_191052_create_polls_table.php',

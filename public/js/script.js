@@ -396,4 +396,41 @@ $( document ).ready(function() {
     		$('.search input').focus();
     	}
     });
+
+    /* USERS PAID CHECKBOX */
+
+    $(".paid").change(function(){
+        var paid = $(this).prop('checked');
+        var id = $(this).attr('id');
+
+        $.ajax({
+            url: 'leden/betaald',
+            data: {
+                'paid': paid,
+                'id': id
+            },
+            type: 'POST',
+            success: function() {
+                if (paid) {
+                    $('.alert.alert-success').remove();
+                    $('.alert-wrapper').append('<div class="alert alert-success">\
+                        <button type="button" class="close">×</button>\
+                        <h4>Success!</h4>\
+                        Lid succesvol Betaald.\
+                    </div>');
+                } else {
+                    $('.alert.alert-success').remove();
+                    $('.alert-wrapper').append('<div class="alert alert-success">\
+                        <button type="button" class="close">×</button>\
+                        <h4>Success!</h4>\
+                        Betaling lid succesvol verwijderd.\
+                    </div>');
+                }
+                
+            },
+            error: function() {
+                console.log('error');
+            }
+        });
+    });
 });

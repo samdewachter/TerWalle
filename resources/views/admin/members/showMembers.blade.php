@@ -10,8 +10,7 @@
 		<div class="admin-body">
 			<h3 class="table-title pull-left">{{ count($users) }} Leden</h3>
 			<div class="pull-right search search-members">
-				<form action="{{ url('/admin/leden/zoeken') }}" method="POST">
-					{{ csrf_field() }}
+				<form action="{{ url('/admin/leden/zoeken') }}" method="GET">
 					<i class="fa fa-search search-button"></i><input placeholder="Zoeken" class="input-label-float" type="text" name="search_member">
 				</form>
 			</div>
@@ -24,6 +23,7 @@
 						<th class="table-last">LAST</th>
 						<th class="table-email">EMAIL</th>
 						<th class="table-role">ROLE</th>
+						<th class="table-paid">BETAALD</th>
 						<th class="table-actions text-right">ACTIONS</th>
 					</tr>
 				</thead>
@@ -36,6 +36,9 @@
 							<td>{{ $user->last_name }}</td>
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->Role->display_name }}</td> <!-- <a class="btn-custom-default"><i class="fa fa-edit"></i></a> -->
+							<td class="table-paid">
+								<input type="checkbox" id="{{ $user->id }}" class="regular-checkbox paid" @foreach($user->Paid as $paid) <?= ($paid->year == date('Y'))? 'checked' : ''; ?> @endforeach name="paid_check" /><label for="{{ $user->id }}"><i class="fa fa-check"></i></label>
+							</td>
 							<td class="text-right">
 								<ul>
 									<li class="custom-tooltip custom-tooltip-arrow-right"><a href="{{ url('/admin/leden', [$user->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-right">Aanpassen</span></li>

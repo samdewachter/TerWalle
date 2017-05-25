@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\PaidUser;
 
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
     public function showMembers() {
-    	$users = User::paginate(10);
+    	$users = User::paginate(10);   
 
     	return view('admin.members.showMembers', compact('users'));
     }
@@ -36,6 +37,31 @@ class MemberController extends Controller
 
     public function searchMembers(Request $request)
     {
-        // return view('admin.members.searchMembers');
+        if (isset($request->query->all()['query'])) {
+            $keyword = $request->query->all()['query'];
+        }else {
+            $keyword = $request->search_member;
+        }
+        $users = User::search($keyword)->paginate(10);
+        return view('admin.members.searchMembers', compact('users', 'keyword'));
+    }
+
+    public function paidMember(Request $request)
+    {
+
+        $year = date("Y"); 
+
+        $paid = $request->paid;
+
+        if ($paid == "true") {
+            $paid = new PaidUser();
+            $paid->user_id = $request->id;
+            $paid->year = $year;
+            $paid->save();
+            echo "true";            
+        } else {
+            $paid = PaidUser::where([['year', $year], ['user_id', $request->id]])->first();
+            $paid->delete();
+        }
     }
 }

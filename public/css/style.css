@@ -592,6 +592,20 @@ a.btn-custom {
 	transition-duration: 0.2s;
 }
 
+.search-members .fa-times {
+	margin-right: 5px;
+	color: black;
+}
+
+.search-members .fa {
+	cursor: pointer;
+}
+
+.members-wrapper .table .table-paid {
+	min-width: 50px;
+	text-align: center;
+}
+
 /* OVERALL DASHBOARD STYLING */
 
 .admin-content .admin-header {

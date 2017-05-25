@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +31,10 @@ class User extends Authenticatable
 
     public function Role() {
         return $this->belongsTo('App\Role');
+    }
+
+    public function Paid() {
+        return $this->hasMany('App\PaidUser');
     }
 
     public function Results() {
