@@ -8,7 +8,7 @@
 			<p>Hier kan je leden zoeken, aanpassen of verwijderen.</p>
 		</div>
 		<div class="admin-body">
-			<h3 class="table-title pull-left">{{ count($users) }} Leden</h3>
+			<h3 class="table-title pull-left">{{ $users->total() }} Leden</h3>
 			<div class="pull-right search search-members">
 				<form action="{{ url('/admin/leden/zoeken') }}" method="GET">
 					<i class="fa fa-search search-button"></i><input placeholder="Zoeken" class="input-label-float" type="text" name="search_member">

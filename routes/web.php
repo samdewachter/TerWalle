@@ -65,4 +65,21 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/evenementen', 'EventController@showEvents');
     Route::get('/evenementen/facebook', 'EventController@getFacebookEvents');
     Route::post('/evenementen/publish', 'EventController@publishEvent');
+
+    /* PHOTO ROUTES */
+    Route::get('/albums', 'PhotoController@showAlbums');
+    Route::get('/albums/add', 'PhotoController@newAlbum');
+    Route::post('/albums/add', 'PhotoController@addAlbum');
+    Route::delete('/album/{album}/delete', 'PhotoController@deleteAlbum');
+    Route::get('/album/{album}', 'PhotoController@showAlbum');
+    Route::post('/album/{album}/edit', 'PhotoController@updateAlbum');
+    Route::delete('/foto/{photo}/delete', 'PhotoController@deletePhoto');
+    Route::get('/album/{album}/fotos/add', 'PhotoController@newPhotos');
+    Route::post('/album/{album}/fotos/add', 'PhotoController@addPhotos');
+
+    /* NEWS ROUTES */
+    Route::get('/nieuwtjes', 'NewsController@showNews');
+
+    /* TEST ROUTE */
+    Route::get('/test', 'PhotoController@test');
 });

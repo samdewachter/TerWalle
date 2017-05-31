@@ -63,6 +63,15 @@ aside {
 	margin: 0;
 }
 
+.filled-static .control-label {
+	font-size: 90%;
+}
+
+input.form-control {
+	padding: 0;
+	font-size: 14px;
+}
+
 /* SIDENAVBAR */
 
 .brand-logo {
@@ -173,7 +182,7 @@ aside ul li a .fa.fa-angle-down {
 	position: absolute;
 	margin-right: 10px;
 	color: orange;
-	transition-duration: 0.5s;
+	transition-duration: 0.3s;
 }
 
 aside ul li ul.treeview-menu a {
@@ -719,7 +728,7 @@ a.btn-custom {
   font-weight:normal;
   position:absolute;
   pointer-events:none;
-  left:5px;
+  /*left:5px;*/
   top:10px;
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
@@ -787,6 +796,11 @@ button.close {
 .alert-success {
 	background-color: #2196F3;
 }
+
+.alert-error {
+	background-color: #F44336;
+}
+
 
 /* PAGINATION */
 
@@ -1114,4 +1128,164 @@ button.close {
 
 .regular-checkbox:checked + label i {
 	opacity: 1;
+}
+
+/* PHOTO LAYOUT */
+
+.add-photo-wrapper .admin-body .well {
+	margin-top: 0;
+	padding: 0;
+}
+
+.add-photo-wrapper .admin-body .col-md-8 {
+	margin-top: 20px;
+}	
+
+.nav-tabs {
+	border-bottom: 2px solid #DDD;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	border-width: 0;
+}
+
+.nav-tabs > li > a {
+	border: none;
+	color: #666;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
+	border: none;
+	color: orange !important;
+	background: transparent;
+}
+
+.nav-tabs > li > a::after {
+	content: "";
+	background: orange;
+	height: 2px;
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	bottom: -1px;
+	transition: all 250ms ease 0s;
+	transform: scale(0); 
+}
+
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
+	transform: scale(1); 
+}
+
+.tab-nav > li > a::after {
+	background: #21527d none repeat scroll 0% 0%;
+	color: #fff;
+}
+
+.tab-content{
+	padding:20px
+}
+
+.dropzone {
+	border: 2px dashed orange;
+	border-radius: 5px;
+	background-color: #ddd;
+}
+
+.dz-message {
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.albums-wrapper .card .card-body img, .album-wrapper .card .card-body img {
+	width: 100%;
+	border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+}
+
+.album-wrapper .card .card-body img {
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.albums-wrapper .card .card-body, .album-wrapper .card .card-body {
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.albums-wrapper .card .card-footer ul li {
+	display: inline-block;
+	color: white;
+}
+
+.albums-wrapper .card .card-footer ul {
+	margin-bottom: 0;
+}
+
+.albums-wrapper .card .card-footer p {
+	margin-top: 7.5px;
+}
+
+.albums-wrapper .card .card-body .album-title {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: white;
+	padding: 20px;
+	margin-bottom: 0;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+
+.albums-wrapper .card .card-footer ul li a {
+	margin-top: -12px;
+}
+
+.grid-item--width1 {
+	width: 25%;
+	/*padding: 5px;*/
+}
+
+.grid-item--width2 {
+	width: 50%;
+	/*padding: 5px;*/
+}
+
+.album-wrapper .card {
+	padding: 5px;
+	margin: 5px;
+}
+
+@media (max-width: 770px){
+	.grid-item, .grid-item--width2 {
+		width: 100%;
+	}
+}
+
+.album-wrapper .card .card-body .photo-delete {
+	position: absolute;
+	opacity: 0;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	background-color: rgba(0,0,0,0.2);
+	transition-duration: 0.2s;
+}
+
+.album-wrapper .card .card-body .photo-delete form {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+}
+
+.album-wrapper .card:hover .photo-delete {
+	opacity: 1;
+	transition-duration: 0.2s;
+}
+
+.album-wrapper .album-info {
+	background-color: white;
+	width: 100%;
+	padding: 25px;
+	margin-bottom: 10px;
 }

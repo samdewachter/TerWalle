@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/c3.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/dropzone.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/jquery-ui.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
@@ -59,9 +61,9 @@
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="{{ url('admin/evenementen') }}">Evenementen</a></li>
-					<li><a>Nieuwtjes</a></li>
-					<li><a>Foto's</a></li>
+					<li><a href="{{ url('/admin/evenementen') }}">Evenementen</a></li>
+					<li><a href="{{ url('/admin/nieuwtjes') }}">Nieuwtjes</a></li>
+					<li><a href="{{ url('/admin/albums') }}">Foto's</a></li>
 					<li><a href="{{ url('/admin/leden') }}">Leden</a></li>
 				</ul>
 			</li>
@@ -108,6 +110,11 @@
 	<script src="{{ asset('js/libs/fullcalendar.min.js') }}"></script>
 	<script src="{{ asset('js/libs/d3.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('js/libs/c3.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('js/libs/dropzone.js') }}" type="text/javascript"></script>
+	<script type="text/javascript">// Immediately after the js include
+	  Dropzone.autoDiscover = false;
+	</script>
+	<script src="{{ asset('js/libs/masonry.pkgd.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('js/libs/bootstrap.min.js') }}" type="text/javascript"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 			<h3 class="table-title pull-left">{{ $users->total() }} Leden gevonden op '{{ $keyword }}'</h3>
 			<div class="pull-right search search-members">
 				<form action="{{ url('/admin/leden/zoeken') }}" method="GET">
-					<a href="{{ url('/admin/leden') }}"><i class="fa fa-times"></i></a><i class="fa fa-search search-button"></i><input placeholder="Zoeken" class="input-label-float" type="text" name="search_member">
+					<a href="{{ url('/admin/leden') }}"><i class="fa fa-times"></i></a><i class="fa fa-search search-button"></i><input value="{{ $keyword }}" placeholder="Zoeken" class="input-label-float" type="text" name="search_member">
 				</form>
 			</div>
 			<table class="table">

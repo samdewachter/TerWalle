@@ -1,13 +1,13 @@
 $( document ).ready(function() {
 	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
 
 	$('.treeview-menu').hide();
 
-    //Ripple effect when you click on a button
+	//Ripple effect when you click on a button
 	var parent, ink, d, x, y;
 	$("aside ul li a").click(function(e){
 		parent = $(this).parent();
@@ -71,7 +71,7 @@ $( document ).ready(function() {
 	//Slide animation when you click on a nested nav element
 	$('.treeview').click(function(){
 		$.when(
-			$(this).next().stop().slideToggle(500, "swing")
+			$(this).next().stop().slideToggle(300, "swing")
 		).then(function(){
 			$('.treeview-menu span').remove();
 		});
@@ -90,7 +90,7 @@ $( document ).ready(function() {
 
 	$('.input-label-float').each(function() {
 		if ($(this).val() != '') {
-	    	$(this).addClass('valid');
+			$(this).addClass('valid');
 		}
 	});
 
@@ -111,16 +111,16 @@ $( document ).ready(function() {
  //        $(".alert").fadeOut();
  //    }, 10000);
 
-    itemNumber = $('.grocery-items').find(".form-group").length;
+	itemNumber = $('.grocery-items').find(".form-group").length;
 
-    if (itemNumber <= 1) {
-    	$('.delete-grocery-item').hide();
-    }
+	if (itemNumber <= 1) {
+		$('.delete-grocery-item').hide();
+	}
 
-    $('.extra-grocery-item').click(function(){    	
-    	itemNumber = $('.grocery-items').find(".form-group").length;
-    	
-    	$('.grocery-items').append('<div class="form-group clearfix">\
+	$('.extra-grocery-item').click(function(){    	
+		itemNumber = $('.grocery-items').find(".form-group").length;
+		
+		$('.grocery-items').append('<div class="form-group clearfix">\
 									<div class="col-md-2">\
 										<input type="number" name="quantity[]" class="form-control input-label-float">\
 										<label class="label-float">Hoeveel</label>\
@@ -131,306 +131,470 @@ $( document ).ready(function() {
 									</div>\
 								</div>');
 
-    	if (itemNumber +1 > 1) {
-    		$('.delete-grocery-item').show();
-    	}
-    });
+		if (itemNumber +1 > 1) {
+			$('.delete-grocery-item').show();
+		}
+	});
 
-    $('.delete-grocery-item').click(function(){
-    	itemNumber = $('.grocery-items').find(".form-group").length;
+	$('.delete-grocery-item').click(function(){
+		itemNumber = $('.grocery-items').find(".form-group").length;
 
-    	if (itemNumber > 1) {
-    		$('.grocery-items .form-group').last().remove();
-    	}
+		if (itemNumber > 1) {
+			$('.grocery-items .form-group').last().remove();
+		}
 
-    	if(itemNumber-1 <= 1) {
-    		$('.delete-grocery-item').hide();
-    	}
-    });
+		if(itemNumber-1 <= 1) {
+			$('.delete-grocery-item').hide();
+		}
+	});
 
-    /* FULLCALENDAR */
+	/* FULLCALENDAR */
 
-    $('.draggable-events .fc-event').each(function() {
-      
-  		// store data so the calendar knows to render an event upon drop
-  		$(this).data('event', {
-  			title: $.trim($(this).text()), // use the element's text as the event title
-  			stick: false // maintain when user navigates (see docs on the renderEvent method)
-  		});
+	$('.draggable-events .fc-event').each(function() {
+	  
+		// store data so the calendar knows to render an event upon drop
+		$(this).data('event', {
+			title: $.trim($(this).text()), // use the element's text as the event title
+			stick: false // maintain when user navigates (see docs on the renderEvent method)
+		});
   
-  		// make the event draggable using jQuery UI
-  		$(this).draggable({
-  			zIndex: 999,
-  			revert: true,      // will cause the event to go back to its
-  			revertDuration: 0  //  original position after the drag
-  		});
+		// make the event draggable using jQuery UI
+		$(this).draggable({
+			zIndex: 999,
+			revert: true,      // will cause the event to go back to its
+			revertDuration: 0  //  original position after the drag
+		});
   
-  	});
+	});
 
-    $('#calendar').fullCalendar({
-        header: {
-  			left: 'title',
-  			center: 'none',
-  			right: 'prev,next today'
-  		},
-  		events: 'taplijst/getTapList',
-  		droppable: true,
-  		editable: true,
-  		eventClick: function(calEvent, jsEvent, view)
-        {
-            var r=confirm("Delete " + calEvent.title);
-            if (r===true)
-            {
-            	$.ajax({
-	        		url: 'taplijst/'+ calEvent.id +'/delete',
-	        		data: {
-	        			'_method': 'DELETE',
-	        		},
-	        		type: 'DELETE',
-	        		success: function() {
-	        			$('.alert.alert-success').remove();
-	        			$('.alert-wrapper').append('<div class="alert alert-success">\
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'title',
+			center: 'none',
+			right: 'prev,next today'
+		},
+		events: 'taplijst/getTapList',
+		droppable: true,
+		editable: true,
+		eventClick: function(calEvent, jsEvent, view)
+		{
+			var r=confirm("Delete " + calEvent.title);
+			if (r===true)
+			{
+				$.ajax({
+					url: 'taplijst/'+ calEvent.id +'/delete',
+					data: {
+						'_method': 'DELETE',
+					},
+					type: 'DELETE',
+					success: function() {
+						$('.alert.alert-success').remove();
+						$('.alert-wrapper').append('<div class="alert alert-success">\
 							<button type="button" class="close">×</button>\
 							<h4>Success!</h4>\
-					        Tapper succesvol verwijderd\
-					    </div>');
-	        		},
-	        		error: function() {
-	        			console.log('error');
-	        		}
-	        	});
-                $('#calendar').fullCalendar('removeEvents', calEvent._id);
-            }
-        },
-        eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) 
-        {
-        	$.ajax({
-        		url: 'taplijst/'+ event.id +'/update',
-        		data: {
-        			'start': event.start.format(),
-        		},
-        		type: 'POST',
-        		success: function() {
-        			$('.alert.alert-success').remove();
-        			$('.alert-wrapper').append('<div class="alert alert-success">\
+							Tapper succesvol verwijderd\
+						</div>');
+					},
+					error: function() {
+						console.log('error');
+					}
+				});
+				$('#calendar').fullCalendar('removeEvents', calEvent._id);
+			}
+		},
+		eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) 
+		{
+			$.ajax({
+				url: 'taplijst/'+ event.id +'/update',
+				data: {
+					'start': event.start.format(),
+				},
+				type: 'POST',
+				success: function() {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
 						<button type="button" class="close">×</button>\
 						<h4>Success!</h4>\
-				        Tapper succesvol aangepast\
-				    </div>');
-        		},
-        		error: function() {
-        			console.log('error');
-        		}
-        	});
-        },
-        drop: function(date, jsEvent, ui, resourceId)
-        {
-        	var originalEventObject = $(this).data('event');
-        	var eventTitle = originalEventObject.title;
-        	var eventDate = date.format();
+						Tapper succesvol aangepast\
+					</div>');
+				},
+				error: function() {
+					console.log('error');
+				}
+			});
+		},
+		drop: function(date, jsEvent, ui, resourceId)
+		{
+			var originalEventObject = $(this).data('event');
+			var eventTitle = originalEventObject.title;
+			var eventDate = date.format();
 
-        	$.ajax({
-        		url: 'taplijst/save',
-        		data: {
-        			'start': eventDate,
-        			'title': eventTitle
-        		},
-        		type: 'POST',
-        		success: function() {
-        			$('.alert.alert-success').remove();
-        			$('.alert-wrapper').append('<div class="alert alert-success">\
+			$.ajax({
+				url: 'taplijst/save',
+				data: {
+					'start': eventDate,
+					'title': eventTitle
+				},
+				type: 'POST',
+				success: function() {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
 						<button type="button" class="close">×</button>\
 						<h4>Success!</h4>\
-				        Tapper succesvol Toegevoegd\
-				    </div>');
-				    $('#calendar').fullCalendar('refetchEvents' );
-        		},
-        		error: function() {
-        			console.log('error');
-        		}
-        	});
-        }
-    });
+						Tapper succesvol Toegevoegd\
+					</div>');
+					$('#calendar').fullCalendar('refetchEvents' );
+				},
+				error: function() {
+					console.log('error');
+				}
+			});
+		}
+	});
 
-    /* REUPLOAD BTN */
+	/* REUPLOAD BTN */
 
-    $('#reupload-report').click(function(){
-    	$('.input-report-upload').show();
-    	$(this).hide();
-    });
+	$('#reupload-report').click(function(){
+		$('.input-report-upload').show();
+		$(this).hide();
+	});
 
-    /* CHARTS */
+	/* CHARTS */
 
-    function loadChart(chartBind, xColumn, yColumn){
-    	var chart = c3.generate({
-		    bindto: '#'+chartBind,
-		    data: {
-		    	x: 'x',
-		      columns: [
-		      	xColumn,
-		        yColumn,
-		      ],
-		      type: 'bar'
-		    },
-		    axis: {
-		    	x: {
-		    		type: 'category'
-		    	},
-		    	rotated: true
-		    },
-		    bar: {
-		    	width:{
-		    		ratio: 0.5
-		    	}
-		    }
+	function loadChart(chartBind, xColumn, yColumn){
+		var chart = c3.generate({
+			bindto: '#'+chartBind,
+			data: {
+				x: 'x',
+			  columns: [
+				xColumn,
+				yColumn,
+			  ],
+			  type: 'bar'
+			},
+			axis: {
+				x: {
+					type: 'category'
+				},
+				rotated: true
+			},
+			bar: {
+				width:{
+					ratio: 0.5
+				}
+			}
 		});
-    }
+	}
 
-    // numberOfCharts = $('.chart-wrapper').find(".chart").length;
-    numberOfCharts = $('.chart-wrapper').find(".chart");
+	// numberOfCharts = $('.chart-wrapper').find(".chart").length;
+	numberOfCharts = $('.chart-wrapper').find(".chart");
 
-    
+	
 
-    $.each(numberOfCharts, function(chartIndex, chart){
-    	// console.log('CHARTS: ', value.id);
-    	console.log(chart.id.slice(-1));
-    	$.ajax({
-    		url: 'polls/'+ chart.id.slice(-1) +'/results',
-    		type: 'GET',
-    		success: function(data) {
-    			xColumn = ['x'];
-    			yColumn = ['Votes'];
+	$.each(numberOfCharts, function(chartIndex, chart){
+		// console.log('CHARTS: ', value.id);
+		console.log(chart.id.slice(-1));
+		$.ajax({
+			url: 'polls/'+ chart.id.slice(-1) +'/results',
+			type: 'GET',
+			success: function(data) {
+				xColumn = ['x'];
+				yColumn = ['Votes'];
 
-    			$.each(data['answers'], function(answerIndex, answer){
-    				xColumn.push(answer);
-    			});
+				$.each(data['answers'], function(answerIndex, answer){
+					xColumn.push(answer);
+				});
 
-    			$.each(data['votes'], function(votesIndex, vote){
-    				yColumn.push(vote);
-    			});
+				$.each(data['votes'], function(votesIndex, vote){
+					yColumn.push(vote);
+				});
 
-    			loadChart(chart.id, xColumn, yColumn);
-    		},
-    		error: function() {
-    			console.log('error');
-    		}
-    	});
-    });
+				loadChart(chart.id, xColumn, yColumn);
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
 
 	/* ADD POLL QUESTION */
 
 	itemNumber = $('.poll-answers').find(".form-group").length;
 
-    if (itemNumber <= 1) {
-    	$('.delete-poll-answer').hide();
-    }
+	if (itemNumber <= 1) {
+		$('.delete-poll-answer').hide();
+	}
 
-    $('.extra-poll-answer').click(function(){    	
-    	console.log('clicked');
-    	itemNumber = $('.poll-answers').find(".form-group").length;
-    	
-    	$('.poll-answers').append('<div class="form-group clearfix">\
+	$('.extra-poll-answer').click(function(){    	
+		console.log('clicked');
+		itemNumber = $('.poll-answers').find(".form-group").length;
+		
+		$('.poll-answers').append('<div class="form-group clearfix">\
 										<input type="text" name="answers[]" class="form-control input-label-float">\
 										<label class="label-float">Antwoord '+ (itemNumber+1) +'</label>\
 								</div>');
 
-    	if (itemNumber +1 > 1) {
-    		$('.delete-poll-answer').show();
-    	}
-    });
+		if (itemNumber +1 > 1) {
+			$('.delete-poll-answer').show();
+		}
+	});
 
-    $('.delete-poll-answer').click(function(){
-    	itemNumber = $('.poll-answers').find(".form-group").length;
+	$('.delete-poll-answer').click(function(){
+		itemNumber = $('.poll-answers').find(".form-group").length;
 
-    	if (itemNumber > 1) {
-    		$('.poll-answers .form-group').last().remove();
-    	}
+		if (itemNumber > 1) {
+			$('.poll-answers .form-group').last().remove();
+		}
 
-    	if(itemNumber-1 <= 1) {
-    		$('.delete-poll-answer').hide();
-    	}
-    });
+		if(itemNumber-1 <= 1) {
+			$('.delete-poll-answer').hide();
+		}
+	});
 
-    // publish event checkbox
+	// publish event checkbox
 
-    $(".publish").change(function(){
-    	var publish = $(this).prop('checked');
-    	var id = $(this).attr('id');
+	$(".publish").change(function(){
+		var publish = $(this).prop('checked');
+		var id = $(this).attr('id');
 
-    	$.ajax({
-    		url: 'evenementen/publish',
-    		data: {
-    			'publish': publish,
-    			'id': id
-    		},
-    		type: 'POST',
-    		success: function() {
-    			if (publish) {
-    				$('.alert.alert-success').remove();
-	    			$('.alert-wrapper').append('<div class="alert alert-success">\
+		$.ajax({
+			url: 'evenementen/publish',
+			data: {
+				'publish': publish,
+				'id': id
+			},
+			type: 'POST',
+			success: function() {
+				if (publish) {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
 						<button type="button" class="close">×</button>\
 						<h4>Success!</h4>\
-				        Evenement succesvol gepubliceerd.\
-				    </div>');
-    			} else {
-    				$('.alert.alert-success').remove();
-	    			$('.alert-wrapper').append('<div class="alert alert-success">\
+						Evenement succesvol gepubliceerd.\
+					</div>');
+				} else {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
 						<button type="button" class="close">×</button>\
 						<h4>Success!</h4>\
-				        Evenement succesvol verborgen.\
-				    </div>');
-    			}
-    			
-    		},
-    		error: function() {
-    			console.log('error');
-    		}
-    	});
-    });
+						Evenement succesvol verborgen.\
+					</div>');
+				}
+				
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
 
-    /* SEARCH BUTTON */
+	/* SEARCH BUTTON */
 
-    $('.search-button').click(function(){
-    	var visible = $('.search input').toggleClass('search-active').is(':visible');
-    	if (visible) {
-    		$('.search input').focus();
-    	}
-    });
+	$('.search-button').click(function(){
+		var visible = $('.search input').toggleClass('search-active').is(':visible');
+		if (visible) {
+			$('.search input').focus();
+		}
+	});
 
-    /* USERS PAID CHECKBOX */
+	/* USERS PAID CHECKBOX */
 
-    $(".paid").change(function(){
-        var paid = $(this).prop('checked');
-        var id = $(this).attr('id');
+	$(".paid").change(function(){
+		var paid = $(this).prop('checked');
+		var id = $(this).attr('id');
 
-        $.ajax({
-            url: 'leden/betaald',
-            data: {
-                'paid': paid,
-                'id': id
-            },
-            type: 'POST',
-            success: function() {
-                if (paid) {
-                    $('.alert.alert-success').remove();
-                    $('.alert-wrapper').append('<div class="alert alert-success">\
-                        <button type="button" class="close">×</button>\
-                        <h4>Success!</h4>\
-                        Lid succesvol Betaald.\
-                    </div>');
-                } else {
-                    $('.alert.alert-success').remove();
-                    $('.alert-wrapper').append('<div class="alert alert-success">\
-                        <button type="button" class="close">×</button>\
-                        <h4>Success!</h4>\
-                        Betaling lid succesvol verwijderd.\
-                    </div>');
-                }
-                
-            },
-            error: function() {
-                console.log('error');
-            }
-        });
-    });
+		$.ajax({
+			url: 'leden/betaald',
+			data: {
+				'paid': paid,
+				'id': id
+			},
+			type: 'POST',
+			success: function() {
+				if (paid) {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Lid succesvol Betaald.\
+					</div>');
+				} else {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Betaling lid succesvol verwijderd.\
+					</div>');
+				}
+				
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
+
+	/* DROPZONE */
+	Dropzone.autoDiscover = false;
+	$('#submit-all').prop('disabled', true);
+	// var album_name = '';
+	$("#my-awesome-dropzone").dropzone({
+		dictDefaultMessage: "Sleep je afbeelding of klik om up te loaden.",
+		dictFileTooBig: "De foto is te groot.",
+		url: 'add',
+		clickable: true,
+		enqueueForUpload: true,
+		maxFilesize: 1.5,
+		uploadMultiple: true,
+		maxFiles: 100,
+		autoProcessQueue: false,
+		addRemoveLinks: true,
+		init: function () {
+			var myDropzone = this;
+			$("#submit-all").click(function (e) {
+				e.preventDefault();
+				// album_name = Date.now();
+				myDropzone.processQueue();
+				
+			});
+			this.on("error", function (file, responseText) {
+				// $('.dz-error-message').text('');
+				$('.error').empty();
+				$.each(responseText, function (index, value) {
+					$('.dz-error-message').text('');
+					$('.dz-error-message').append(value + '<br>');
+					$('input[name='+index+']').after('<p class="error">'+value+'</p>');
+				});
+				$('.alert').remove();
+				$('.alert-wrapper').append('<div class="alert alert-error">\
+					<button type="button" class="close">×</button>\
+					<h4>Error!</h4>\
+					Er liep iets fout bij het aanmaken van het foto album.\
+				</div>');
+			});
+			this.on("removedfile", function (file, responseText) {
+				console.log(this.files.length);
+				if (this.files.length == 0) {
+					$('#submit-all').prop('disabled', true);
+				}
+			});
+			this.on("addedfile", function (file, responseText) {
+				if (this.files.length > 0) {
+					$('#submit-all').prop('disabled', false);
+				}
+			});
+			this.on("success", function (file) {
+				$('.alert').remove();
+				$('.alert-wrapper').append('<div class="alert alert-success">\
+					<button type="button" class="close">×</button>\
+					<h4>Success!</h4>\
+					Foto album succesvol gemaakt.\
+				</div>');
+			});
+		},
+		processing: function(){
+			this.options.autoProcessQueue = true;
+			$('input').prop('disabled', true);
+			$('select').prop('disabled', true);
+		},
+		sending: function (file, xhr, formData) {
+			formData.append("_token", $('[name=_token').val());
+			formData.append("album_name", $("input[name=album_name]").val());
+			formData.append("date", $("input[name=date]").val());
+			formData.append("event_id", $("select[name=event_id]").val());
+		},
+		queuecomplete: function(){
+			var myDropzone = this;
+			$('#submit-all').prop('disabled', true);
+			$('input').prop('disabled', false);
+			$('select').prop('disabled', false);
+			$('.error').empty();
+			window.location = "http://eindwerk.local/TerWalle/public/admin/albums";
+			// this.on("success", function (file) {				
+			// 	setTimeout(function(){
+			// 	    myDropzone.removeAllFiles();
+			// 	}, 3000);
+			// });
+			myDropzone.options.autoProcessQueue = false;			
+		},
+	});
+
+	$("#add-photos-dropzone	").dropzone({
+		dictDefaultMessage: "Sleep je afbeelding of klik om up te loaden.",
+		dictFileTooBig: "De foto is te groot.",
+		url: 'add',
+		clickable: true,
+		enqueueForUpload: true,
+		maxFilesize: 1.5,
+		uploadMultiple: true,
+		maxFiles: 100,
+		autoProcessQueue: false,
+		addRemoveLinks: true,
+		init: function () {
+			var myDropzone = this;
+			$("#submit-all").click(function (e) {
+				e.preventDefault();
+				// album_name = Date.now();
+				myDropzone.processQueue();
+				
+			});
+			this.on("error", function (file, responseText) {
+				// $('.dz-error-message').text('');
+				$('.error').empty();
+				$.each(responseText, function (index, value) {
+					$('.dz-error-message').text('');
+					$('.dz-error-message').append(value + '<br>');
+					$('input[name='+index+']').after('<p class="error">'+value+'</p>');
+				});
+				$('.alert').remove();
+				$('.alert-wrapper').append('<div class="alert alert-error">\
+					<button type="button" class="close">×</button>\
+					<h4>Error!</h4>\
+					Er liep iets fout bij het aanmaken van het foto album.\
+				</div>');
+			});
+			this.on("removedfile", function (file, responseText) {
+				console.log(this.files.length);
+				if (this.files.length == 0) {
+					$('#submit-all').prop('disabled', true);
+				}
+			});
+			this.on("addedfile", function (file, responseText) {
+				if (this.files.length > 0) {
+					$('#submit-all').prop('disabled', false);
+				}
+			});
+			this.on("success", function (file) {
+				$('.alert').remove();
+				$('.alert-wrapper').append('<div class="alert alert-success">\
+					<button type="button" class="close">×</button>\
+					<h4>Success!</h4>\
+					Foto album succesvol gemaakt.\
+				</div>');
+			});
+		},
+		processing: function(){
+			this.options.autoProcessQueue = true;
+			$('input').prop('disabled', true);
+			$('select').prop('disabled', true);
+		},
+		sending: function (file, xhr, formData) {
+			formData.append("_token", $('[name=_token').val());
+		},
+		queuecomplete: function(){
+			var myDropzone = this;
+			$('#submit-all').prop('disabled', true);
+			$('input').prop('disabled', false);
+			$('select').prop('disabled', false);
+			$('.error').empty();
+			myDropzone.options.autoProcessQueue = false;			
+		},
+	}); 
+
+	/* MASONRY ALBUMS */
+
+	$('.grid').masonry({
+		itemSelector: '.grid-item',
+		columnWidth: 1,
+	}); 
 });

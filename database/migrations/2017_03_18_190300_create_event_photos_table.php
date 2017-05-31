@@ -15,8 +15,8 @@ class CreateEventPhotosTable extends Migration
     {
         Schema::create('event_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('eid'); // event id to link photo
-            $table->string('photo'); // event photo
+            $table->integer('album_id'); // album id to link photo
+            $table->string('photo'); // album photo
             $table->timestamps();
         });
     }
