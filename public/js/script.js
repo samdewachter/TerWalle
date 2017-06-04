@@ -597,4 +597,60 @@ $( document ).ready(function() {
 		itemSelector: '.grid-item',
 		columnWidth: 1,
 	}); 
+
+	/* COVER PHOTO BUTTON */
+
+	$('.new-cover-photo').hide();
+	$('.cancel-cover-photo').hide();
+
+	$('.new-cover-btn').click(function(){
+		$('.new-cover-photo').show();
+		$('.cancel-cover-photo').show();
+		$('.current-cover-wrapper').slideUp();
+		$(this).hide();
+	});
+
+	$('.cancel-cover-photo').click(function(){
+		$('.new-cover-photo').hide();
+		$('.new-cover-btn').show();
+		$('.current-cover-wrapper').slideDown();
+		$(this).hide();
+	});
+
+	/* PUBLISH NEWS CHECKBOX */
+
+	$(".publish-news").change(function(){
+		var publish = $(this).prop('checked');
+		var id = $(this).attr('id');
+
+		$.ajax({
+			url: 'nieuwtjes/publish',
+			data: {
+				'publish': publish,
+				'id': id
+			},
+			type: 'POST',
+			success: function() {
+				if (publish) {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Evenement succesvol gepubliceerd.\
+					</div>');
+				} else {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Evenement succesvol verborgen.\
+					</div>');
+				}
+				
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
 });

@@ -124,6 +124,16 @@ class PhotoController extends Controller
         return back()->with('message', ['error', 'Er ging iets fout bij het aanpassen van het album.']);
     }
 
+    public function searchAlbums(Request $request){
+        if (isset($request->query->all()['query'])) {
+            $keyword = $request->query->all()['query'];
+        }else {
+            $keyword = $request->search_album;
+        }
+        $albums = Album::search($keyword)->get();
+        return view('admin.photos.searchAlbums', compact('albums', 'keyword'));
+    }
+
     public function test(){
     	$event = Event::find(1);
     	var_dump($event->albums[0]->album_name);

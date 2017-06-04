@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Image;
 
 class EventController extends Controller
 {
     public function showEvents()
     {
-    	$events = Event::all();
+    	$events = Event::paginate(10);
 
     	return view('admin.events.showEvents', compact('events'));
     }
@@ -54,12 +55,12 @@ class EventController extends Controller
                 }
             }
             if ($count == 10) {
-                return back()->with('message', ['success', 'Er zijn geen nieuwe facebook evenementen om toe te voegen.']);
+                return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er zijn geen nieuwe facebook evenementen om toe te voegen.']);
             }
-            return back()->with('message', ['success', 'Facebook evenementen succesvol toegevoegd.']);
+            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Facebook evenementen succesvol toegevoegd.']);
         }
 
-        return back()->with('message', ['success', 'Er zijn geen facebook evenementen gevonden.']);		
+        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er zijn geen facebook evenementen gevonden.']);		
     }
 
     private function checkEventExists($facebook_id)
@@ -79,6 +80,103 @@ class EventController extends Controller
             $event->publish = false;
         }
         $event->save();
-        var_dump((integer)$request->publish);
+    }
+
+    public function deleteEvent(Event $event){
+        if ($event->delete()) {
+            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol verwijderen.']);
+        }
+        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het verwijderen van het evenement']);
+    }
+
+    public function newEvent(){
+        return view('admin.events.addEvent');
+    }
+
+    public function addEvent(Request $request){
+        $event = new Event();
+
+        $event->title = $request->title;
+        $event->description = $request->description;
+
+        if ($request->file('cover_photo')) {
+            $file = $request->file('cover_photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('uploads\\eventPhotos\\' . $storageName);
+            $file->save($path, 65);
+
+            $event->cover = $storageName;
+        }
+
+        $event->start_time = $request->start_date . ' ' . $request->start_time;
+        $event->end_time = $request->end_date . ' ' . $request->end_time;
+
+        if ($request->publish) {
+            $event->publish = true;
+        } else {
+            $event->publish = false;
+        }
+
+        if ($event->save()) {
+            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol gemaakt.']);
+        }
+        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het maken van het evenement']);
+
+    }
+
+    public function editEvent(Event $event){
+        return view('admin.events.editEvent', compact('event'));
+    }
+
+    public function updateEvent(Request $request, Event $event){
+        $event->title = $request->title;
+        $event->description = $request->description;
+
+        $cover = substr($event->cover, 0, 4);
+
+        if ($request->file('cover_photo')) {
+            if ($cover != 'http') {
+                File::delete(public_path('uploads/eventPhotos/' . $event->cover));
+            }
+            $file = $request->file('cover_photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('uploads\\eventPhotos\\' . $storageName);
+            $file->save($path, 65);
+
+            $event->cover = $storageName;
+        }
+
+        $event->start_time = $request->start_date . ' ' . $request->start_time;
+        $event->end_time = $request->end_date . ' ' . $request->end_time;
+
+        if ($request->publish) {
+            $event->publish = true;
+        } else {
+            $event->publish = false;
+        }
+
+        if ($event->save()) {
+            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol aangepast.']);
+        }
+        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het aanpassen van het evenement']);
+    }
+
+    public function searchEvents(Request $request)
+    {
+        if (isset($request->query->all()['query'])) {
+            $keyword = $request->query->all()['query'];
+        }else {
+            $keyword = $request->search_event;
+        }
+        $events = Event::search($keyword)->paginate(10);
+        return view('admin.events.searchEvents', compact('events', 'keyword'));
     }
 }

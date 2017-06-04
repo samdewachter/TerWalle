@@ -72,6 +72,12 @@ input.form-control {
 	font-size: 14px;
 }
 
+.admin-content .pagination {
+	float: none;
+	display: inline-block;
+	margin-top: 0;
+}
+
 /* SIDENAVBAR */
 
 .brand-logo {
@@ -450,15 +456,20 @@ a.btn-custom {
 	margin-bottom: 30px;
 }
 
-.login-wrapper .panel .panel-body form input, .register-wrapper .panel .panel-body form input, .admin-form form input, .admin-form form select, .search input {
+.login-wrapper .panel .panel-body form input, .register-wrapper .panel .panel-body form input, .admin-form form input, .admin-form form select, .search input, .admin-form form textarea {
 	outline: none;
 	border-radius: 0;
 	border: none;
 	box-shadow: inset 0 -1px 0 #ddd;
 }
 
-.login-wrapper .panel .panel-body form input:focus, .register-wrapper .panel .panel-body form input:focus, .admin-form form input:focus, .admin-form form select:focus, .search input:focus {
+.login-wrapper .panel .panel-body form input:focus, .register-wrapper .panel .panel-body form input:focus, .admin-form form input:focus, .admin-form form select:focus, .search input:focus, .admin-form form textarea:focus {
 	box-shadow: inset 0 -2px 0 orange;
+}
+
+.admin-form form input[type="file"] {
+	cursor: pointer;
+	outline: none;
 }
 
 
@@ -585,28 +596,28 @@ a.btn-custom {
 	vertical-align: middle;
 }
 
-.search-members {
+.search-admin {
 	margin: 20px 0 10px 0;
 	padding: 20px 40px 20px 20px;
 }
 
-.search-members input {
+.search-admin input {
 	width: 0px;
 	transition-duration: 0.2s;
 }
 
-.search-members .search-active {
+.search-admin .search-active {
 	width: 200px;
 	margin-left: 5px;
 	transition-duration: 0.2s;
 }
 
-.search-members .fa-times {
+.search-admin .fa-times {
 	margin-right: 5px;
 	color: black;
 }
 
-.search-members .fa {
+.search-admin .fa {
 	cursor: pointer;
 }
 
@@ -1094,6 +1105,27 @@ button.close {
 	text-align: center;
 }
 
+.add-event-wrapper .well {
+	padding: 0;
+}
+
+.add-event-wrapper .col-md-12, .add-event-wrapper .col-md-5, .add-event-wrapper .col-md-2, .edit-event-wrapper .col-md-12, .edit-event-wrapper .col-md-5, .edit-event-wrapper .col-md-2 {
+	padding-left: 0;
+}
+
+textarea.form-control {
+	padding: 5px 0 0 0;
+}
+
+.edit-event-wrapper .current-cover-photo {
+	width: 100%;
+	display: block;
+}
+
+.edit-event-wrapper .new-cover-photo {
+	margin-bottom: 10px;
+}
+
 /* checkbox */
 
 .regular-checkbox {
@@ -1287,5 +1319,57 @@ button.close {
 	background-color: white;
 	width: 100%;
 	padding: 25px;
+	margin-bottom: 10px;
+}
+
+.albums-wrapper .search {
+	margin-top: 0;
+}
+
+.albums-wrapper .search input {
+	background-color: #f9f9f9;
+}
+
+/* NEWS STYLING */
+
+.news-wrapper .admin-body {
+	padding: 0;
+}
+
+.news-wrapper .table .table-photo {
+	min-width: 51px;
+}
+
+.news-wrapper .table .table-event-title {
+	min-width: 75px;
+}
+
+.news-wrapper .table .table-subtitle {
+	min-width: 200px;
+}
+
+.news-wrapper .table .table-text {
+	min-width: 200px;
+}
+
+.news-wrapper .table .table-end {
+	width: 100px;
+}
+
+.news-wrapper .table .table-actions {
+	min-width: 155px;
+}
+
+.news-wrapper .table .table-publish {
+	min-width: 50px;
+	text-align: center;
+}
+
+.edit-news-wrapper .current-cover-photo {
+	height: 150px;
+	display: block;
+}
+
+.edit-news-wrapper .new-cover-photo {
 	margin-bottom: 10px;
 }

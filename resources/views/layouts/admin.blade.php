@@ -73,10 +73,11 @@
 		<div class="navbar">
 			<div class="navbar-left pull-left">
 				<div class="hamburger-button pull-left"><a><img src="{{ asset('images/hamburger_icon.png') }}"></a></div>
-				<ul class="breadcrumb">
+				<!-- <ul class="breadcrumb">
 					<li>Dashboard</li>
 					<li>test</li>
-				</ul>
+				</ul> -->
+				{!! Breadcrumbs::render() !!}
 			</div>
 			<div class="navbar-right">
 				<ul>

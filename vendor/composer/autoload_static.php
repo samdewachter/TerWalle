@@ -92,6 +92,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
+            'DaveJamesMiller\\Breadcrumbs\\' => 28,
         ),
         'C' => 
         array (
@@ -243,6 +244,10 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'DaveJamesMiller\\Breadcrumbs\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -337,6 +342,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'App\\Http\\Controllers\\GroceryController' => __DIR__ . '/../..' . '/app/Http/Controllers/GroceryController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/app/Http/Controllers/MemberController.php',
+        'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Controllers\\PhotoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PhotoController.php',
         'App\\Http\\Controllers\\PollController' => __DIR__ . '/../..' . '/app/Http/Controllers/PollController.php',
         'App\\Http\\Controllers\\ReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportController.php',
@@ -349,6 +355,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\KindOfReport' => __DIR__ . '/../..' . '/app/KindOfReport.php',
+        'App\\News' => __DIR__ . '/../..' . '/app/News.php',
         'App\\PaidUser' => __DIR__ . '/../..' . '/app/PaidUser.php',
         'App\\Poll' => __DIR__ . '/../..' . '/app/Poll.php',
         'App\\PollResult' => __DIR__ . '/../..' . '/app/PollResult.php',
@@ -395,6 +402,13 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'DaveJamesMiller\\Breadcrumbs\\CurrentRoute' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/CurrentRoute.php',
+        'DaveJamesMiller\\Breadcrumbs\\Exception' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/Exception.php',
+        'DaveJamesMiller\\Breadcrumbs\\Facade' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/Facade.php',
+        'DaveJamesMiller\\Breadcrumbs\\Generator' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/Generator.php',
+        'DaveJamesMiller\\Breadcrumbs\\Manager' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/Manager.php',
+        'DaveJamesMiller\\Breadcrumbs\\ServiceProvider' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/ServiceProvider.php',
+        'DaveJamesMiller\\Breadcrumbs\\View' => __DIR__ . '/..' . '/davejamesmiller/laravel-breadcrumbs/src/View.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineCollectionFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineCollectionFilter.php',

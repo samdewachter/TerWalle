@@ -4,9 +4,16 @@
 
 	<div class="albums-wrapper admin-wrapper">
 
-		<div class="admin-header">
-			<h1>Foto's</h1>
-			<p>Hier kan je foto's aanmaken, aanpassen en verwijderen.</p>
+		<div class="admin-header clearfix">
+			<div class="pull-left">
+				<h1>Foto's</h1>
+				<p>Hier kan je foto's aanmaken, aanpassen en verwijderen.</p>
+			</div>
+			<div class="pull-right search search-admin">
+				<form action="{{ url('/admin/albums/zoeken') }}" method="GET">
+					<i class="fa fa-search search-button"></i><input placeholder="Zoeken" class="input-label-float" type="text" name="search_album">
+				</form>
+			</div>
 		</div>
 		<div class="admin-body">
 			<div class="grid">
