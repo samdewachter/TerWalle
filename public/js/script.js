@@ -274,7 +274,7 @@ $( document ).ready(function() {
 			},
 			axis: {
 				x: {
-					type: 'category'
+					type: 'category',
 				},
 				rotated: true
 			},
@@ -645,6 +645,61 @@ $( document ).ready(function() {
 						<h4>Success!</h4>\
 						Evenement succesvol verborgen.\
 					</div>');
+				}
+				
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
+
+	/* grocery item done */
+
+	$(".grocery-done").change(function(){
+		var done = $(this).prop('checked');
+		var id = $(this).attr('id');
+
+		$.ajax({
+			url: 'boodschappen/done',
+			data: {
+				'done': done,
+				'id': id
+			},
+			type: 'POST',
+			success: function(data) {
+				console.log(data)
+				if (done) {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Item succesvol gedaan.\
+					</div>');
+				} else {
+					$('.alert.alert-success').remove();
+					$('.alert-wrapper').append('<div class="alert alert-success">\
+						<button type="button" class="close">×</button>\
+						<h4>Success!</h4>\
+						Item succesvol verborgen.\
+					</div>');
+				}
+
+				if (data.groceriesDone == 'true') {
+					$('#'+data.groceryId+data.groceryName+' i').remove();
+					$('#'+data.groceryId+data.groceryName+' span').remove();
+					$('#'+data.groceryId+data.groceryName).append(
+						'<i class="fa fa-check done pull-right custom-tooltip custom-tooltip-arrow-bottom"><span class="tooltip-text tooltip-text-arrow-bottom">Gedaan!</span></i>'
+					);
+				} else {
+					$check = $('#'+data.groceryId+data.groceryName+' i.done');
+					if ($check.length != 0) {
+						$('#'+data.groceryId+data.groceryName+' i').remove();
+						$('#'+data.groceryId+data.groceryName+' span').remove();
+						$('#'+data.groceryId+data.groceryName).append(
+							'<span class="not-done pull-right custom-tooltip custom-tooltip-arrow-bottom">×<span class="tooltip-text tooltip-text-arrow-bottom">Nog niet gedaan</span></span>'
+						);
+					}					
 				}
 				
 			},

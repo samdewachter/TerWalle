@@ -13,7 +13,7 @@
 						{{ csrf_field() }}
 						<div class="form-group">
 							<input type="text" name="name" class="form-control input-label-float">
-							<label class="label-float label-float ">Naam boodschappenlijst</label>
+							<label class="label-float">Naam boodschappenlijst</label>
 						</div>
 						<div class="form-group">
 							<input type="date" name="needed_at" class="form-control input-label-float">

@@ -15,7 +15,7 @@ class PollController extends Controller
     	$polls = Poll::all();
 
         // echo "<pre>";
-        // var_dump($polls[0]->answers[1]->Results[0]->User);
+        // var_dump($polls[0]->Answers[3]->Results);
         // echo "</pre>";
     	return view('admin.polls.showPolls', compact('polls'));
     }
@@ -90,5 +90,46 @@ class PollController extends Controller
         echo "<pre>";
         var_dump($data);
         echo "</pre>";
+    }
+
+    public function deletePoll(Poll $poll)
+    {
+        if ($poll->delete()) {
+            return redirect('/admin/polls')->with('message', ['success', 'Poll succesvol verwijderd.']);
+        }
+        return redirect('/admin/polls')->with('message', ['error', 'Er liep iets fout bij het verwijderen van de poll.']);
+    }
+
+    public function editPoll(Poll $poll)
+    {
+        return view('admin.polls.editPoll', compact('poll'));
+    }
+
+    public function updatePoll(Request $request, Poll $poll)
+    {
+        $poll->title = $request->title;
+
+        $oldAnswers = $poll->Answers;
+
+        foreach ($oldAnswers as $oldAnswer) {
+            $answer = AnswerPoll::find($oldAnswer->id);
+            $answer->answer = $request->oldAnswers[$answer->id];
+            $answer->save();
+        }
+
+        if ($request->answers && count($request->answers) > 0) {
+            foreach ($request->answers as $answer) {
+                $pollAnswer = new AnswerPoll();
+
+                $pollAnswer->answer = $answer;
+                $pollAnswer->poll_id = $poll->id;
+                $pollAnswer->save();
+            }
+        }
+
+        if ($poll->save()) {
+            return redirect('/admin/polls')->with('message', ['success', 'Poll succesvol aangepast.']);
+        }
+        return redirect('/admin/polls')->with('message', ['error', 'Er liep iets fout bij het aanpassen van de poll.']);
     }
 }

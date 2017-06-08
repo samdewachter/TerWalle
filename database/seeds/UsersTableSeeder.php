@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         		"last_name" => "De Wachter",
         		"email" => "samdewachter@gmail.com",
         		"birth_year" => "1994-07-07",
-        		"photo" => "default.jpg",
+        		"photo" => "default.png",
         		"role_id" => 1,
         		"password" => Hash::make('test'),
         		"created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
         		"last_name" => "Schippers",
         		"email" => "tommyschippers@gmail.com",
         		"birth_year" => "1997-07-14",
-        		"photo" => "default.jpg",
+        		"photo" => "default.png",
         		"role_id" => 2,
         		"password" => Hash::make('test'),
         		"created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
         		"last_name" => "Blockeel",
         		"email" => "francisblockeel@gmail.com",
         		"birth_year" => "1994-04-13",
-        		"photo" => "default.jpg",
+        		"photo" => "default.png",
         		"role_id" => 2,
         		"password" => Hash::make('test'),
         		"created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Caluwé",
                 "email" => "jeroencaluwe@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 1,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Van Raemdonck",
                 "email" => "carolinevanraemdonck@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Van hul",
                 "email" => "gillesvanhul@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Bolsens",
                 "email" => "davybolsens@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -88,7 +88,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Van Havere",
                 "email" => "diegovanhavere@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -98,7 +98,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Braem",
                 "email" => "anoukbraem@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -108,7 +108,7 @@ class UsersTableSeeder extends Seeder
                 "last_name" => "Declerck",
                 "email" => "jorgendeclerck@gmail.com",
                 "birth_year" => "1994-07-07",
-                "photo" => "default.jpg",
+                "photo" => "default.png",
                 "role_id" => 2,
                 "password" => Hash::make('test'),
                 "created_at" => Carbon::now()->format('Y-m-d H:i:s')
@@ -118,7 +118,7 @@ class UsersTableSeeder extends Seeder
         		"last_name" => "Thys",
         		"email" => "remcothys@gmail.com",
         		"birth_year" => "1995-09-23",
-        		"photo" => "default.jpg",
+        		"photo" => "default.png",
         		"role_id" => 3,
         		"password" => Hash::make('test'),
         		"created_at" => Carbon::now()->format('Y-m-d H:i:s')

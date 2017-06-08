@@ -31,7 +31,7 @@
 					@foreach($users as $user)
 						<tr>
 							<!-- <td><input type="checkbox" id="checkbox{{ $user->id }}" name=""><label class="checkbox-label" for="checkbox{{ $user->id }}"></label></td> -->
-							<td><img src="{{ asset('images/user.png') }}"></td>
+							<td><img src="{{ asset('uploads/profilePhotos/' . $user->photo) }}"></td>
 							<td>{{ $user->first_name }}</td>
 							<td>{{ $user->last_name }}</td>
 							<td>{{ $user->email }}</td>
@@ -59,6 +59,11 @@
 			<div class="text-center"> 
 				{{ $users->links() }}
 			</div>
+		</div>
+		<div class="footer-buttons">
+			<ul>
+				<li class="custom-tooltip custom-tooltip-arrow-bottom"><a href="{{ url('/admin/leden/add') }}" class="btn-custom btn-round btn-custom-primary"><i class="fa fa-plus"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Nieuw lid</span></li>
+			</ul>
 		</div>
 	</div>
 

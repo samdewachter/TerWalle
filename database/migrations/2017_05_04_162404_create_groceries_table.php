@@ -16,9 +16,9 @@ class CreateGroceriesTable extends Migration
         Schema::create('groceries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name'); // name of grocery list
-            $table->string('items'); // json string of items to get
             $table->date('needed_at'); // when do we need the items
             $table->boolean('done')->default(0); // whether or not the list is done
+            $table->softDeletes();
             $table->timestamps();
         });
     }

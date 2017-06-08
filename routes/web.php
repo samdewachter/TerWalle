@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/test', 'AdminController@test');
 
+Route::post('/pusherauth', 'PusherController@auth');
+
 Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
 
@@ -27,6 +29,8 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::delete('/leden/{user}/delete', 'MemberController@deleteMember');
     Route::get('/leden/zoeken', 'MemberController@searchMembers')->name('lid zoeken');
     Route::post('/leden/betaald', 'MemberController@paidMember');
+    Route::get('/leden/add', 'MemberController@newMember')->name('lid aanmaken');
+    Route::post('/leden/add', 'MemberController@addMember');
 
     /* GROCERY ROUTES */
     Route::get('/boodschappen', 'GroceryController@showGroceries')->name('boodschappenlijsten');
@@ -36,6 +40,8 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::delete('/boodschappen/{grocery}/delete', 'GroceryController@deleteGrocery');
     Route::get('/boodschappen/{grocery}/edit', 'GroceryController@editGrocery')->name('boodschappenlijst aanpassen');
     Route::post('/boodschappen/{grocery}/edit', 'GroceryController@updateGrocery');
+    Route::post('/boodschappen/done', 'GroceryController@itemDone');
+    Route::post('/boodschappen/{grocery}/addItem', 'GroceryController@addItem');
 
     /* TAP ROUTES */
     Route::get('/taplijst', 'TapController@index')->name('taplijst');
@@ -50,7 +56,7 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::post('/verslagen/add', 'ReportController@addReport');
     Route::get('/verslagen/{report}/download', 'ReportController@downloadReport');
     Route::get('/verslagen/{kind_of_report}/all', 'ReportController@allReports')->name('soort verslag');
-    Route::get('/verslagen/{report}/edit', 'ReportController@editReport')->name('verslage aanpassen');
+    Route::get('/verslagen/{report}/edit', 'ReportController@editReport')->name('verslag aanpassen');
     Route::post('/verslagen/{report}/edit', 'ReportController@updateReport');
     Route::delete('/verslagen/{report}/delete', 'ReportController@deleteReport');
 
@@ -60,6 +66,9 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::post('/polls/add', 'PollController@addPoll');
     Route::post('/polls/{poll}/answer', 'PollController@addResult');
     Route::get('/polls/{poll}/results', 'PollController@getResults');
+    Route::delete('/polls/{poll}/delete', 'PollController@deletePoll');
+    Route::get('/polls/{poll}/edit', 'PollController@editPoll')->name('poll aanpassen');
+    Route::post('polls/{poll}/edit', 'PollController@updatePoll');
 
     /* EVENT ROUTES */
     Route::get('/evenementen', 'EventController@showEvents')->name('evenementen');

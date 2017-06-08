@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Role;
 use App\PaidUser;
+use Hash;
+use File;
 
 use Illuminate\Http\Request;
+use Image;
 
 class MemberController extends Controller
 {
@@ -22,7 +25,27 @@ class MemberController extends Controller
     }
 
     public function updateMember(User $user, Request $request) {
-        if ($user->update($request->all())) {
+        $user->first_name = $request->first_name; 
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->birth_year = $request->birth_year;
+        $user->role_id = $request->role_id;
+
+        if ($request->file('photo')) {
+            File::delete(public_path('uploads/profilePhotos/' . $user->photo));
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('uploads\\profilePhotos\\' . $storageName);
+            $file->save($path, 65);
+
+            $user->photo = $storageName;
+        }
+
+        if ($user->save()) {
             return redirect('/admin/leden')->with('message', ['success', 'Profiel succesvol aangepast.']);
         }
         return redirect('/admin/leden')->with('message', ['error', 'Er liep iets fout bij het aanpassen van het profiel.']);
@@ -63,5 +86,42 @@ class MemberController extends Controller
             $paid = PaidUser::where([['year', $year], ['user_id', $request->id]])->first();
             $paid->delete();
         }
+    }
+
+    public function newMember(){
+        $roles = Role::all();
+
+        return view('admin.members.addMember', compact('roles'));
+    }
+
+    public function addMember(Request $request)
+    {
+        $member = new User();
+
+        $member->first_name = $request->first_name; 
+        $member->last_name = $request->last_name;
+        $member->email = $request->email;
+        $member->birth_year = $request->birth_year;
+        $member->role_id = $request->role_id;
+        $password = $request->password;
+        $member->password =  Hash::make($password);
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('uploads\\profilePhotos\\' . $storageName);
+            $file->save($path, 65);
+
+            $member->photo = $storageName;
+        }
+
+        if ($member->save()) {
+            return redirect('/admin/leden')->with('message', ['success', 'Profiel succesvol aangemaakt.']);
+        }
+        return redirect('/admin/leden')->with('message', ['error', 'Er liep iets fout bij het aanmaken van het profiel.']);
     }
 }

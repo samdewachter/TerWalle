@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Report extends Model
 {
-    // public function KindOfReport() {
-    //     return $this->belongsTo('App\KindOfReport');
-    // }
+    use SoftDeletes;
+    use RecordsActivity;
 }

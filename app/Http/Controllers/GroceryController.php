@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Grocery;
+use App\Groceryitem;
 
 class GroceryController extends Controller
 {
@@ -23,34 +24,79 @@ class GroceryController extends Controller
     public function addGrocery(Request $request) {
         $grocery = new Grocery();
 
-        // $items = array_filter($request->items);
-        $itemsWithQuantity = [];
-
-        $items = $request->items;
+        $items = array_filter($request->items);
         $quantity = $request->quantity;
 
-        for ($i=0; $i < count($items); $i++) { 
-            $itemsWithQuantity[] = ["item" => $items[$i], "quantity" => $quantity[$i]];
-        }
-
-        // var_dump($itemsWithQuantity);
-
         $grocery->name = $request->name;
-        $grocery->items = json_encode($itemsWithQuantity);
         $grocery->needed_at = $request->needed_at;
         if ($grocery->save()) {
+            foreach ($items as $key => $item) {
+                $newItem = new GroceryItem();
+                $newItem->item = $item;
+                $newItem->quantity = $quantity[$key];
+                $newItem->grocery_id = $grocery->id;
+                $newItem->save();
+            }
             return redirect('/admin/boodschappen')->with('message', ['success', 'Boodschappenlijst succesvol aangemaakt.']);
         }
         return redirect('/admin/boodschappen')->with('message', ['error', 'Er liep iets fout bij het aanmaken van de boodschappenlijst.']);
     }
 
-    public function toggleGrocery(Grocery $grocery) {
-        $grocery->done = !$grocery->done;
-        if ($grocery->save()) {
-            return back()->with('message', ['success', 'Boodschappenlijst succesvol aangepast.']);
+    public function itemDone(Request $request){
+        $item = GroceryItem::find($request->id);
+
+        if ($request->done == 'true') {
+            $item->done = true;
+        } else {
+            $item->done = false;
         }
-        return back()->with('message', ['error', 'Er liep iets fout bij het aanpassen van de boodschappenlijst.']);
+        $item->save();
+
+        $items = Groceryitem::where('grocery_id', $item->grocery_id)->get();
+
+        $groceriesDone = 'true';
+
+        foreach ($items as $item) {
+            if ($item->done == false) {
+                $groceriesDone = 'false';
+            }
+        }
+        $grocery = Grocery::find($item->grocery_id);
+        if ($groceriesDone == 'true') {
+            $grocery->done = true;
+            $grocery->save();
+        } else {
+            $grocery->done = false;
+            $grocery->save();        
+        }
+
+        $groceryName = $grocery->name;
+        $groceryId = $grocery->id;
+        return compact('groceriesDone', 'groceryName', 'groceryId');
     }
+
+    public function addItem(Request $request, Grocery $grocery){
+        $grocery->done = false;
+        $grocery->save();
+        $groceryItem = new GroceryItem();
+
+        $groceryItem->item = $request->item;
+        $groceryItem->quantity = $request->quantity;
+        $groceryItem->grocery_id = $grocery->id;
+
+        if ($groceryItem->save()) {
+            return redirect('/admin/boodschappen')->with('message', ['success', 'Item succesvol toegevoegd.']);
+        }
+        return redirect('/admin/boodschappen')->with('message', ['error', 'Er liep iets fout bij het toevoegen van het item.']);
+    }
+
+    // public function toggleGrocery(Grocery $grocery) {
+    //     $grocery->done = !$grocery->done;
+    //     if ($grocery->save()) {
+    //         return back()->with('message', ['success', 'Boodschappenlijst succesvol aangepast.']);
+    //     }
+    //     return back()->with('message', ['error', 'Er liep iets fout bij het aanpassen van de boodschappenlijst.']);
+    // }
 
     public function deleteGrocery(Grocery $grocery) {
         if ($grocery->delete()) {

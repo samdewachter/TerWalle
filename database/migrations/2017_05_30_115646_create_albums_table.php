@@ -17,6 +17,7 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->string('album_name');
             $table->date('date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

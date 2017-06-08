@@ -18,6 +18,7 @@ class CreatePollsTable extends Migration
             $table->string('title'); // title name of poll
             // $table->boolean('active'); // poll active or expired
             $table->date('deadline'); // deadline to fill in form
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->string('cover'); // main photo of event (banner)
             $table->biginteger('facebook_id')->default(0);
             $table->boolean('publish')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

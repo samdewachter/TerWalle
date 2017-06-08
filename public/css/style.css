@@ -472,7 +472,14 @@ a.btn-custom {
 	outline: none;
 }
 
+.admin-form .input-group-btn {
+	padding-left: 10px;
+}
 
+.card .admin-form .input-group-btn .btn-custom {
+	color: grey;
+	background-color: white;
+}
 
 .login-wrapper .panel .panel-footer, .register-wrapper .panel .panel-footer {
 	background-color: #fcfcfc;
@@ -624,6 +631,15 @@ a.btn-custom {
 .members-wrapper .table .table-paid {
 	min-width: 50px;
 	text-align: center;
+}
+
+.edit-member-wrapper .current-cover-photo {
+	width: 100%;
+	display: block;
+}
+
+.edit-member-wrapper .new-cover-photo {
+	margin-bottom: 10px;
 }
 
 /* OVERALL DASHBOARD STYLING */
@@ -950,7 +966,26 @@ button.close {
 	margin-left: 10px;
 }
 
-/* ADD GROCERY */
+.show-groceries-wrapper .card {
+	margin: 10px;
+}
+
+.show-groceries-wrapper .card ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+.show-groceries-wrapper .card ul li label {
+	margin-right: 5px;
+}
+
+.show-groceries-wrapper .card ul li {
+	margin: 5px 0;
+}
+
+.show-groceries-wrapper .card ul li .fa.fa-check {
+	color: white;
+}
 
 .add-grocery-wrapper form .custom-tooltip-arrow-bottom .tooltip-text-arrow-bottom {
 	margin-left: -58px;
@@ -1063,10 +1098,64 @@ button.close {
 
 /* POLL STYLING */
 
-.card-body .tztzetze {
+.polls-wrapper .card .modal .modal-body img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	transition-duration: 0.2s;
+}
+
+.polls-wrapper .card .modal .modal-body img:hover {
+	border-radius: 25%;
+	transition-duration: 0.2s;
+}
+
+.polls-wrapper .extra-info {
+	cursor: pointer;
 	position: absolute;
 	right: 10px;
 	top: 10px;
+	z-index: 10;
+}
+
+.polls-wrapper .poll-answer {
+	margin-top: 6px;
+}
+
+.polls-wrapper .modal .modal-body li {
+	margin: 15px 0;
+}
+
+.polls-wrapper .modal .modal-body ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+.polls-wrapper .card .action-buttons {
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	opacity: 0;
+	transition-duration: 0.2s;
+}
+
+.polls-wrapper .card:hover .action-buttons {
+	opacity: 1;
+	transition-duration: 0.2s;
+}
+
+.polls-wrapper .card .action-buttons ul li {
+	display: inline-block;
+	color: white;
+}
+
+.polls-wrapper .card .action-buttons ul li form {
+	margin-bottom: -11px;
+}
+
+.polls-wrapper .card .action-buttons ul {
+	list-style-type: none;
+	padding: 0;
 }
 
 /* EVENT STYLING */
@@ -1126,10 +1215,26 @@ textarea.form-control {
 	margin-bottom: 10px;
 }
 
-/* checkbox */
+/* checkbox and radio button */
 
-.regular-checkbox {
+.regular-checkbox, .regular-radio {
     display: none;
+}
+
+.regular-radio + label {
+	border: 2px solid white;
+    width: 25px;
+    height: 25px;
+    /*border-radius: 50%;*/
+    display: inline-block;
+    position: relative;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    margin-top: 3.5px; 
+    margin-left: 3.5px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .regular-checkbox + label {
@@ -1152,14 +1257,27 @@ textarea.form-control {
 	margin-top: 3px;
 }
 
+.regular-radio:checked + label {
+    background: #ffa500;
+    border: 4px solid white;
+	transition-duration: 0.1s;
+}
+
 .regular-checkbox:checked + label {
     background: #ffa500;
     border: 2px solid #ffa500;
-	transition-duration: 0.1s;
+	transition-duration: 0.2s;
 }
 
 .regular-checkbox:checked + label i {
 	opacity: 1;
+}
+
+.radio-btn-wrapper {
+	background-color: #ffa500;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
 }
 
 /* PHOTO LAYOUT */
@@ -1273,12 +1391,17 @@ textarea.form-control {
 }
 
 .grid-item--width1 {
-	width: 25%;
+	width: 24.9%;
 	/*padding: 5px;*/
 }
 
 .grid-item--width2 {
-	width: 50%;
+	width: 49.9%;
+	/*padding: 5px;*/
+}
+
+.grid-item--width3 {
+	width: 33.3%;
 	/*padding: 5px;*/
 }
 
@@ -1372,4 +1495,55 @@ textarea.form-control {
 
 .edit-news-wrapper .new-cover-photo {
 	margin-bottom: 10px;
+}
+
+/* DASHBOARD STYLING */
+
+.dashboard-wrapper {
+	background-color: #eee;
+}
+
+.action-feed-wrapper .action-feed-timeline {
+	padding: 0 40px;
+}
+
+.action-feed-wrapper.col-md-12, .action-feed-wrapper.col-lg-3 {
+	padding: 0;
+}
+
+.action-feed-wrapper .action-feed-timeline .nav-tabs>li.active>a:hover {
+	background-color: inherit;
+}
+
+.dashboard-wrapper .dashboard {
+	height: 500px;
+	background-color: #F9F9F9;
+}
+
+.action-feed-wrapper ul#feed {
+	padding: 0;
+	list-style-type: none;
+}
+
+.action-feed-wrapper #feed .timeline-title {
+	font-size: 14px;
+	margin: 0;
+	font-weight: 700;
+}
+
+.action-feed-wrapper #feed .timeline-body {
+	margin-top: 5px;
+}
+
+.action-feed-wrapper #feed .timeline-body p{
+	margin-bottom: 5px;
+	color: rgba(0,0,0,.5);
+}
+
+.action-feed-wrapper #feed .timeline-body small {
+	color: #bbb;
+}
+
+.action-feed-wrapper ul#feed li {
+	margin-bottom: 20px;
 }

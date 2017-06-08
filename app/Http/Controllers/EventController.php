@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use Image;
+use Auth;
 
 class EventController extends Controller
 {

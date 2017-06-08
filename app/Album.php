@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Album extends Model
 {
     use Searchable;
+    use SoftDeletes;
+    use RecordsActivity;
 
     public function Events() {
         return $this->belongsToMany('App\Event');

@@ -20,6 +20,7 @@ class CreateNewsTable extends Migration
             $table->text('subtitle'); // maybe sub title of article?
             $table->string('cover_photo'); // cover photo of news article
             $table->boolean('publish')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

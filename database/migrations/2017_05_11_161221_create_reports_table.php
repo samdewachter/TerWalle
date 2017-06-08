@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration
             $table->string('file_path'); // uploaded file name
             $table->date('date'); // date of report
             $table->string('kind_of_report'); // what kind of report
+            $table->softDeletes();
             $table->timestamps();
         });
     }

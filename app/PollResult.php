@@ -10,7 +10,7 @@ class PollResult extends Model
         return $this->belongsTo('App\AnswerPoll');
     }
 
-    public function Users() {
+    public function User() {
     	return $this->belongsTo('App\User');
     }
 }

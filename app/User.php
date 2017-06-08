@@ -5,11 +5,14 @@ namespace App;
 use Laravel\Scout\Searchable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use Searchable;
+    use SoftDeletes;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -63,4 +66,19 @@ class User extends Authenticatable
              // do the rest of the cleanup...
         });
     }
+
+    public function activity()
+    {
+        return $this->hasMany('App\Activity')
+            ->with(['user', 'subject'])
+            ->latest();
+    }
+
+    // public function recordActivity($name, $related)
+    // {
+    //     if (! method_exists($related, 'recordActivity')) {
+    //         throw new \Exception('..');
+    //     }
+    //     return $related->recordActivity($name);
+    // }
 }
