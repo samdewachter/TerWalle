@@ -17,6 +17,7 @@ class CreateTapListsTable extends Migration
             $table->increments('id');
             $table->string('title'); // name of user that opens TW
             $table->date('start'); // date of opening
+            $table->integer('user_id');
             $table->softDeletes();
             $table->timestamps();
         });

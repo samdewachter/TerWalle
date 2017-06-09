@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use Image;
 use Auth;
+use File;
 
 class EventController extends Controller
 {

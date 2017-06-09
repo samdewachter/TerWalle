@@ -6,6 +6,8 @@
 	<meta name="csrf-token" id="csrf_token" content="{{ csrf_token() }}" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/weather-icons-wind.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/c3.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/dropzone.css') }}">

@@ -13,7 +13,7 @@
 					<div class="draggable-events">
 						<h3>Tappers</h3>
 						@foreach($users as $user)
-							<div class="fc-event">{{ $user->first_name }} {{ $user->last_name }}</div>
+							<div class="fc-event" user_id="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</div>
 						@endforeach
 					</div>
 				</div>

@@ -20,6 +20,7 @@ class TapController extends Controller
 
     	$taplist->title = $request->title;
     	$taplist->start = $request->start;
+        $taplist->user_id = $request->user_id;
 
     	$taplist->save();
 

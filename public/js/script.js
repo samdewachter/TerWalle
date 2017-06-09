@@ -228,12 +228,15 @@ $( document ).ready(function() {
 			var originalEventObject = $(this).data('event');
 			var eventTitle = originalEventObject.title;
 			var eventDate = date.format();
+			var userId = $(this).attr('user_id');
+			// console.log(userId);
 
 			$.ajax({
 				url: 'taplijst/save',
 				data: {
 					'start': eventDate,
-					'title': eventTitle
+					'title': eventTitle,
+					'user_id': userId
 				},
 				type: 'POST',
 				success: function() {
@@ -661,7 +664,7 @@ $( document ).ready(function() {
 		var id = $(this).attr('id');
 
 		$.ajax({
-			url: 'boodschappen/done',
+			url: 'http://eindwerk.local/TerWalle/public/admin/boodschappen/done',
 			data: {
 				'done': done,
 				'id': id
@@ -684,21 +687,24 @@ $( document ).ready(function() {
 						Item succesvol verborgen.\
 					</div>');
 				}
-
 				if (data.groceriesDone == 'true') {
-					$('#'+data.groceryId+data.groceryName+' i').remove();
-					$('#'+data.groceryId+data.groceryName+' span').remove();
-					$('#'+data.groceryId+data.groceryName).append(
-						'<i class="fa fa-check done pull-right custom-tooltip custom-tooltip-arrow-bottom"><span class="tooltip-text tooltip-text-arrow-bottom">Gedaan!</span></i>'
-					);
-				} else {
-					$check = $('#'+data.groceryId+data.groceryName+' i.done');
-					if ($check.length != 0) {
+					if ($('#'+data.groceryId+data.groceryName+' span').length) {
 						$('#'+data.groceryId+data.groceryName+' i').remove();
 						$('#'+data.groceryId+data.groceryName+' span').remove();
 						$('#'+data.groceryId+data.groceryName).append(
-							'<span class="not-done pull-right custom-tooltip custom-tooltip-arrow-bottom">×<span class="tooltip-text tooltip-text-arrow-bottom">Nog niet gedaan</span></span>'
+							'<i class="fa fa-check done pull-right custom-tooltip custom-tooltip-arrow-bottom"><span class="tooltip-text tooltip-text-arrow-bottom">Gedaan!</span></i>'
 						);
+					}
+				} else {
+					if ($('#'+data.groceryId+data.groceryName+' span').length) {
+						$check = $('#'+data.groceryId+data.groceryName+' i.done');
+						if ($check.length != 0) {
+							$('#'+data.groceryId+data.groceryName+' i').remove();
+							$('#'+data.groceryId+data.groceryName+' span').remove();
+							$('#'+data.groceryId+data.groceryName).append(
+								'<span class="not-done pull-right custom-tooltip custom-tooltip-arrow-bottom">×<span class="tooltip-text tooltip-text-arrow-bottom">Nog niet gedaan</span></span>'
+							);
+						}
 					}					
 				}
 				

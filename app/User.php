@@ -44,6 +44,10 @@ class User extends Authenticatable
         return $this->hasMany('App\PollResult');
     }
 
+    public function Tappers() {
+        return $this->hasMany('App\TapList');
+    }
+
     public function isHeadAdmin(){
         if ($this->Role->role == "headAdmin") {
             return true;
