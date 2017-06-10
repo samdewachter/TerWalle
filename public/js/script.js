@@ -664,7 +664,7 @@ $( document ).ready(function() {
 		var id = $(this).attr('id');
 
 		$.ajax({
-			url: 'http://eindwerk.local/TerWalle/public/admin/boodschappen/done',
+			url: 'http://tw.local/github/TerWalle/public/admin/boodschappen/done',
 			data: {
 				'done': done,
 				'id': id

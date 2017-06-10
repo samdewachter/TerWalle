@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/frontStyle.css') }}">
+
 
     <!-- Scripts -->
     <script>
@@ -24,7 +26,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -37,14 +39,18 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="{{ asset('/images/TW_logo.png') }}">
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Nieuws</a></li>
+                        <li><a href="">Evenementen</a></li>
+                        <li><a href="">Foto's</a></li>
+                        <li><a href="">Contact</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,83 +91,17 @@
         </nav>
 
         @yield('content')
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade login" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLogin">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    TER WALLE
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="body-header">
-                        <div class="body-title">
-                            Login
-                        </div>
-                        <span class="body-info">Welkom! Gelieve je hieronder aan te melden.</span>
-                    </div>
-                        <form method="POST" action="{{ route('login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <input type="text" name="email" placeholder="Email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="Paswoord" class="form-control">
-                            </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn-custom-default">LOGIN</button>
-                </div>
-                </form>
+        <div class="footer-wrapper">
+            <div class="social-media">
+                <img src="{{ asset('/images/socialMediaIcons.png') }}">
+                <!-- <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul> -->
             </div>
-        </div>
-    </div>
-    <div class="modal fade register" id="myRegister" tabindex="-1" role="dialog" aria-labelledby="myModalRegister">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    TER WALLE
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="body-header">
-                        <div class="body-title">
-                            Registreer
-                        </div>
-                        <span class="body-info">Welkom! Gelieve je hieronder te registreren.</span>
-                    </div>
-                        <form method="POST" action="{{ route('register') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <input type="text" name="first_name" placeholder="Voornaam" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="last_name" placeholder="Achternaam" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="email" placeholder="Email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="date" name="birth_year" placeholder="Geboortedatum" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="photo" placeholder="Foto" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="Paswoord" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Bevestig paswoord" name="password_confirmation">
-                            </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn-custom-default">REGISTREER</button>
-                </div>
-                </form>
+            <div class="made-by">
+                <p>This website is powered by Samdewachter</p>
             </div>
         </div>
     </div>

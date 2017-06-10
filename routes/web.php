@@ -11,6 +11,7 @@
 |
 */
 
+/* FRONT OF WEBSITE */
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
@@ -19,6 +20,8 @@ Route::get('/test', 'AdminController@test');
 
 Route::post('/pusherauth', 'PusherController@auth');
 
+
+/* ADMIN ROUTES */
 Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
 

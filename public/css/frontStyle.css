@@ -1,0 +1,245 @@
+/* OVERALL STYLING */
+html {
+	height: 100%;
+	font-family: 'Roboto';
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	font-family: 'Roboto';
+}
+
+.panel {
+	border-radius: 6px;
+	box-shadow: 0 4px 4px rgba(0,0,0,.1);
+}
+
+.panel-heading {
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+.panel-body {
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.read-more span a, .read-event span a {
+	font-weight: bold;
+	color: orange;
+	font-size: 16px;
+}
+
+/* NAVBAR STYLING */
+.navbar-default {
+	background-color: transparent;
+	border-bottom: none;
+	padding-right: 20px;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.navbar-brand img {
+	height: 35px;
+	margin-top: -5px;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-default .navbar-nav>li:hover a {
+	color: white;
+}
+
+/* HOME STYLING */
+
+.home-header .background {
+	height: 500px;
+	margin-top: -72px;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+}
+
+.home-header .background h1 {
+	margin-top: 120px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+	font-size: 55px;
+}
+
+.home-body .news-item .panel .panel-heading {
+	text-align: center;
+	color: #777;
+	padding: 40px;
+}
+
+.home-body .news-item {
+	text-align: center;
+	color: #777;
+	padding: 10px 30px;
+	margin-top: -220px;
+}
+
+.home-body .news-item .panel .panel-heading h2 {
+	margin: 0;
+	color: #646464;
+}
+
+.home-body .news-item .panel .panel-heading .news-text p {
+	margin-top: 25px;
+	padding-top: 25px;
+	border-top: 2px solid #e5e5e5;
+}
+
+.home-body .news-item .panel .panel-heading .news-text {
+	width: 75%;
+	margin: 0 auto;
+}
+
+/*.home-body .news-item .panel .panel-body img {
+	width: 100%;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}*/
+
+.home-body .news-item .panel .panel-body {
+	padding: 0;
+	background-size: cover;
+	background-position: center;
+	height: 250px;
+}
+
+.home-body .event-item .panel .panel-heading {
+	padding: 0;
+	height: 200px;
+	background-size: cover;
+	background-position: center;
+}
+
+/*.home-body .event-item .panel .panel-heading img {
+	width: 100%;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+	margin: auto 0;
+}*/
+
+.home-body .event-item {
+	padding: 10px 30px;
+}
+
+.home-body .event-item .panel .panel-body {
+	padding: 20px;
+}
+
+.home-body .event-item .panel .panel-body {
+	width: 85%;
+	margin: 0 auto;
+}
+
+.home-body .subscribe-wrapper {
+	background-color: #e89980;
+	/*height: 100px;*/
+	width: 100%;
+	padding: 25px 0;
+}
+
+.home-body .subscribe {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+}
+
+.home-body .subscribe form input {
+	background-color: rgba(255, 255, 255, 0.2);
+	border: none;
+	padding: 10px;
+	outline: none;
+	border-radius: 8px;
+}
+
+.home-body .subscribe form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+.home-body .subscribe form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+.home-body .subscribe form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+.home-body .subscribe form :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    white;
+}
+.home-body .subscribe form ::-ms-input-placeholder { /* Microsoft Edge */
+   color:    white;
+}
+
+.home-body .subscribe form button {
+	background-color: white;
+	border: none;
+	color: #e89980;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.home-body .subscribe p {
+	margin-bottom: 25px;
+	margin-top: 15px;
+}
+
+/* FOOTER STYLING */
+
+.footer-wrapper {
+	background-color: #f0f0f0;
+	padding: 40px 20px;
+	text-align: center;
+	color: #999;
+}
+
+.footer-wrapper .social-media {
+	margin-bottom: 10px;
+}
+
+.footer-wrapper .made-by p {
+	margin: 0;
+}
+
+/* RESPONSIVE DESING */
+
+@media (max-width: 600px){
+	.home-body .subscribe {
+		width: 100%;
+	}
+
+	.home-body .container, .home-body .col-lg-12, .home-body .col-sm-12 {
+		width: 100%;
+		padding: 0 15px;
+		margin-top: 0;
+	}
+
+	.home-body .news-item .panel .panel-heading .news-text p, .home-body .event-item .panel .panel-body p {
+		width: 100%;
+	}
+
+	.home-header .background {
+		height: 325px;
+	}
+}
+
+@media (max-width: 550px){
+	.home-header .background h1 {
+		font-size: 45px;
+		padding: 0 15px;
+	}
+}
+
+@media (max-width: 425px){
+	.home-header .background h1 {
+		margin-top: 100px;
+	}
+}
