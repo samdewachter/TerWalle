@@ -18,4 +18,8 @@ class Event extends Model
         return $this->belongsToMany('App\Album');
     }
 
+    public function Presales() {
+    	return $this->hasMany('App\Presale');
+    }
+
 }

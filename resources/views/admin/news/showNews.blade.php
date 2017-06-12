@@ -4,7 +4,7 @@
 	<div class="news-wrapper">
 
 		<div class="admin-header">
-			<h1>Niewtjes</h1>
+			<h1>Nieuwtjes</h1>
 			<p>Hier heb je een overzicht van de nieuwtjes.</p>
 		</div>
 		<div class="admin-body">

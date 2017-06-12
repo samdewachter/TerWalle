@@ -138,4 +138,15 @@ class PhotoController extends Controller
     	$event = Event::find(1);
     	var_dump($event->albums[0]->album_name);
     }
+
+    public function index() {
+        $albums = Album::all();
+
+        return view('front.albums', compact('albums'));
+    }
+
+    public function showPhotoAlbum(Album $album)
+    {
+        return view('front.album', compact('album'));
+    }
 }

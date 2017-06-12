@@ -5,64 +5,78 @@
 	<div class="dashboard-wrapper admin-wrapper clearfix">
 		<div class="dashboard col-md-12 col-lg-9">
 			<div class="row">
-				<div class="col-lg-8 grocery-widget">
-					<div class="card bordered white">
-						<div class="card-header">
-							<span class="card-title" id="{{ $grocery->id . $grocery->name }}">
-								Boodschappenlijst
-								<div class="dropdown pull-right">
-								  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								    <img class="more-btn" src="{{ asset('/images/more.png') }}">
-								  </button>
-								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								  	<li class="dropdown-header">Acties</li>
-								    <li>
-								    	<form action="{{ url('/admin/boodschappen', [$grocery->id, 'delete']) }}" method="POST">
-											{{ csrf_field() }}
-											<input type="hidden" name="_method" value="DELETE" />
-			                                <button class="dropdown-btn">Verwijderen</button>
-										</form>
-								    </li>
-								    <li><a href="{{ url('/admin/boodschappen', [$grocery->id, 'edit']) }}">Aanpassen</a></li>
-								    <li><a href="{{ url('/admin/boodschappen') }}">Ga naar boodschappenlijsten</a></li>
-								  </ul>
-								</div>
-							</span>
-							<p>Tenlaatste nodig op: {{ $grocery->needed_at }}</p>
-						</div>
-						<div class="card-body clearfix">
-							<ul>
-								@foreach($grocery->items as $item)
-									<li>
-										<input type="checkbox" id="{{ $item->id }}" <?= ($item->done)? 'checked' : ''; ?> class="regular-checkbox grocery-done" /><label for="{{ $item->id }}"><i class="fa fa-check"></i></label><label for="{{ $item->id }}">{{ $item->quantity }} {{ $item->item }}</label>
-									</li>
-								@endforeach
-							</ul>
-						</div>
-						<div class="card-footer admin-form clearfix">
-							<form action="{{ url('admin/boodschappen', [$grocery->id, 'addItem']) }}" method="POST">
-								{{ csrf_field() }}
-								<div class="col-lg-3">
-									<div class="form-group">
-										<input type="number" class="form-control input-label-float" name="quantity">
-										<label class="label-float">Hoeveel</label>
+				@if(count($grocery) != 0)
+					<div class="col-lg-8 grocery-widget">
+						<div class="card bordered white">
+							<div class="card-header">
+								<span class="card-title" id="{{ $grocery->id . $grocery->name }}">
+									Boodschappenlijst
+									<div class="dropdown pull-right">
+									  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									    <img class="more-btn" src="{{ asset('/images/more.png') }}">
+									  </button>
+									  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									  	<li class="dropdown-header">Acties</li>
+									    <li>
+									    	<form action="{{ url('/admin/boodschappen', [$grocery->id, 'delete']) }}" method="POST">
+												{{ csrf_field() }}
+												<input type="hidden" name="_method" value="DELETE" />
+				                                <button class="dropdown-btn">Verwijderen</button>
+											</form>
+									    </li>
+									    <li><a href="{{ url('/admin/boodschappen', [$grocery->id, 'edit']) }}">Aanpassen</a></li>
+									    <li><a href="{{ url('/admin/boodschappen') }}">Ga naar boodschappenlijsten</a></li>
+									  </ul>
 									</div>
-								</div>
-								<div class="col-lg-7">
-									<div class="form-group">
-										<input type="text" class="form-control input-label-float" name="item">
-										<label class="label-float">Item</label>
+								</span>
+								<p>Tenlaatste nodig op: {{ $grocery->needed_at }}</p>
+							</div>
+							<div class="card-body clearfix">
+								<ul>
+									@foreach($grocery->items as $item)
+										<li>
+											<input type="checkbox" id="{{ $item->id }}" <?= ($item->done)? 'checked' : ''; ?> class="regular-checkbox grocery-done" /><label for="{{ $item->id }}"><i class="fa fa-check"></i></label><label for="{{ $item->id }}">{{ $item->quantity }} {{ $item->item }}</label>
+										</li>
+									@endforeach
+								</ul>
+							</div>
+							<div class="card-footer admin-form clearfix">
+								<form action="{{ url('admin/boodschappen', [$grocery->id, 'addItem']) }}" method="POST">
+									{{ csrf_field() }}
+									<div class="col-lg-3">
+										<div class="form-group">
+											<input type="number" class="form-control input-label-float" name="quantity">
+											<label class="label-float">Hoeveel</label>
+										</div>
 									</div>
-								</div>
-								<div class="col-lg-2">
-									<div class="form-group">
-										<button class="btn-custom btn-fat btn-custom-grey">ADD</button>
+									<div class="col-lg-7">
+										<div class="form-group">
+											<input type="text" class="form-control input-label-float" name="item">
+											<label class="label-float">Item</label>
+										</div>
 									</div>
-								</div>
-							</form>						
+									<div class="col-lg-2">
+										<div class="form-group">
+											<button class="btn-custom btn-fat btn-custom-grey">ADD</button>
+										</div>
+									</div>
+								</form>						
+							</div>
 						</div>
 					</div>
-				</div>
+				@else
+					<div class="col-md-8">
+						<div class="card bordered white">
+							<div class="card-header">
+								<span class="card-title">Boodschappen</span>
+							</div>
+							<div class="card-body">
+								<p>Er zijn geen boodschappen die gedaan moeten worden.</p>
+								<span class="btn-ripple-wrapper new-item"><a class="btn-custom btn-fat btn-custom-primary" href="{{ url('/admin/boodschappen/add') }}">Maak nieuwe boodschappenlijst</a></span>
+							</div>
+						</div>
+					</div>
+				@endif
 				<div class="col-lg-4 weather-widget">
 					<div class="card bordered">
 						<div class="card-body">
@@ -85,105 +99,133 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 report-widget">
-					<div class="report">
+				@if(count($report) != 0)
+					<div class="col-lg-4 report-widget">
+						<div class="report">
+							<div class="card bordered white">
+								<div class="card-header">
+									<div class="card-title"> {{ $report->name }}
+										<div class="dropdown pull-right">
+										  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										    <img class="more-btn" src="{{ asset('/images/more.png') }}">
+										  </button>
+										  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										  	<li class="dropdown-header">Acties</li>
+										  	<!-- <li class="divider"></li> -->
+										    <li>
+										    	<form action="{{ url('/admin/verslagen', [$report->id, 'delete']) }}" method="POST">
+													{{ csrf_field() }}
+													<input type="hidden" name="_method" value="DELETE" />
+					                                <button class="dropdown-btn">Verwijderen</button>
+												</form>
+										    </li>
+										    <li><a href="{{ url('/admin/verslagen', [$report->id, 'edit']) }}">Aanpassen</a></li>
+										    <li><a href="{{ url('/admin/verslagen', [$report->id, 'download']) }}">Downloaden</a></li>
+										    <li><a href="{{ url('/admin/verslagen') }}">Ga naar verslagen</a></li>
+										  </ul>
+										</div>
+										<p class="report-date">{{ $report->date }}</p>
+									</div>
+								</div>
+								<div class="card-body">
+									<img class="report-photo" src="{{ asset('images/wordlogo.png') }}">
+								</div>
+							</div>
+						</div>
+					</div>
+				@else
+					<div class="col-lg-4">
 						<div class="card bordered white">
 							<div class="card-header">
-								<div class="card-title"> {{ $report->name }}
+								<span class="card-title">Verslagen</span>
+							</div>
+							<div class="card-body">
+								<p>Er zijn nog geen verslagen aangemaakt.</p>
+								<span class="btn-ripple-wrapper new-item"><a class="btn-custom btn-fat btn-custom-primary" href="{{ url('/admin/verslagen/add') }}">Maak verslag aan</a></span>
+							</div>
+						</div>
+					</div>
+				@endif
+				@if(count($poll) != 0)
+					<div class="col-lg-4 poll-widget">
+						<div class="card bordered white">
+							<div class="card-header">
+								<div class="card-title">
 									<div class="dropdown pull-right">
 									  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									    <img class="more-btn" src="{{ asset('/images/more.png') }}">
 									  </button>
 									  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 									  	<li class="dropdown-header">Acties</li>
-									  	<!-- <li class="divider"></li> -->
+									  	<li><a class="extra-info" data-toggle="modal" data-target="#poll{{ $poll->id }}">Resultaten</a></li>
 									    <li>
-									    	<form action="{{ url('/admin/verslagen', [$report->id, 'delete']) }}" method="POST">
+									    	<form action="{{ url('/admin/polls', [$poll->id, 'delete']) }}" method="POST">
 												{{ csrf_field() }}
 												<input type="hidden" name="_method" value="DELETE" />
 				                                <button class="dropdown-btn">Verwijderen</button>
 											</form>
 									    </li>
-									    <li><a href="{{ url('/admin/verslagen', [$report->id, 'edit']) }}">Aanpassen</a></li>
-									    <li><a href="{{ url('/admin/verslagen', [$report->id, 'download']) }}">Downloaden</a></li>
-									    <li><a href="{{ url('/admin/verslagen') }}">Ga naar verslagen</a></li>
+									    <li><a href="{{ url('/admin/polls', [$poll->id, 'edit']) }}">Aanpassen</a></li>
+									    <li><a href="{{ url('/admin/polls') }}">Ga naar polls</a></li>
 									  </ul>
 									</div>
-									<p class="report-date">{{ $report->date }}</p>
+									{{ $poll->title }}
 								</div>
+							</div>
+							<div class="card-body clearfix">
+								<h3>Antwoorden</h3>
+								<form action="{{ url('/admin/polls', [$poll->id, 'answer']) }}" method="POST">
+									{{ csrf_field() }}
+									@foreach($poll->Answers as $answer)
+										<div class="form-group clearfix">
+											<div class="col-md-2"><div class="radio-btn-wrapper"><input {{ Test(Auth::user()->id, $poll->id, $answer->id) }} type="radio" id="answer{{ $answer->id }}" class="regular-radio vote" value="{{ $answer->id }}" name="poll_answer_id" /><label for="answer{{ $answer->id }}"></label></div></div><div class="col-md-10 poll-answer"><label for="answer{{ $answer->id }}">{{ $answer->answer }}</label></div>
+										</div>
+									@endforeach
+									<div class="form-group">
+										<button class="btn-custom btn-fat btn-custom-primary" type="submit">Stem!</button>
+									</div>
+								</form>
+								<!-- Modal -->
+								<div class="modal fade" id="poll{{ $poll->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="myModalLabel">Stemmen op poll '{{ $poll->title }}'</h4>
+									  </div>
+									  <div class="modal-body">
+									  	<ul>
+											@foreach($poll->answers as $answer)
+												<li>{{$answer->answer}}:
+												@foreach($answer->Results as $result)
+													<img data-toggle="tooltip" title="{{ $result->User->first_name . ' ' . $result->User->last_name }}" src="{{ asset('/uploads/profilePhotos/' . $result->User->photo) }}">
+												@endforeach
+												@if(count($answer->Results) == 0)
+													Geen stemmen
+												@endif
+												</li>
+											@endforeach
+										</ul>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				@else
+					<div class="col-lg-4">
+						<div class="card bordered white">
+							<div class="card-header">
+								<span class="card-title">Polls</span>
 							</div>
 							<div class="card-body">
-								<img class="report-photo" src="{{ asset('images/wordlogo.png') }}">
+								<p>Er zijn geen polls die beantwoord moeten worden.</p>
+								<span class="btn-ripple-wrapper new-item"><a class="btn-custom btn-fat btn-custom-primary" href="{{ url('/admin/polls/add') }}">Maak nieuwe poll</a></span>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 poll-widget">
-					<div class="card bordered white">
-						<div class="card-header">
-							<div class="card-title">
-								<div class="dropdown pull-right">
-								  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								    <img class="more-btn" src="{{ asset('/images/more.png') }}">
-								  </button>
-								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								  	<li class="dropdown-header">Acties</li>
-								  	<li><a class="extra-info" data-toggle="modal" data-target="#poll{{ $poll->id }}">Resultaten</a></li>
-								    <li>
-								    	<form action="{{ url('/admin/polls', [$poll->id, 'delete']) }}" method="POST">
-											{{ csrf_field() }}
-											<input type="hidden" name="_method" value="DELETE" />
-			                                <button class="dropdown-btn">Verwijderen</button>
-										</form>
-								    </li>
-								    <li><a href="{{ url('/admin/polls', [$poll->id, 'edit']) }}">Aanpassen</a></li>
-								    <li><a href="{{ url('/admin/polls') }}">Ga naar polls</a></li>
-								  </ul>
-								</div>
-								{{ $poll->title }}
-							</div>
-						</div>
-						<div class="card-body clearfix">
-							<h3>Antwoorden</h3>
-							<form action="{{ url('/admin/polls', [$poll->id, 'answer']) }}" method="POST">
-								{{ csrf_field() }}
-								@foreach($poll->Answers as $answer)
-									<div class="form-group clearfix">
-										<div class="col-md-2"><div class="radio-btn-wrapper"><input {{ Test(Auth::user()->id, $poll->id, $answer->id) }} type="radio" id="answer{{ $answer->id }}" class="regular-radio vote" value="{{ $answer->id }}" name="poll_answer_id" /><label for="answer{{ $answer->id }}"></label></div></div><div class="col-md-10 poll-answer"><label for="answer{{ $answer->id }}">{{ $answer->answer }}</label></div>
-									</div>
-								@endforeach
-								<div class="form-group">
-									<button class="btn-custom btn-fat btn-custom-primary" type="submit">Stem!</button>
-								</div>
-							</form>
-							<!-- Modal -->
-							<div class="modal fade" id="poll{{ $poll->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							  <div class="modal-dialog" role="document">
-								<div class="modal-content">
-								  <div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabel">Stemmen op poll '{{ $poll->title }}'</h4>
-								  </div>
-								  <div class="modal-body">
-								  	<ul>
-										@foreach($poll->answers as $answer)
-											<li>{{$answer->answer}}:
-											@foreach($answer->Results as $result)
-												<img data-toggle="tooltip" title="{{ $result->User->first_name . ' ' . $result->User->last_name }}" src="{{ asset('/uploads/profilePhotos/' . $result->User->photo) }}">
-											@endforeach
-											@if(count($answer->Results) == 0)
-												Geen stemmen
-											@endif
-											</li>
-										@endforeach
-									</ul>
-								  </div>
-								</div>
-							  </div>
-							</div>
-						</div>
-					</div>
-				</div>
+				@endif
 				<div class="col-lg-4 tap-widget">
 					<div class="card bordered white">
 						<div class="card-header">
@@ -265,7 +307,13 @@
 								</div>
 							</div>
 							<div class="card-body">
-								<img class="event-widget-photo" src="{{ asset('/uploads/eventPhotos') . '/' . $event->cover }}">
+								<?php $cover = substr($event->cover, 0, 4); ?>
+								@if($cover == 'http')
+									<img class="event-widget-photo" src="{{ $event->cover }}">
+								@else
+									<img class="event-widget-photo" src="{{ asset('/uploads/eventPhotos') . '/' . $event->cover }}">
+								@endif
+								<!-- <img  src="{{ asset('/uploads/eventPhotos') . '/' . $event->cover }}"> -->
 							</div>
 						</div>
 					@endforeach

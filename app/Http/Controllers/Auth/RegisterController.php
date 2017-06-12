@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Input;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -64,12 +66,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $storageName = "default.png";
+        if (Input::file('profile_photo')) {
+            $file = Input::file('profile_photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('uploads\\profilePhotos\\' . $storageName);
+
+            $file->save($path, 65);
+        }
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'birth_year' => $data['birth_year'],
-            'photo' => $data['photo'],
+            'photo' => $storageName,
             'password' => bcrypt($data['password']),
         ]);
     }

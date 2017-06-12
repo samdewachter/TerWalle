@@ -13,7 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/frontStyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/lightbox.css') }}">
+    @yield('css')
 
 
     <!-- Scripts -->
@@ -24,7 +27,7 @@
     </script>
 </head>
 <body>
-    <div id="app">
+    <div class="page-wrapper" id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="">
                 <div class="navbar-header">
@@ -46,11 +49,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Nieuws</a></li>
-                        <li><a href="">Evenementen</a></li>
-                        <li><a href="">Foto's</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/nieuws') }}">Nieuws</a></li>
+                        <li><a href="{{ url('/evenementen') }}">Evenementen</a></li>
+                        <li><a href="{{ url('/fotos') }}">Foto's</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,7 +61,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('register') }}">Registreer</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -77,6 +80,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/account', [Auth::User()->id]) }}">Account</a>
+                                    </li>
                                     @if(Auth::user()->isHeadAdmin() || Auth::user()->isSubAdmin())
                                         <li>
                                             <a href="{{ url('/admin') }}">Admin dashboard</a>
@@ -89,9 +95,18 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
-        <div class="footer-wrapper">
+            <div class="alert-wrapper">
+                @if(Session::has('message'))
+                    <div class="alert alert-{{ Session::get('message')[0] }}">
+                        <button type="button" class="close">×</button>
+                        <h4>{{ Session::get('message')[0] }}!</h4>
+                        {{ Session::get('message')[1] }}
+                    </div>
+                @endif
+            </div>
+            @yield('content')
+    </div>
+    <div class="footer-wrapper">
             <div class="social-media">
                 <img src="{{ asset('/images/socialMediaIcons.png') }}">
                 <!-- <ul>
@@ -104,10 +119,11 @@
                 <p>This website is powered by Samdewachter</p>
             </div>
         </div>
-    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/libs/masonry.pkgd.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('js/frontScript.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

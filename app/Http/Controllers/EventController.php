@@ -76,7 +76,7 @@ class EventController extends Controller
     public function publishEvent(Request $request)
     {
         $event = Event::find($request->id);
-        if ($request->publish) {
+        if ($request->publish == 'true') {
             $event->publish = true;
         } else {
             $event->publish = false;
@@ -180,5 +180,19 @@ class EventController extends Controller
         }
         $events = Event::search($keyword)->paginate(10);
         return view('admin.events.searchEvents', compact('events', 'keyword'));
+    }
+
+    public function index()
+    {
+        $events = Event::orderBy('start_time', 'DESC')
+            ->where('publish', true)
+            ->paginate(10);
+
+        return view('front.events', compact('events'));
+    }
+
+    public function showEvent(Event $event)
+    {
+        return view('front.event', compact('event'));
     }
 }

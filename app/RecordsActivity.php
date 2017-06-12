@@ -30,14 +30,18 @@ trait RecordsActivity
      */
     public function recordActivity($event)
     {
-        $activity = Activity::create([
-            'subject_id' => $this->id,
-            'subject_type' => get_class($this),
-            'name' => $this->getActivityName($this, $event),
-            'user_id' => Auth::user()->id
-        ]);
+        if (Auth::check()) {
+            $activity = Activity::create([
+                'subject_id' => $this->id,
+                'subject_type' => get_class($this),
+                'name' => $this->getActivityName($this, $event),
+                'user_id' => Auth::user()->id
+            ]);
 
-        event(new ActivityLogged($activity));
+            event(new ActivityLogged($activity));
+        } else {
+            return;
+        }
     }
 
     /**

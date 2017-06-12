@@ -25,171 +25,480 @@ body {
 	border-bottom-left-radius: 6px;
 }
 
-.read-more span a, .read-event span a {
-	font-weight: bold;
-	color: orange;
-	font-size: 16px;
+.page-wrapper {
+	min-height: calc(100% - 150px );
 }
 
-/* NAVBAR STYLING */
-.navbar-default {
-	background-color: transparent;
-	border-bottom: none;
-	padding-right: 20px;
-	font-size: 16px;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+.page-wrapper:after {
+  content: "";
+  display: block;
 }
 
-.navbar-brand img {
-	height: 35px;
-	margin-top: -5px;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: white;
-}
-
-.navbar-default .navbar-nav>li:hover a {
-	color: white;
-}
-
-/* HOME STYLING */
-
-.home-header .background {
-	height: 500px;
-	margin-top: -72px;
-	background-size: cover;
-	background-position: center;
+.page-heading {
 	text-align: center;
 }
 
-.home-header .background h1 {
-	margin-top: 120px;
-	color: white;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-	font-size: 55px;
-}
-
-.home-body .news-item .panel .panel-heading {
-	text-align: center;
-	color: #777;
-	padding: 40px;
-}
-
-.home-body .news-item {
-	text-align: center;
-	color: #777;
-	padding: 10px 30px;
-	margin-top: -220px;
-}
-
-.home-body .news-item .panel .panel-heading h2 {
-	margin: 0;
+.page-heading h1 {
+	font-weight: 300;
 	color: #646464;
 }
 
-.home-body .news-item .panel .panel-heading .news-text p {
-	margin-top: 25px;
+.page-heading p {
+	margin-top: 15px;
 	padding-top: 25px;
 	border-top: 2px solid #e5e5e5;
+	display: inline-block;
+	color: #777;
+	font-size: 16px;
+	margin-bottom: 40px;
 }
 
-.home-body .news-item .panel .panel-heading .news-text {
-	width: 75%;
-	margin: 0 auto;
+.read-more a {
+	padding: 13.5px 30px;
+	border-radius: 4px;
+	box-shadow: rgb(229, 229, 229) 0px 0px 0px 2px inset;
+	color: #777;
+	text-decoration: none;
+	transition-duration: 0.2s;
 }
 
-/*.home-body .news-item .panel .panel-body img {
-	width: 100%;
-	border-bottom-right-radius: 6px;
-	border-bottom-left-radius: 6px;
-}*/
-
-.home-body .news-item .panel .panel-body {
-	padding: 0;
-	background-size: cover;
-	background-position: center;
-	height: 250px;
+.read-more a:hover {
+	background-color: #0C7F8A;
+	color: white;
+	transition-duration: 0.2s;
 }
 
-.home-body .event-item .panel .panel-heading {
-	padding: 0;
-	height: 200px;
-	background-size: cover;
-	background-position: center;
-}
-
-/*.home-body .event-item .panel .panel-heading img {
-	width: 100%;
-	border-top-right-radius: 6px;
-	border-top-left-radius: 6px;
-	margin: auto 0;
-}*/
-
-.home-body .event-item {
-	padding: 10px 30px;
-}
-
-.home-body .event-item .panel .panel-body {
-	padding: 20px;
-}
-
-.home-body .event-item .panel .panel-body {
-	width: 85%;
-	margin: 0 auto;
-}
-
-.home-body .subscribe-wrapper {
-	background-color: #e89980;
-	/*height: 100px;*/
-	width: 100%;
-	padding: 25px 0;
-}
-
-.home-body .subscribe {
-	width: 500px;
-	margin: 0 auto;
+.read-more {
+	margin-bottom: 20px;
 	text-align: center;
+}
+
+.grid-item {
+	width: 33%;
+}
+
+.grid-item--width2 {
+	width: 66%;
+}
+
+.grid {
+	margin-bottom: 20px;
+}
+
+.pagination {
+	float: none;
+}
+
+.fixMargin {
+	margin-top: 0;
+	transition-duration: 0.5s;
+	position: fixed;
+	top: 0px;
+}
+
+.form-control-label {
+	width: 100%;
+}
+
+.cancel-cover-photo button {
+	margin-top: 15px;
+}
+
+/* NAVBAR STYLING */
+
+.navbar-default {
+	font-size: 16px;
+	padding-right: 20px;
+	min-height: 65px;
+	background-color: #0C7F8A;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-text {
 	color: white;
 }
 
-.home-body .subscribe form input {
-	background-color: rgba(255, 255, 255, 0.2);
-	border: none;
-	padding: 10px;
-	outline: none;
-	border-radius: 8px;
+.navbar-default .navbar-nav>li>a:hover {
+	color: #F5F5F5;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
-.home-body .subscribe form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    white;
-}
-.home-body .subscribe form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    white;
-   opacity:  1;
-}
-.home-body .subscribe form ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    white;
-   opacity:  1;
-}
-.home-body .subscribe form :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    white;
-}
-.home-body .subscribe form ::-ms-input-placeholder { /* Microsoft Edge */
-   color:    white;
+.navbar-nav>li>a {
+	padding-top: 23px;
 }
 
-.home-body .subscribe form button {
-	background-color: white;
-	border: none;
-	color: #e89980;
-	border-radius: 8px;
-	padding: 10px;
+.navbar-default .navbar-nav {
+	background-color: transparent;
+	color: white;
 }
 
-.home-body .subscribe p {
-	margin-bottom: 25px;
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	background-color: transparent;
+	color: white;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	border-radius: 4px;
+	color: #777;
+	text-shadow: none;
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	background-color: #0c7f8a;
+	color: white;
+}
+
+.navbar-toggle {
+	margin-top: 16px;
+}
+
+/* CONTACT STYLING */
+
+.contact-wrapper .contact-header {
+	text-align: center;
+}
+
+.contact-wrapper .contact-header p {
 	margin-top: 15px;
+	padding-top: 25px;
+	border-top: 2px solid #e5e5e5;
+	display: inline-block;
+	color: #777;
+	font-size: 16px;
+}
+
+.contact-wrapper .contact-header h1 {
+	font-weight: 300;
+	color: #646464;
+}
+
+.contact-wrapper .panel .panel-body {
+	padding: 25px;
+}
+
+.contact-wrapper .panel .panel-body input, .contact-wrapper .panel .panel-body textarea {
+	padding: 5px;
+	background-color: #f8f8f8;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 15px;
+} 
+
+.contact-wrapper .panel .panel-body form .input-group-addon {
+	opacity: 0;
+}
+
+.form-control {
+	box-shadow: none;
+}
+
+.contact-wrapper .panel .panel-body form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #959595;
+}
+.contact-wrapper .panel .panel-body form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #959595;
+   opacity:  1;
+}
+.contact-wrapper .panel .panel-body form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #959595;
+   opacity:  1;
+}
+.contact-wrapper .panel .panel-body form :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #959595;
+}
+.contact-wrapper .panel .panel-body form ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #959595;
+}
+
+.contact-body {
+	margin-top: 40px;
+}
+
+.contact-wrapper .contact-body form button {
+	background-color: #595959;
+	border: none;
+	border-radius: 4px;
+	padding: 12px;
+	width: 150px;
+	color: white;
+	margin-top: 15px;
+	transition-duration: 0.2s;
+}
+
+.contact-wrapper .contact-body form button:hover {
+	background-color: #737373;
+	transition-duration: 0.2s;
+}
+
+.contact-wrapper .contact-body form .submit-btn {
+	text-align: center;
+}
+
+/* NEWS STYLING */
+
+.news-wrapper .panel .panel-heading {
+	height: 170px;
+	background-size: cover;
+	background-position: center;
+}
+
+.news-wrapper .news-item h3 {
+	color: #646464;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+.news-wrapper .news-item p {
+	margin-bottom: 40px;
+	font-size: 13px;
+}
+
+.news-wrapper .news-item {
+	padding: 0 12px; 
+}
+
+.news-wrapper .news-item .panel-body {
+	text-align: center;
+	padding: 20px;
+}
+
+.news-item-wrapper .news-item-title {
+	text-align: center;
+}
+
+.news-item-wrapper .news-item-title h1 {
+	font-weight: 300;
+	color: #646464;
+	margin-bottom: 30px;
+}
+
+.news-item-wrapper .news-item .panel-heading {
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+}
+
+.news-item-wrapper .news-item .panel-body {
+	padding: 30px;
+}
+
+.news-item-wrapper .news-item .panel-body .subtitle {
+	font-weight: 700;
+}
+
+/* EVENT STYLING */
+
+.event .panel-heading {
+	height: 170px;
+	background-size: cover;
+	background-position: center;
+}
+
+.event .panel-body {
+	text-align: center;
+	padding: 20px;
+}
+
+.event .panel-body h3 {
+	margin-bottom: -5px;
+	font-weight: 300;
+}
+
+.event .panel-body span {
+	font-size: 13px;
+}
+
+.event .panel-body p {
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.event-wrapper .page-heading h1 {
+	margin-bottom: 30px;
+}
+
+.event-wrapper .event-item .panel-heading {
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+}
+
+.event-wrapper .event-item .panel-body {
+	padding: 30px;
+}
+
+.events-wrapper .event {
+	padding: 0 12px; 
+}
+
+.event-wrapper .album .panel-body {
+	text-align: center;
+}
+
+.event-wrapper .album .panel-body h3 {
+	font-weight: 300;
+	margin-bottom: 40px;
+}
+
+.event-wrapper .album-wrapper {
+	margin-top: 50px;
+}
+
+.event-wrapper .event-item .panel-body .presale-buttons {
+	text-align: center;
+}
+
+.event-wrapper .event-item .panel-body .presale-buttons h3 {
+	font-weight: 300;
+	margin-bottom: 40px;
+}
+
+.event-wrapper .event-item .panel-body .presale-buttons .disable-presale {
+	pointer-events: none;
+	cursor: default;
+}
+
+.event-wrapper .event-item .panel-body .presale-buttons .presale-btn {
+	background-color: transparent;
+	border: none;
+	padding: 12px 30px;
+	border-radius: 4px;
+	box-shadow: rgb(229, 229, 229) 0px 0px 0px 2px inset;
+	color: #777;
+	text-decoration: none;
+	transition-duration: 0.2s;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.event-wrapper .event-item .panel-body .presale-buttons .presale-btn:hover {
+	background-color: #0C7F8A;
+	color: white;
+	transition-duration: 0.2s;
+}
+
+
+/* ALBUM STYLING */
+
+.albums-wrapper .album .panel-heading{
+	height: 170px;
+	background-size: cover;
+	background-position: center;
+}
+
+.albums-wrapper .album .panel-body h3{
+	font-weight: 300;
+	margin-bottom: 40px;
+}
+
+.albums-wrapper .album .panel-body {
+	text-align: center;
+}
+
+.album-wrapper .photo img {
+	width: 100%;
+	padding: 5px;
+}
+
+.album-wrapper .photo {
+	background-color: white;
+	margin: 5px;
+	border-radius: 4px;
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+}
+
+/* ACCOUNT STYLING */
+
+.account-wrapper .panel-body .profile-photo {
+	width: 250px;
+	border-radius: 7px;
+}
+
+.account-wrapper .panel-body h3 {
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.account-wrapper .read-more {
+	text-align: left;
+}
+
+.account-wrapper .account-actions {
+	list-style-type: none;
+	padding: 0;
+}
+
+.account-wrapper .account-actions li {
+	display: inline-block;
+	padding: 10px 10px 10px 0;
+}
+
+.edit-account-wrapper .panel-body .change-account-btn, .edit-password-wrapper .panel-body .change-account-btn {
+	background-color: transparent;
+	border: none;
+	padding: 12px 30px;
+	border-radius: 4px;
+	box-shadow: rgb(229, 229, 229) 0px 0px 0px 2px inset;
+	color: #777;
+	text-decoration: none;
+	transition-duration: 0.2s;
+	text-align: center;
+}
+
+.edit-account-wrapper .panel-body .change-account-btn:hover, .edit-password-wrapper .panel-body .change-account-btn:hover{
+	background-color: #0C7F8A;
+	color: white;
+	transition-duration: 0.2s;
+}
+
+.edit-account-wrapper .panel-body .read-more, .edit-password-wrapper .panel-body .read-more {
+	text-align: left;
+	margin-bottom: 0;
+}
+
+.edit-account-wrapper ul, .edit-password-wrapper ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.edit-account-wrapper ul li, .edit-password-wrapper ul li {
+	
+	display: inline-block;
+	padding: 10px 10px 10px 0;
+}
+
+.edit-account-wrapper .panel .panel-body input, .edit-password-wrapper .panel .panel-body input {
+	padding: 5px;
+	background-color: #f8f8f8;
+	border-radius: 4px;
+	border: solid 1px #e5e5e5;
+	padding-left: 15px;
+}
+
+.edit-account-wrapper .panel .panel-body form ::-webkit-input-placeholder, .edit-password-wrapper .panel .panel-body form ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #959595;
+}
+.edit-account-wrapper .panel .panel-body form :-moz-placeholder, .edit-password-wrapper .panel .panel-body form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #959595;
+   opacity:  1;
+}
+.edit-account-wrapper .panel .panel-body form ::-moz-placeholder, .edit-password-wrapper .panel .panel-body form ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #959595;
+   opacity:  1;
+}
+.edit-account-wrapper .panel .panel-body form :-ms-input-placeholder, .edit-password-wrapper .panel .panel-body form :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #959595;
+}
+.edit-account-wrapper .panel .panel-body form ::-ms-input-placeholder, .edit-password-wrapper .panel .panel-body form ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #959595;
+}
+
+.edit-account-wrapper .panel .current-cover-photo {
+	width: 250px;
+}
+
+.account-wrapper .panel .panel-body .col-sm-12:first-child {
+	text-align: center;
 }
 
 /* FOOTER STYLING */
@@ -209,37 +518,40 @@ body {
 	margin: 0;
 }
 
-/* RESPONSIVE DESING */
+/* RESPONSIVE DESIGN */
 
-@media (max-width: 600px){
-	.home-body .subscribe {
-		width: 100%;
+@media (max-width: 768px) {
+	.navbar-default {
+		padding-right: 0;
 	}
 
-	.home-body .container, .home-body .col-lg-12, .home-body .col-sm-12 {
-		width: 100%;
-		padding: 0 15px;
-		margin-top: 0;
+	.navbar-header {
+		height: 65px;
 	}
 
-	.home-body .news-item .panel .panel-heading .news-text p, .home-body .event-item .panel .panel-body p {
-		width: 100%;
-	}
-
-	.home-header .background {
-		height: 325px;
+	.grid-item {
+	    width: 100%;
 	}
 }
 
-@media (max-width: 550px){
-	.home-header .background h1 {
-		font-size: 45px;
-		padding: 0 15px;
+@media (max-width: 600px) {
+	.edit-account-wrapper .panel .current-cover-photo {
+		width: 100%;
+	}
+
+	.account-wrapper .panel-body .profile-photo {
+		width: 100%;
 	}
 }
 
-@media (max-width: 425px){
-	.home-header .background h1 {
-		margin-top: 100px;
+@media (max-width: 350px) {
+	.read-more a {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 1092px) {
+	.events-wrapper .container, .news-wrapper .container {
+		width: 100%;
 	}
 }

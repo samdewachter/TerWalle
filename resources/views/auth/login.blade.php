@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/loginRegisterStyle.css') }}">
+@endsection
+<div class="login-logo">
+    <a href="{{ url('/') }}">
+        <img src="{{ asset('/images/TW_logo.png') }}">
+        <span>Ter Walle</span>
+    </a>        
+</div>
 <div class="login-wrapper">
+    <div class="welcome-text">
+        Welkom!
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             TER WALLE
@@ -9,9 +21,10 @@
         <div class="panel-body">
             <div class="body-header">
                 <div class="body-title">
-                    Login
+                    <div class="login-divider">
+                        <span>Login met email</span>
+                    </div>
                 </div>
-                <span class="body-info">Welkom! Gelieve je hieronder aan te melden.</span>
             </div>
             <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
@@ -33,7 +46,7 @@
                         </span>
                     @endif
                 </div>
-                <button type="submit" class="btn-custom btn-custom-login pull-right">LOGIN</button>
+                <button type="submit" class="btn-custom btn-custom-primary">LOGIN</button>
             </form>
         </div>       
     </div>

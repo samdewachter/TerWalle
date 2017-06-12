@@ -15,6 +15,20 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@postMessage');
+Route::get('/nieuws', 'NewsController@index');
+Route::get('/nieuws/{news}', 'NewsController@showNewsItem');
+Route::get('/evenementen', 'EventController@index');
+Route::get('/evenementen/{event}', 'EventController@showEvent');
+Route::post('/voorverkoop/{presale}', 'PresaleController@buyTicket');
+Route::get('/fotos', 'PhotoController@index');
+Route::get('/fotos/{album}', 'PhotoController@showPhotoAlbum');
+Route::get('/account/{user}', 'AccountController@index');
+Route::get('/account/{user}/wijzigdetails', 'AccountController@editAccount');
+Route::post('/account/{user}/wijzigdetails', 'AccountController@updateAccount');
+Route::get('/account/{user}/wijzigpaswoord', 'AccountController@editPassword');
+Route::post('/account/{user}/wijzigpaswoord', 'AccountController@updatePassword');
 
 Route::get('/test', 'AdminController@test');
 
@@ -24,6 +38,11 @@ Route::post('/pusherauth', 'PusherController@auth');
 /* ADMIN ROUTES */
 Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
+
+    /* SETTINGS ROUTES */
+    Route::get('/websitesettings', 'AdminController@settings')->name('website settings');
+    Route::get('/websitesettings/coverphoto', 'AdminController@editCoverPhoto')->name('cover foto aanpassen');
+    Route::post('/websitesettings/coverphoto', 'AdminController@updateCoverPhoto');
 
     /* MEMBER ROUTES */
     Route::get('/leden', 'MemberController@showMembers')->name('leden');
@@ -105,6 +124,14 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::delete('/nieuwtjes/{news}/delete', 'NewsController@deleteNews');
     Route::post('/nieuwtjes/publish', 'NewsController@publishNews');
     Route::get('/nieuwtjes/zoeken', 'NewsController@searchNews')->name('nieuwtje zoeken');
+
+    /* PRESALE ROUTES */
+    Route::get('/voorverkoop', 'PresaleController@showPresale')->name('voorverkoop');
+    Route::get('/voorverkoop/add', 'PresaleController@newPresale')->name('voorverkoop aanmaken');
+    Route::post('/voorverkoop/add', 'PresaleController@addPresale');
+    Route::delete('/voorverkoop/{presale}/delete', 'PresaleController@deletePresale');
+    Route::get('/voorverkoop/{presale}/edit', 'PresaleController@editPresale')->name('voorverkoop aanpassen');
+    Route::post('/voorverkoop/{presale}/edit', 'PresaleController@updatePresale');
 
     /* TEST ROUTE */
     Route::get('/test', 'PhotoController@test');

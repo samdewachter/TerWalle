@@ -6,6 +6,20 @@
 	    $breadcrumbs->push('Dasboard', url('admin'));
 	});
 
+	/* WEBSITE SETTINGS */
+
+	Breadcrumbs::register('website settings', function($breadcrumbs)
+	{
+		$breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Website settings', url('admin/websitesettings'));
+	});
+
+	Breadcrumbs::register('cover foto aanpassen', function($breadcrumbs)
+	{
+		$breadcrumbs->parent('website settings');
+	    $breadcrumbs->push('Cover foto aanpassen', url('admin/websitesettings/coverphoto'));
+	});
+
 	/* EVENTS */
 	Breadcrumbs::register('evenementen', function($breadcrumbs)
 	{
@@ -211,12 +225,37 @@
 	    $breadcrumbs->push('Poll zoeken', url('admin/poll/zoeken'));
 	});
 
-	/* POLLS */
+	/* TAPLIST */
 	Breadcrumbs::register('taplijst', function($breadcrumbs)
 	{
 	    $breadcrumbs->parent('dashboard');
 	    $breadcrumbs->push('Taplijst overzicht', url('admin/taplijst'));
 	});
 
+	/* PRESALE */
+
+	Breadcrumbs::register('voorverkoop', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Voorverkoop', url('admin/voorverkoop'));
+	});
+
+	Breadcrumbs::register('voorverkoop aanpassen', function($breadcrumbs, $presale)
+	{
+	    $breadcrumbs->parent('voorverkoop');
+	    $breadcrumbs->push( $presale->title .' aanpassen', url('admin/voorverkoop/'. $presale->id .'/edit'));
+	});
+
+	Breadcrumbs::register('voorverkoop aanmaken', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('voorverkoop');
+	    $breadcrumbs->push('Voorverkoop aanmaken', url('admin/voorverkoop/add'));
+	});
+
+	Breadcrumbs::register('voorverkoop zoeken', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('voorverkoop');
+	    $breadcrumbs->push('Voorverkoop zoeken', url('admin/voorverkoop/zoeken'));
+	});
 
 ?>

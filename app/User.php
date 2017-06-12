@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->hasMany('App\TapList');
     }
 
+    public function Tickets() {
+        return $this->hasMany('App\Ticket');
+    }
+
     public function isHeadAdmin(){
         if ($this->Role->role == "headAdmin") {
             return true;

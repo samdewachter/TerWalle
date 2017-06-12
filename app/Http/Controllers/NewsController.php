@@ -99,4 +99,18 @@ class NewsController extends Controller
         $news = News::search($keyword)->paginate(10);
         return view('admin.news.searchNews', compact('news', 'keyword'));
     }
+
+    public function index()
+    {
+        $news = News::orderBy('created_at', 'DESC')
+            ->where('publish', true)
+            ->paginate(10);
+
+        return view('front.news', compact('news'));
+    }
+
+    public function showNewsItem(News $news)
+    {
+        return view('front.newsItem', compact('news'));
+    }
 }

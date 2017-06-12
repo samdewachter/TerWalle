@@ -360,11 +360,14 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePollResultsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_16_184904_create_poll_results_table.php',
         'CreatePollsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191052_create_polls_table.php',
+        'CreatePresalesTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_12_123618_create_presales_table.php',
         'CreateReportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_161221_create_reports_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190643_create_roles_table.php',
         'CreateSubscriptionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191004_create_subscriptions_table.php',
         'CreateTapListsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190918_create_tap_lists_table.php',
+        'CreateTicketsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_12_123337_create_tickets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateWebsiteSettingsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_12_220948_create_website_settings_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'EventsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EventsTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -903,6 +906,7 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
+        'WebsiteSettingsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/WebsiteSettingsTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

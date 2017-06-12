@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/loginRegisterStyle.css') }}">
+@endsection
+<div class="login-logo">
+    <a href="{{ url('/') }}">
+        <img src="{{ asset('/images/TW_logo.png') }}">
+        <span>Ter Walle</span>
+    </a>        
+</div>
 <div class="register-wrapper">
+    <div class="welcome-text">
+        Welkom!
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             TER WALLE
@@ -9,11 +21,12 @@
         <div class="panel-body">
             <div class="body-header">
                 <div class="body-title">
-                    Registreer
+                    <div class="login-divider">
+                        <span>Registreren</span>
+                    </div>
                 </div>
-                <span class="body-info">Welkom! Gelieve je hieronder te registreren.</span>
             </div>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                     <input type="text" name="first_name" class="form-control input-label-float" value="{{ old('first_name') }}">
@@ -52,8 +65,8 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <input type="text" name="photo" class="form-control input-label-float" value="{{ old('photo') }}">
-                    <label class="label-float">Foto</label>
+                    <label>Profiel foto</label>
+                    <input type="file" name="profile_photo" class="form-control">
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <input type="password" name="password" class="form-control input-label-float">
@@ -68,7 +81,7 @@
                     <input type="password" class="form-control input-label-float" name="password_confirmation">
                     <label class="label-float">Bevestig paswoord</label>
                 </div>
-                <button type="submit" class="btn-custom btn-custom-login pull-right">REGISTREER</button>
+                <button type="submit" class="btn-custom btn-custom-primary pull-right">REGISTREER</button>
             </form>
         </div>
     </div>

@@ -13,6 +13,9 @@ use App\Report;
 use App\Poll;
 use App\TapList;
 use App\Event;
+use App\WebsiteSettings;
+use File;
+use Image;
 
 class AdminController extends Controller
 {
@@ -44,7 +47,7 @@ class AdminController extends Controller
         $events = Event::orderBy('created_at', 'ASC')->where('start_time', '>=', $dateNow)->limit(2)->get();
 
         /* Members widget */
-        $members = User::orderBy('created_at', 'ASC')->limit(6)->get();
+        $members = User::orderBy('created_at', 'DESC')->limit(6)->get();
 
     	return view('admin.dashboard', compact('user', 'activities', 'grocery', 'weather', 'report', 'poll', 'tappers', 'events', 'members'));
     }
@@ -120,5 +123,42 @@ class AdminController extends Controller
         $weather["celcius"] = number_format($data->main->temp,0);
 
         return $weather;
+    }
+
+    public function settings()
+    {
+        $settings = WebsiteSettings::find(1);
+
+        return view('admin.settings.websiteSettings', compact('settings'));
+    }
+
+    public function editCoverPhoto()
+    {
+        return view('admin.settings.editCoverPhoto');
+    }
+
+    public function updateCoverPhoto(Request $request)
+    {
+        $settings = WebsiteSettings::find(1);
+
+        if ($request->file('cover_photo')) {
+            File::delete(public_path('images/' . $settings->cover_photo));
+            $file = $request->file('cover_photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = $file->getClientOriginalName();
+            $storageName = uniqid() . $imageName;
+            $file = Image::make($file);
+            $file->encode($extension);
+            $path = public_path('images\\' . $storageName);
+            $file->save($path, 65);
+
+            $settings->cover_photo = $storageName;
+        }
+
+        if ($settings->save()) {
+            return redirect(url('/admin/websitesettings'))->with('message', ['success', 'Cover foto succesvol aangepast.']);
+        }
+        return redirect(url('/admin/websitesettings'))->with('message', ['success', 'Er is iets fout gegaan bij het aanpassen van de cover foto.']);
+
     }
 }

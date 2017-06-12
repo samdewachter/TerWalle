@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_year'); // birth year of user
             $table->string('photo'); // photo of user
             // $table->string('place_of_residence'); // place of residence of user
-            $table->integer('role_id');
+            $table->integer('role_id')->default(3);
             $table->string('password'); // password of user
             $table->rememberToken();
             $table->softDeletes();

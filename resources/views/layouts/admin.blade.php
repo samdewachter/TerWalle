@@ -60,6 +60,7 @@
 				<a href="{{ url('/admin/verslagen') }}"><i class="fa fa-upload"></i>Verslagen</a>
 			</li>
 			<li><a href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
+			<li><a href="{{ url('/admin/voorverkoop') }}"><i class="fa fa-ticket"></i>Voorverkoop</a></li>
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">
@@ -83,8 +84,7 @@
 			</div>
 			<div class="navbar-right">
 				<ul>
-					<li>Test</li>
-					<li>Test</li>
+					<li><a href="{{ url('admin/websitesettings') }}"><i class="fa fa-cog"></i></a></li>
 				</ul>
 			</div>
 		</div>

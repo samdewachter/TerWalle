@@ -1,0 +1,189 @@
+/* NAVBAR STYLING */
+.navbar-default {
+	background-color: transparent;
+	border-bottom: none;
+	padding-right: 20px;
+	font-size: 16px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.showNavbar {
+	width: 100%;
+	margin-top: -87px;
+	background-color: #0C7F8A;
+	/*transition-duration: 0.2s;*/
+}
+
+.fixMargin {
+	margin-top: 0;
+	transition-duration: 0.5s;
+	position: fixed;
+	top: 0px;
+}
+
+.home-body .read-more {
+	margin-top: 40px;
+}
+
+/* HOME STYLING */
+
+.home-header .background {
+	height: 500px;
+	margin-top: -87px;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+}
+
+.home-header .fixBackground {
+	margin-top: 0;
+}
+
+.home-header .background h1 {
+	margin-top: 120px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+	font-size: 55px;
+}
+
+.home-body .news-item .panel .panel-heading {
+	text-align: center;
+	color: #777;
+	padding: 40px;
+}
+
+.home-body .news-item {
+	text-align: center;
+	color: #777;
+	padding: 10px 30px;
+	margin-top: -220px;
+}
+
+.home-body .news-item .panel .panel-heading h2 {
+	margin: 0;
+	color: #646464;
+}
+
+.home-body .news-item .panel .panel-heading .news-text p {
+	margin-top: 25px;
+	padding-top: 25px;
+	border-top: 2px solid #e5e5e5;
+}
+
+.home-body .news-item .panel .panel-heading .news-text {
+	width: 75%;
+	margin: 0 auto;
+}
+
+
+.home-body .news-item .panel .panel-body {
+	padding: 0;
+	background-size: cover;
+	background-position: center;
+	height: 250px;
+}
+
+.home-body .event-item .panel .panel-heading {
+	padding: 0;
+	height: 200px;
+	background-size: cover;
+	background-position: center;
+}
+
+.home-body .event-item {
+	padding: 10px 30px;
+}
+
+.home-body .event-item .panel .panel-body {
+	padding: 20px;
+}
+
+.home-body .event-item .panel .panel-body {
+	width: 85%;
+	margin: 0 auto;
+}
+
+.home-body .event-item .panel .panel-body-heading {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.home-body .event-item .panel .panel-body-heading h3 {
+	font-weight: 300;
+	margin-bottom: -5px;
+}
+
+.home-body .event-item .panel .panel-body-heading span {
+	font-size: 13px
+}
+
+
+.home-body .subscribe-wrapper {
+	background-color: #e89980;
+	/*height: 100px;*/
+	width: 100%;
+	padding: 25px 0;
+}
+
+.home-body .subscribe {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+}
+
+.home-body .subscribe .member-btn {
+	background-color: white;
+	border: none;
+	color: #e89980;
+	border-radius: 8px;
+	padding: 10px 20px;
+}
+
+.home-body .subscribe .member-btn:hover {
+	text-decoration: none;
+}
+
+.home-body .subscribe p {
+	margin-bottom: 25px;
+	margin-top: 15px;
+}
+
+/* RESPONSIVE DESING */
+
+@media (max-width: 600px){
+	.home-body .subscribe {
+		width: 100%;
+	}
+
+	.home-body .container, .home-body .col-lg-12, .home-body .col-sm-12 {
+		width: 100%;
+		padding: 0 15px;
+		margin-top: 0;
+	}
+
+	.home-body .news-item .panel .panel-heading .news-text p, .home-body .event-item .panel .panel-body p {
+		width: 100%;
+	}
+
+	.home-header .background {
+		height: 325px;
+	}
+}
+
+@media (max-width: 550px){
+	.home-header .background h1 {
+		font-size: 45px;
+		padding: 0 15px;
+	}
+}
+
+@media (max-width: 425px){
+	.home-header .background h1 {
+		margin-top: 100px;
+	}
+}
