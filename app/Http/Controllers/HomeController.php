@@ -26,8 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('start_time', 'DESC')->limit(2)->get();
-        $news = News::orderBy('created_at', 'DESC')->first();
+        $events = Event::orderBy('start_time', 'DESC')->where('publish', true)->limit(2)->get();
+        $news = News::orderBy('created_at', 'DESC')->where('publish', true)->first();
         $settings = WebsiteSettings::find(1);
 
         return view('home', compact('events', 'news', 'settings'));

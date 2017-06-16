@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         	[
         		"first_name" => "Sam",
         		"last_name" => "De Wachter",
+                "title_url" => "Sam-De-Wachter",
         		"email" => "samdewachter@gmail.com",
         		"birth_year" => "1994-07-07",
         		"photo" => "default.png",
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder
         	[
         		"first_name" => "Tommy",
         		"last_name" => "Schippers",
+                "title_url" => "Tommy-Schippers",
         		"email" => "tommyschippers@gmail.com",
         		"birth_year" => "1997-07-14",
         		"photo" => "default.png",
@@ -36,6 +38,7 @@ class UsersTableSeeder extends Seeder
         	[
         		"first_name" => "Francis",
         		"last_name" => "Blockeel",
+                "title_url" => "Francis-Blockeel",
         		"email" => "francisblockeel@gmail.com",
         		"birth_year" => "1994-04-13",
         		"photo" => "default.png",
@@ -46,6 +49,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Jeroen",
                 "last_name" => "Caluwé",
+                "title_url" => "Jeroen-Caluwe",
                 "email" => "jeroencaluwe@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -56,6 +60,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Caroline",
                 "last_name" => "Van Raemdonck",
+                "title_url" => "Caroline-Van-Raemdonck",
                 "email" => "carolinevanraemdonck@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -65,7 +70,8 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 "first_name" => "Gilles",
-                "last_name" => "Van hul",
+                "last_name" => "Van Hul",
+                "title_url" => "Gilles-Van-Hul",
                 "email" => "gillesvanhul@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -76,6 +82,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Davy",
                 "last_name" => "Bolsens",
+                "title_url" => "Davy-Bolsens",
                 "email" => "davybolsens@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -86,6 +93,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Diego",
                 "last_name" => "Van Havere",
+                "title_url" => "Diego-Van-Havere",
                 "email" => "diegovanhavere@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -96,6 +104,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Anouk",
                 "last_name" => "Braem",
+                "title_url" => "Anouk-Braem",
                 "email" => "anoukbraem@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -106,6 +115,7 @@ class UsersTableSeeder extends Seeder
             [
                 "first_name" => "Jorgen",
                 "last_name" => "Declerck",
+                "title_url" => "Jorgen-Declerck",
                 "email" => "jorgendeclerck@gmail.com",
                 "birth_year" => "1994-07-07",
                 "photo" => "default.png",
@@ -116,32 +126,27 @@ class UsersTableSeeder extends Seeder
         	[
         		"first_name" => "Remco",
         		"last_name" => "Thys",
+                "title_url" => "Remco-Thys",
         		"email" => "remcothys@gmail.com",
         		"birth_year" => "1995-09-23",
         		"photo" => "default.png",
         		"role_id" => 3,
         		"password" => Hash::make('test'),
         		"created_at" => Carbon::now()->format('Y-m-d H:i:s')
-        	]
+        	],
+            [
+                "first_name" => "Extern",
+                "last_name" => "",
+                "title_url" => "Extern",
+                "email" => "",
+                "birth_year" => "1995-09-23",
+                "photo" => "default.png",
+                "role_id" => 2,
+                "password" => Hash::make('test'),
+                "created_at" => Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ];
 
-        // $users2 = [];
-
-        // for ($i=0; $i < 10; $i++) { 
-        //     $random = [
-        //         "first_name" => str_random(10),
-        //         "last_name" => str_random(10),
-        //         "email" => str_random(10),
-        //         "birth_year" => "1994-07-07",
-        //         "photo" => str_random(10),
-        //         "role_id" => 1,
-        //         "password" => Hash::make('test'),
-        //         "created_at" => Carbon::now()->format('Y-m-d H:i:s')
-        //     ];
-
-        //     $users2[] = $random;
-        // }
-        // DB::table('users')->insert($users2);
         DB::table('users')->insert($users);
     }
 }

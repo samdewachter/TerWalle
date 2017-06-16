@@ -102,6 +102,18 @@
 	});
 
 	/* MEMBERS */
+	Breadcrumbs::register('kernleden', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Kernleden', url('admin/kernleden'));
+	});
+
+	Breadcrumbs::register('kernlid aanpassen', function($breadcrumbs, $core_member)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push("Kernlid '" . $core_member->User->first_name . "' aanpassen", url('admin/kernleden', [$core_member->id, 'edit']));
+	});
+
 	Breadcrumbs::register('leden', function($breadcrumbs)
 	{
 	    $breadcrumbs->parent('dashboard');
@@ -232,6 +244,12 @@
 	    $breadcrumbs->push('Taplijst overzicht', url('admin/taplijst'));
 	});
 
+	Breadcrumbs::register('grafiek', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('taplijst');
+	    $breadcrumbs->push('Grafiek', url('admin/taplijst/grafiek'));
+	});
+
 	/* PRESALE */
 
 	Breadcrumbs::register('voorverkoop', function($breadcrumbs)
@@ -256,6 +274,19 @@
 	{
 	    $breadcrumbs->parent('voorverkoop');
 	    $breadcrumbs->push('Voorverkoop zoeken', url('admin/voorverkoop/zoeken'));
+	});
+
+	Breadcrumbs::register('voorverkoop details', function($breadcrumbs, $presale)
+	{
+	    $breadcrumbs->parent('voorverkoop');
+	    $breadcrumbs->push("'".$presale->description ."' voorverkoop details", url('admin/voorverkoop/' . $presale->id));
+	});
+
+	/* CONTACT MESSAGES */
+	Breadcrumbs::register('contact berichten', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Contact berichten', url('admin/contactBerichten'));
 	});
 
 ?>

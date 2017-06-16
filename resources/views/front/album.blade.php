@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+	<meta name="description" content="Hier vind je de foto's van het album {{ $album->album_name }}">
+	<title>Ter Walle | Album: {{ $album->album_name }}</title>
+
+@endsection
+
 @section('content')
 
 	<div class="album-wrapper clearfix">

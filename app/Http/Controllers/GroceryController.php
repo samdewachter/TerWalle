@@ -22,6 +22,19 @@ class GroceryController extends Controller
     }
 
     public function addGrocery(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'needed_at' => 'required|date|after:yesterday',
+            'quantity.*' => 'required',
+            'items.*' => 'required',
+        ], [
+            'name.required' => 'Het naam veld is verplicht',
+            'needed_at.required' => 'Het datum veld is verplicht',
+            'needed_at.after' => 'De datum moet vandaag of een datum na vandaag zijn.',
+            'items.*.required' => 'Het item veld is verplicht.',
+            'quantity.*.required' => 'Het hoeveelheid veld is verplicht.'
+        ]);
+
         $grocery = new Grocery();
 
         $items = array_filter($request->items);
@@ -37,7 +50,7 @@ class GroceryController extends Controller
                 $newItem->grocery_id = $grocery->id;
                 $newItem->save();
             }
-            return redirect('/admin/boodschappen')->with('message', ['success', 'Boodschappenlijst succesvol aangemaakt.']);
+            return redirect('/admin/boodschappen')->with('message', ['gelukt', 'Boodschappenlijst succesvol aangemaakt.']);
         }
         return redirect('/admin/boodschappen')->with('message', ['error', 'Er liep iets fout bij het aanmaken van de boodschappenlijst.']);
     }
@@ -76,6 +89,14 @@ class GroceryController extends Controller
     }
 
     public function addItem(Request $request, Grocery $grocery){
+        $this->validate($request, [
+            'quantity' => 'required',
+            'item' => 'required',
+        ], [
+            'item.required' => 'Het item veld is verplicht.',
+            'quantity.required' => 'Het hoeveelheid veld is verplicht.'
+        ]);
+
         $grocery->done = false;
         $grocery->save();
         $groceryItem = new GroceryItem();
@@ -85,7 +106,7 @@ class GroceryController extends Controller
         $groceryItem->grocery_id = $grocery->id;
 
         if ($groceryItem->save()) {
-            return redirect('/admin/boodschappen')->with('message', ['success', 'Item succesvol toegevoegd.']);
+            return redirect('/admin/boodschappen')->with('message', ['gelukt', 'Item succesvol toegevoegd.']);
         }
         return redirect('/admin/boodschappen')->with('message', ['error', 'Er liep iets fout bij het toevoegen van het item.']);
     }
@@ -100,7 +121,7 @@ class GroceryController extends Controller
 
     public function deleteGrocery(Grocery $grocery) {
         if ($grocery->delete()) {
-            return back()->with('message', ['success', 'Boodschappenlijst succesvol verwijderd.']);
+            return back()->with('message', ['gelukt', 'Boodschappenlijst succesvol verwijderd.']);
         }
         return back()->with('message', ['error', 'Er liep iets fout bij het verwijderen van de boodschappenlijst.']);
     }
@@ -124,7 +145,7 @@ class GroceryController extends Controller
         $grocery->items = json_encode($itemsWithQuantity);
 
         if ($grocery->save()) {
-            return redirect('/admin/boodschappen')->with('message', ['success', 'Boodschappenlijst succesvol aangepast.']);
+            return redirect('/admin/boodschappen')->with('message', ['gelukt', 'Boodschappenlijst succesvol aangepast.']);
         }
         return redirect('/admin/boodschappen')->with('message', ['error', 'Er liep iets fout bij het aanpassen van de boodschappenlijst.']);
     }

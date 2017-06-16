@@ -7,6 +7,7 @@ use App\User;
 use Hash;
 use File;
 use Image;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -15,10 +16,18 @@ class AccountController extends Controller
     }
 
     public function editAccount(User $user) {
+        if (Auth::user()->id != $user->id) {
+            return redirect('/account/' . Auth::user()->id . '-' . Auth::user()->title_url)->with('message', ['waarschuwing', 'U probeert een account te bewerken dat niet van u is.']);
+        }
+
     	return view('front.editAccount', compact('user'));
     }
 
     public function updateAccount(User $user, Request $request) {
+        if (Auth::user()->id != $user->id) {
+            return redirect('/account/' . Auth::user()->id . '-' . Auth::user()->title_url)->with('message', ['waarschuwing', 'U probeert een account te bewerken dat niet van u is.']);
+        }
+
     	$user->first_name = $request->first_name;
     	$user->last_name = $request->last_name;
     	$user->email = $request->email;
@@ -41,7 +50,7 @@ class AccountController extends Controller
         }
 
     	if ($user->save()) {
-    		return redirect('/account/' . $user->id)->with('message', ['success', 'Uw account is succesvol gewijzigd.']);
+    		return redirect('/account/' . $user->id)->with('message', ['gelukt', 'Uw account is succesvol gewijzigd.']);
         }
         return redirect('/account/' . $user->id)->with('message', ['error', 'Er liep iets fout bij het wijzigen van uw account.']);
     }
@@ -59,7 +68,7 @@ class AccountController extends Controller
     	$password = Hash::make($newPassword);
     	$user->password = $password;
     	if ($user->save()) {
-    		return redirect('/account/' . $user->id)->with('message', ['success', 'Uw paswoord is succesvol gewijzigd.']);
+    		return redirect('/account/' . $user->id)->with('message', ['gelukt', 'Uw paswoord is succesvol gewijzigd.']);
         }
         return redirect('/account/' . $user->id)->with('message', ['error', 'Er liep iets fout bij het wijzigen van uw paswoord.']);
     }

@@ -43,7 +43,7 @@
 							<td>{{ substr($event->description, 0, 100) . '...' }}</td>
 							<td>{{ $event->start_time }}</td>
 							<td>{{ $event->end_time }}</td>
-							<td class="table-publish"><input type="checkbox" id="{{ $event->id }}" class="regular-checkbox publish" name="publish_check" <?= ($event->publish)? 'checked' : ''; ?> /><label for="{{ $event->id }}"><i class="fa fa-check"></i></label></td>
+							<td class="table-publish"><input type="checkbox" id="{{ $event->id }}" class="regular-checkbox publish-event" name="publish_check" <?= ($event->publish)? 'checked' : ''; ?> /><label for="{{ $event->id }}"><i class="fa fa-check"></i></label></td>
 							<td class="text-right">
 								<ul>
 									<li class="custom-tooltip custom-tooltip-arrow-right"><a href="{{ url('/admin/evenementen', [$event->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-right">Aanpassen</span></li>

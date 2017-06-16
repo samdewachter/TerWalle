@@ -5,6 +5,12 @@ $( document ).ready(function() {
 		}
 	});
 
+	if ($('.alert').length != 0) {
+		setTimeout(function(){
+		    $('.alert').fadeOut();
+		}, 6000);
+	}	
+
 	$('.treeview-menu').hide();
 
 	//Ripple effect when you click on a button
@@ -171,9 +177,15 @@ $( document ).ready(function() {
 		header: {
 			left: 'title',
 			center: 'none',
-			right: 'prev,next today'
+			right: 'prev,next today month,agendaWeek'
 		},
 		events: 'taplijst/getTapList',
+		eventLimit: true,
+		views: {
+        month: {
+           		eventLimit: 4 // adjust to 6 only for agendaWeek/agendaDay
+	        }
+	    },
 		droppable: true,
 		editable: true,
 		eventClick: function(calEvent, jsEvent, view)
@@ -188,12 +200,13 @@ $( document ).ready(function() {
 					},
 					type: 'DELETE',
 					success: function() {
-						$('.alert.alert-success').remove();
-						$('.alert-wrapper').append('<div class="alert alert-success">\
+						$('<div class="alert alert-gelukt">\
 							<button type="button" class="close">×</button>\
-							<h4>Success!</h4>\
+							<h4>Gelukt!</h4>\
 							Tapper succesvol verwijderd\
-						</div>');
+						</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+							$(this).remove();
+						});
 					},
 					error: function() {
 						console.log('error');
@@ -208,15 +221,17 @@ $( document ).ready(function() {
 				url: 'taplijst/'+ event.id +'/update',
 				data: {
 					'start': event.start.format(),
+					'end': event.end.format()
 				},
 				type: 'POST',
 				success: function() {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Tapper succesvol aangepast\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				},
 				error: function() {
 					console.log('error');
@@ -225,6 +240,7 @@ $( document ).ready(function() {
 		},
 		drop: function(date, jsEvent, ui, resourceId)
 		{
+			console.log('end: ', date)
 			var originalEventObject = $(this).data('event');
 			var eventTitle = originalEventObject.title;
 			var eventDate = date.format();
@@ -236,17 +252,43 @@ $( document ).ready(function() {
 				data: {
 					'start': eventDate,
 					'title': eventTitle,
-					'user_id': userId
+					'user_id': userId,
+					'allDay': 0
 				},
 				type: 'POST',
 				success: function() {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Tapper succesvol Toegevoegd\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 					$('#calendar').fullCalendar('refetchEvents' );
+				},
+				error: function() {
+					console.log('error');
+				}
+			});
+		},
+		eventResize: function(event, delta, revertFunc, jsEvent, ui, view) {
+			// console.log('end: ', event.end.format());
+			// console.log('delta: ', delta);
+			$.ajax({
+				url: 'taplijst/'+ event.id +'/update',
+				data: {
+					'start': event.start.format(),
+					'end': event.end.format()
+				},
+				type: 'POST',
+				success: function() {
+					$('<div class="alert alert-gelukt">\
+						<button type="button" class="close">×</button>\
+						<h4>Gelukt!</h4>\
+						Tapper succesvol aangepast\
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				},
 				error: function() {
 					console.log('error');
@@ -320,6 +362,10 @@ $( document ).ready(function() {
 		});
 	});
 
+	/* TAPLIST CHART */
+
+	
+
 	/* ADD POLL QUESTION */
 
 	itemNumber = $('.poll-answers').find(".form-group").length;
@@ -356,7 +402,7 @@ $( document ).ready(function() {
 
 	// publish event checkbox
 
-	$(".publish").change(function(){
+	$(".publish-event").change(function(){
 		var publish = $(this).prop('checked');
 		var id = $(this).attr('id');
 
@@ -369,19 +415,21 @@ $( document ).ready(function() {
 			type: 'POST',
 			success: function() {
 				if (publish) {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Evenement succesvol gepubliceerd.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				} else {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('.alert-wrapper').appendTo('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Evenement succesvol verborgen.\
-					</div>');
+					</div>').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				}
 				
 			},
@@ -415,19 +463,21 @@ $( document ).ready(function() {
 			type: 'POST',
 			success: function() {
 				if (paid) {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Lid succesvol Betaald.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				} else {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Betaling lid succesvol verwijderd.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				}
 				
 			},
@@ -468,12 +518,13 @@ $( document ).ready(function() {
 					$('.dz-error-message').append(value + '<br>');
 					$('input[name='+index+']').after('<p class="error">'+value+'</p>');
 				});
-				$('.alert').remove();
-				$('.alert-wrapper').append('<div class="alert alert-error">\
+				$('<div class="alert alert-error">\
 					<button type="button" class="close">×</button>\
 					<h4>Error!</h4>\
 					Er liep iets fout bij het aanmaken van het foto album.\
-				</div>');
+				</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 			});
 			this.on("removedfile", function (file, responseText) {
 				console.log(this.files.length);
@@ -487,12 +538,14 @@ $( document ).ready(function() {
 				}
 			});
 			this.on("success", function (file) {
-				$('.alert').remove();
-				$('.alert-wrapper').append('<div class="alert alert-success">\
+				$('.alert-gelukt').remove();
+				$('<div class="alert alert-gelukt">\
 					<button type="button" class="close">×</button>\
-					<h4>Success!</h4>\
+					<h4>Gelukt!</h4>\
 					Foto album succesvol gemaakt.\
-				</div>');
+				</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 			});
 		},
 		processing: function(){
@@ -505,6 +558,7 @@ $( document ).ready(function() {
 			formData.append("album_name", $("input[name=album_name]").val());
 			formData.append("date", $("input[name=date]").val());
 			formData.append("event_id", $("select[name=event_id]").val());
+			formData.append("publish", $("input[name=publish]").val());
 		},
 		queuecomplete: function(){
 			var myDropzone = this;
@@ -512,12 +566,14 @@ $( document ).ready(function() {
 			$('input').prop('disabled', false);
 			$('select').prop('disabled', false);
 			$('.error').empty();
-			window.location = "http://eindwerk.local/TerWalle/public/admin/albums";
-			// this.on("success", function (file) {				
-			// 	setTimeout(function(){
-			// 	    myDropzone.removeAllFiles();
-			// 	}, 3000);
-			// });
+			
+			this.on("success", function (file) {				
+				setTimeout(function(){
+				    myDropzone.removeAllFiles();
+				    window.location = "http://eindwerk.local/TerWalle/public/admin/albums";
+				}, 3000);
+			});
+
 			myDropzone.options.autoProcessQueue = false;			
 		},
 	});
@@ -549,12 +605,13 @@ $( document ).ready(function() {
 					$('.dz-error-message').append(value + '<br>');
 					$('input[name='+index+']').after('<p class="error">'+value+'</p>');
 				});
-				$('.alert').remove();
-				$('.alert-wrapper').append('<div class="alert alert-error">\
+				$('<div class="alert alert-error">\
 					<button type="button" class="close">×</button>\
 					<h4>Error!</h4>\
 					Er liep iets fout bij het aanmaken van het foto album.\
-				</div>');
+				</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 			});
 			this.on("removedfile", function (file, responseText) {
 				console.log(this.files.length);
@@ -568,12 +625,14 @@ $( document ).ready(function() {
 				}
 			});
 			this.on("success", function (file) {
-				$('.alert').remove();
-				$('.alert-wrapper').append('<div class="alert alert-success">\
+				$('.alert-gelukt').remove();
+				$('<div class="alert alert-gelukt">\
 					<button type="button" class="close">×</button>\
-					<h4>Success!</h4>\
+					<h4>Gelukt!</h4>\
 					Foto album succesvol gemaakt.\
-				</div>');
+				</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 			});
 		},
 		processing: function(){
@@ -635,19 +694,21 @@ $( document ).ready(function() {
 			type: 'POST',
 			success: function() {
 				if (publish) {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Evenement succesvol gepubliceerd.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				} else {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Evenement succesvol verborgen.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				}
 				
 			},
@@ -664,28 +725,29 @@ $( document ).ready(function() {
 		var id = $(this).attr('id');
 
 		$.ajax({
-			url: 'http://tw.local/github/TerWalle/public/admin/boodschappen/done',
+			url: 'http://eindwerk.local/TerWalle/public/admin/boodschappen/done',
 			data: {
 				'done': done,
 				'id': id
 			},
 			type: 'POST',
 			success: function(data) {
-				console.log(data)
 				if (done) {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Item succesvol gedaan.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				} else {
-					$('.alert.alert-success').remove();
-					$('.alert-wrapper').append('<div class="alert alert-success">\
+					$('<div class="alert alert-gelukt">\
 						<button type="button" class="close">×</button>\
-						<h4>Success!</h4>\
+						<h4>Gelukt!</h4>\
 						Item succesvol verborgen.\
-					</div>');
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				}
 				if (data.groceriesDone == 'true') {
 					if ($('#'+data.groceryId+data.groceryName+' span').length) {

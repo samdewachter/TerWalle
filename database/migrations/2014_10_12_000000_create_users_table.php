@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('first_name'); // first name of user
             $table->string('last_name'); // last name of user
+            $table->string('title_url');
             $table->string('email')->unique(); // email of user
             $table->date('birth_year'); // birth year of user
-            $table->string('photo'); // photo of user
+            $table->string('photo')->default('default.png'); // photo of user
             // $table->string('place_of_residence'); // place of residence of user
             $table->integer('role_id')->default(3);
             $table->string('password'); // password of user

@@ -63,10 +63,6 @@ aside {
 	margin: 0;
 }
 
-.filled-static .control-label {
-	font-size: 90%;
-}
-
 input.form-control {
 	padding: 0;
 	font-size: 14px;
@@ -76,6 +72,19 @@ input.form-control {
 	float: none;
 	display: inline-block;
 	margin-top: 0;
+}
+
+.register-wrapper .panel .panel-body form input.input-error, .login-wrapper .panel .panel-body form input.input-error {
+	box-shadow: inset 0 -1px 0 #a94442;
+}
+
+.admin-form form input.input-error {
+	box-shadow: inset 0 -1px 0 #a94442;
+	outline-color: transparent;
+}
+
+.has-error .form-control {
+	box-shadow: inset 0 -1px 0 #ddd;
 }
 
 /* SIDENAVBAR */
@@ -88,6 +97,11 @@ input.form-control {
 	font-size: 16px;
 	text-transform: uppercase;
 	text-align: center;
+}
+
+.brand-logo a {
+	color: white;
+	text-decoration: none;
 }
 
 .brand-logo #logo {
@@ -698,14 +712,15 @@ a.btn-custom {
 
 /* ALERTS */
 
-.alert {
-	right: 0;
-	margin-right: 10px;
-	margin-top: 10px;
-	padding: 15px;
-	color: white;
+.alert-wrapper {
 	position: fixed;
+	right: 10px;
+	top: 10px;
 	z-index: 100;
+}
+
+.alert {
+	color: white;
 }
 
 .alert-dismissible {
@@ -743,12 +758,16 @@ button.close {
 	text-shadow: none;
 }
 
-.alert-success {
+.alert-gelukt {
 	background-color: #2196F3;
 }
 
 .alert-error {
 	background-color: #F44336;
+}
+
+.alert-waarschuwing {
+	background-color: #ffab40;
 }
 
 
@@ -847,6 +866,10 @@ button.close {
 	border-top: 1px solid #F0F0F0;
 }
 
+.card.bordered .card-header {
+	border-bottom: 1px solid #F0F0F0;
+}
+
 .card .card-footer {
 	padding: 20px;
 }
@@ -930,6 +953,14 @@ button.close {
 
 .taplist-wrapper .draggable-events h3 {
 	margin-top: 0;
+}
+
+.chart-filter {
+	margin-top: 15px;
+}
+
+.chart-info-alert {
+	color: #F44336;
 }
 
 /* CALENDAR STYLING */
@@ -1333,6 +1364,10 @@ textarea.form-control {
 	margin: 5px;
 }
 
+.album-wrapper form .col-md-12, .add-photo-wrapper form .col-md-12 {
+	padding-left: 0; 
+}
+
 @media (max-width: 770px){
 	.grid-item, .grid-item--width2 {
 		width: 100%;
@@ -1420,6 +1455,10 @@ textarea.form-control {
 	margin-bottom: 10px;
 }
 
+.add-news-wrapper form .col-md-12, .edit-news-wrapper form .col-md-12 {
+	padding-left: 0;
+}
+
 /* PRESALE STYLING */
 
 .add-presale-wrapper .input-group .input-group-addon {
@@ -1450,6 +1489,30 @@ textarea.form-control {
 
 .presales-wrapper .table .table-actions {
 	min-width: 110px;
+}
+
+.presales-wrapper .table .details-btn .tooltip-text {
+	left: 42px;
+	margin-bottom: 2px;
+}
+
+.presales-wrapper .table .edit-btn .tooltip-text {
+	left: 20px;
+	margin-bottom: 2px;
+}
+
+.presale-details-wrapper .table {
+	background-color: white;
+}
+
+.presale-details-wrapper .admin-body {
+	padding: 10px 0;
+	background-color: white;
+}
+
+.presale-details-wrapper .admin-body .download-btn {
+	margin-top: 5px;
+	color: white;
 }
 
 /* DASHBOARD STYLING */
@@ -1708,4 +1771,44 @@ textarea.form-control {
 .settings-wrapper .change-cover-photo span {
 	display: block;
 	margin-top: 15px;
+}
+
+/* CORE MEMBERS STYLING */
+
+
+.core-members-wrapper .core-member img {
+	border-radius: 4px;
+	margin-right: 10px;
+	width: 100%;
+}
+
+.core-members-wrapper .core-member {
+	position: relative;
+	transition-duration: 0.2s;
+}
+
+.core-members-wrapper .core-member:hover .action-buttons {
+	opacity: 1;
+	transition-duration: 0.2s;
+}
+
+.core-members-wrapper .action-buttons {
+	position: absolute;
+	bottom: 15px;
+	right: 10px;
+	color: white;
+	opacity: 0;
+	transition-duration: 0.2s;
+}
+
+@media (max-width: 600px){
+	.core-members-wrapper .action-buttons {
+		opacity: 1;
+	}
+}
+
+/* CONTACT STYLING */
+
+.contact-messages-wrapper .contact-message {
+	margin: 10px 15px;
 }

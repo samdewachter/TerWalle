@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @yield('meta')
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -49,11 +48,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/nieuws') }}">Nieuws</a></li>
-                        <li><a href="{{ url('/evenementen') }}">Evenementen</a></li>
-                        <li><a href="{{ url('/fotos') }}">Foto's</a></li>
-                        <li><a href="{{ url('/contact') }}">Contact</a></li>
+                        <li class="{{ Request::is('/') ? 'nav-active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="{{ (Request::is('nieuws') || Request::is('nieuws/*')) ? 'nav-active' : '' }}"><a href="{{ url('/nieuws') }}">Nieuws</a></li>
+                        <li class="{{ (Request::is('evenementen') || Request::is('evenementen/*')) ? 'nav-active' : '' }}"><a href="{{ url('/evenementen') }}">Evenementen</a></li>
+                        <li class="{{ (Request::is('fotos') || Request::is('fotos/*')) ? 'nav-active' : '' }}"><a href="{{ url('/fotos') }}">Foto's</a></li>
+                        <li class="{{ (Request::is('contact') || Request::is('contact/*')) ? 'nav-active' : '' }}"><a href="{{ url('/contact') }}">Contact</a></li>
+                        <li class="{{ (Request::is('kernleden') || Request::is('kernleden/*')) ? 'nav-active' : '' }}"><a href="{{ url('/kernleden') }}">Kernleden</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -81,7 +81,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/account', [Auth::User()->id]) }}">Account</a>
+                                        <a href="{{ url('/account', [Auth::User()->id . '-' . Auth::User()->title_url]) }}">Account</a>
                                     </li>
                                     @if(Auth::user()->isHeadAdmin() || Auth::user()->isSubAdmin())
                                         <li>

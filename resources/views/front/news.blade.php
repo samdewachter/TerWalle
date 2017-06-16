@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+	<meta name="description" content="Hier heb je een overzicht van alle nieuwtjes die te maken hebben met het jeugdhuis.">
+	<title>Ter Walle | Nieuws</title>
+
+@endsection
+
 @section('content')
 
 	<div class="news-wrapper clearfix">
@@ -18,7 +25,7 @@
 							<div class="panel-body">
 								<h3>{{ $newsItem->title }}</h3>
 								<p>{{ $newsItem->subtitle }}</p>
-								<div class="read-more"><a href="{{ url('/nieuws', [$newsItem->id]) }}">Lees meer</a></div>
+								<div class="read-more"><a href="{{ url('/nieuws', [$newsItem->id . '-' . $newsItem->title_url]) }}">Lees meer</a></div>
 							</div>
 						</div>
 					</div>

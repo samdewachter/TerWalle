@@ -13,9 +13,14 @@
 				<div class="well white admin-form">
 					<form action="{{ url('/admin/voorverkoop', [$presale->id, 'edit']) }}" method="POST">
 						{{ csrf_field() }}
-						<div class="form-group">
-							<input value="{{ $presale->description }}" type="text" name="description" class="form-control input-label-float">
+						<div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+							<input type="text" name="description" value="{{ $presale->description }}" class="form-control input-label-float <?= ($errors->has('description'))? 'input-error' : ''; ?>">
 							<label class="label-float">Korte beschrijving</label>
+							@if ($errors->has('description'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('description') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
 						<div class="form-group">
 							<select name="event_id" class="form-control input-label-float">
@@ -25,25 +30,40 @@
 							</select>
 							<label class="label-float label-float ">Evenement</label>
 						</div>
-						<div class="form-group filled-static">
+						<div class="form-group {{ $errors->has('member_price') ? ' has-error' : '' }} filled-static">
 							<label class="control-label">Prijs lid</label>
 							<div class="input-group">
 								<div class="input-group-addon">€</div>
-								<input value="{{ $presale->member_price }}" type="number" name="member_price" class="form-control">
+								<input type="number" name="member_price" value="{{ $presale->member_price }}" class="form-control <?= ($errors->has('member_price'))? 'input-error' : ''; ?>">
 								<div class="input-group-addon">.00</div>
 							</div>
+							@if ($errors->has('member_price'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('member_price') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
-						<div class="form-group filled-static">
+						<div class="form-group {{ $errors->has('non_member_price') ? ' has-error' : '' }} filled-static">
 							<label class="control-label">Prijs non-lid</label>
 							<div class="input-group">
 								<div class="input-group-addon">€</div>
-								<input value="{{ $presale->non_member_price }}" type="number" name="non_member_price" class="form-control">
+								<input type="number" name="non_member_price" value="{{ $presale->non_member_price }}" class="form-control <?= ($errors->has('non_member_price'))? 'input-error' : ''; ?>">
 								<div class="input-group-addon">.00</div>
 							</div>
+							@if ($errors->has('non_member_price'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('non_member_price') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
-						<div class="form-group filled-static">
+						<div class="form-group {{ $errors->has('deadline') ? ' has-error' : '' }} filled-static">
 							<label class="control-label">Deadline</label>
-							<input value="{{ $presale->deadline }}" type="date" class="form-control" name="deadline">
+							<input type="date" value="{{ $presale->deadline }}" class="form-control <?= ($errors->has('deadline'))? 'input-error' : ''; ?>" name="deadline">
+							@if ($errors->has('deadline'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('deadline') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
 						<div class="form-group">
 							<span class="btn-ripple-wrapper"><button type="submit" class="btn-custom btn-custom-primary btn-fat">aanpassen</button></span>

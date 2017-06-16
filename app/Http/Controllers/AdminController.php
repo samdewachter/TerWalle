@@ -14,6 +14,7 @@ use App\Poll;
 use App\TapList;
 use App\Event;
 use App\WebsiteSettings;
+use App\ContactMessage;
 use File;
 use Image;
 
@@ -49,7 +50,10 @@ class AdminController extends Controller
         /* Members widget */
         $members = User::orderBy('created_at', 'DESC')->limit(6)->get();
 
-    	return view('admin.dashboard', compact('user', 'activities', 'grocery', 'weather', 'report', 'poll', 'tappers', 'events', 'members'));
+        /* Contact widget */
+        $message = ContactMessage::orderBy('created_at', 'DESC')->first();
+
+    	return view('admin.dashboard', compact('user', 'activities', 'grocery', 'weather', 'report', 'poll', 'tappers', 'events', 'members', 'message'));
     }
 
     public function getFeed(){
@@ -156,9 +160,9 @@ class AdminController extends Controller
         }
 
         if ($settings->save()) {
-            return redirect(url('/admin/websitesettings'))->with('message', ['success', 'Cover foto succesvol aangepast.']);
+            return redirect(url('/admin/websitesettings'))->with('message', ['gelukt', 'Cover foto succesvol aangepast.']);
         }
-        return redirect(url('/admin/websitesettings'))->with('message', ['success', 'Er is iets fout gegaan bij het aanpassen van de cover foto.']);
+        return redirect(url('/admin/websitesettings'))->with('message', ['gelukt', 'Er is iets fout gegaan bij het aanpassen van de cover foto.']);
 
     }
 }

@@ -6,10 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CoreMembersTableSeeder' => $baseDir . '/database/seeds/CoreMembersTableSeeder.php',
     'CreateActivitiesTable' => $baseDir . '/database/migrations/2017_06_06_174020_create_activities_table.php',
     'CreateAlbumEventTable' => $baseDir . '/database/migrations/2017_05_30_170228_create_album_event_table.php',
     'CreateAlbumsTable' => $baseDir . '/database/migrations/2017_05_30_115646_create_albums_table.php',
     'CreateAnswerPollsTable' => $baseDir . '/database/migrations/2017_05_16_161855_create_answer_polls_table.php',
+    'CreateContactMessagesTable' => $baseDir . '/database/migrations/2017_06_15_112128_create_contact_messages_table.php',
+    'CreateContactsTable' => $baseDir . '/database/migrations/2017_06_15_111709_create_contacts_table.php',
     'CreateCoreEventsTable' => $baseDir . '/database/migrations/2017_03_18_191157_create_core_events_table.php',
     'CreateCoreMembersTable' => $baseDir . '/database/migrations/2017_03_18_190531_create_core_members_table.php',
     'CreateEventPhotosTable' => $baseDir . '/database/migrations/2017_03_18_190300_create_event_photos_table.php',

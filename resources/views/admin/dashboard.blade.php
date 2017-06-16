@@ -44,15 +44,25 @@
 								<form action="{{ url('admin/boodschappen', [$grocery->id, 'addItem']) }}" method="POST">
 									{{ csrf_field() }}
 									<div class="col-lg-3">
-										<div class="form-group">
-											<input type="number" class="form-control input-label-float" name="quantity">
-											<label class="label-float">Hoeveel</label>
+										<div class="form-group {{ $errors->has('quantity') ? ' has-error' : '' }}">
+											<input type="number" value="{{ old('quantity') }}" class="form-control input-label-float <?= ($errors->has('quantity'))? 'input-error' : ''; ?>" name="quantity">
+											<label class="label-float">Hoeveelheid</label>
+											@if ($errors->has('quantity'))
+						                        <span class="help-block">
+						                            <strong>{{ $errors->first('quantity') }}</strong>
+						                        </span>
+						                    @endif
 										</div>
 									</div>
 									<div class="col-lg-7">
-										<div class="form-group">
-											<input type="text" class="form-control input-label-float" name="item">
+										<div class="form-group {{ $errors->has('item') ? ' has-error' : '' }}">
+											<input type="text" value="{{ old('item') }}" class="form-control input-label-float <?= ($errors->has('item'))? 'input-error' : ''; ?>" name="item">
 											<label class="label-float">Item</label>
+											@if ($errors->has('item'))
+						                        <span class="help-block">
+						                            <strong>{{ $errors->first('item') }}</strong>
+						                        </span>
+						                    @endif
 										</div>
 									</div>
 									<div class="col-lg-2">
@@ -321,7 +331,7 @@
 				<div class="col-lg-8 member-widget">
 					<div class="card bordered white">
 						<div class="card-header">
-							Nieuwe leden
+							<span class="card-title">Nieuwe leden</span>
 							<div class="dropdown pull-right">
 							  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 							    <img class="more-btn" src="{{ asset('/images/more.png') }}">
@@ -358,6 +368,33 @@
 					</div>
 				</div>
 			</div>
+			@if(count($message) != 0)
+				<div class="row">
+					<div class="col-lg-12 contact-message-widget">
+						<div class="card bordered contact-message">
+							<div class="card-header">
+								<span class="card-title"> Bericht van {{ $message->name }}</span>
+								<div class="dropdown pull-right">
+								  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    <img class="more-btn" src="{{ asset('/images/more.png') }}">
+								  </button>
+								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								  	<li class="dropdown-header">Acties</li>
+								    <li><a href="{{ url('/admin/contactBerichten') }}">Ga naar contact berichten</a></li>
+								  </ul>
+								</div>
+								<p>Verzonden op {{ $message->created_at }}</p>
+							</div>
+							<div class="card-body">
+								{{ $message->message }}
+							</div>
+							<div class="card-footer">
+								Antwoord sturen naar email adres "{{ $message->email }}"
+							</div>
+						</div>
+					</div>
+				</div>
+			@endif
 		</div>
 		<div class="action-feed-wrapper col-md-12 col-lg-3">
 			<div class="action-feed-timeline">

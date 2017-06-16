@@ -20,9 +20,28 @@ class NewsController extends Controller
     }
 
     public function addNews(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'text' => 'required',
+            'subtitle' => 'required',
+            'cover_photo' => 'required|mimes:jpg,png,jpeg',
+        ], [
+            'function.required' => 'Het functie veld is verplicht',
+            'text.required' => "Het tekst veld is verplicht.",
+            'subtitle.required' => "Het subtitel veld is verplicht.",
+            'cover_photo.required' => "Het cover foto veld is verplicht.",
+            'cover_photo.mimes' => "De cover foto mag enkel jpg, png of jpeg zijn.",
+        ]);
+
     	$news = new News();
 
     	$news->title = $request->title;
+        $news->title_url = clean($news->title);
+        if ($request->publish) {
+            $news->publish = true;
+        } else {
+            $news->publish = false;
+        }
     	$news->subtitle = $request->subtitle;
     	$news->text = $request->text;
 
@@ -39,7 +58,7 @@ class NewsController extends Controller
 		$news->cover_photo = $storageName;
 
     	if ($news->save()) {
-    		return redirect(url('/admin/nieuwtjes'))->with('message', ['success', 'Niewsartikel succesvol aangemaakt.']);
+    		return redirect(url('/admin/nieuwtjes'))->with('message', ['gelukt', 'Niewsartikel succesvol aangemaakt.']);
     	}
     	return redirect(url('/admin/nieuwtjes'))->with('message', ['error', 'Er ging iets fout bij het aanmaken van het nieuwsartikel.']);
     }
@@ -49,7 +68,25 @@ class NewsController extends Controller
     }
 
     public function updateNews(Request $request, News $news){
+        $this->validate($request, [
+            'title' => 'required',
+            'text' => 'required',
+            'subtitle' => 'required',
+            'cover_photo' => 'required|mimes:jpg,png,jpeg',
+        ], [
+            'function.required' => 'Het functie veld is verplicht',
+            'text.required' => "Het tekst veld is verplicht.",
+            'subtitle.required' => "Het subtitel veld is verplicht.",
+            'cover_photo.mimes' => "De cover foto mag enkel jpg, png of jpeg zijn.",
+        ]);
+
     	$news->title = $request->title;
+        $news->title_url = clean($news->title);
+        if ($request->publish) {
+            $news->publish = true;
+        } else {
+            $news->publish = false;
+        }
     	$news->subtitle = $request->subtitle;
     	$news->text = $request->text;
     	if ($request->file('cover_photo')) {
@@ -66,7 +103,7 @@ class NewsController extends Controller
 			$news->cover_photo = $storageName;
     	}
     	if ($news->save()) {
-    		return redirect(url('/admin/nieuwtjes'))->with('message', ['success', 'Niewsartikel succesvol aangepast.']);
+    		return redirect(url('/admin/nieuwtjes'))->with('message', ['gelukt', 'Niewsartikel succesvol aangepast.']);
     	}
     	return redirect(url('/admin/nieuwtjes'))->with('message', ['error', 'Er ging iets fout bij het aanpassen van het nieuwsartikel.']);
     }
@@ -74,14 +111,14 @@ class NewsController extends Controller
     public function deleteNews(News $news){
     	File::delete(public_path('uploads/newsPhotos/' . $news->cover_photo));
     	if ($news->delete()) {
-    		return redirect(url('/admin/nieuwtjes'))->with('message', ['success', 'Niewsartikel succesvol verwijderd.']);
+    		return redirect(url('/admin/nieuwtjes'))->with('message', ['gelukt', 'Niewsartikel succesvol verwijderd.']);
     	}
     	return redirect(url('/admin/nieuwtjes'))->with('message', ['error', 'Er ging iets fout bij het verwijderen van het nieuwsartikel.']);
     }
 
     public function publishNews(Request $request){
     	$news = News::find($request->id);
-        if ($request->publish) {
+        if ($request->publish == 'true') {
             $news->publish = true;
         } else {
             $news->publish = false;
@@ -111,6 +148,9 @@ class NewsController extends Controller
 
     public function showNewsItem(News $news)
     {
-        return view('front.newsItem', compact('news'));
+        if ($news->publish) {
+            return view('front.newsItem', compact('news'));
+        }
+        return back()->with('message', ['error', 'U probeert een artikel te bekijken dat niet meer is gepubliceerd']);
     }
 }

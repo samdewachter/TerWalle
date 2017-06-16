@@ -79,9 +79,12 @@ class RegisterController extends Controller
             $file->save($path, 65);
         }
 
+        $title_url = clean($data['first_name']) . '-' . clean($data['last_name']);
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'title_url' => $title_url,
             'email' => $data['email'],
             'birth_year' => $data['birth_year'],
             'photo' => $storageName,

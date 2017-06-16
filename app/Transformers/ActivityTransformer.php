@@ -2,6 +2,8 @@
 namespace App\Transformers;
 use App\Activity;
 use League\Fractal\TransformerAbstract;
+use Mail;
+
 class ActivityTransformer extends TransformerAbstract
 {
 	public function transform(Activity $activity)
@@ -195,6 +197,29 @@ class ActivityTransformer extends TransformerAbstract
 		$text = [];
 		$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft de tapper genaamd '" . $activity->subject->title . "' aangepast."];
 		$text['title'] = ["Tapper aangepast"];
+		return $text;
+	}
+
+	/* PRESALE */
+	protected function created_presale(Activity $activity)
+	{
+		$text = [];
+		$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft een voorverkoop moment genaamd '" . $activity->subject->description . "' toegevoegd."];
+		$text['title'] = ["Voorverkoop toegevoegd"];
+		return $text;
+	}
+	protected function deleted_presale(Activity $activity)
+	{
+		$text = [];
+		$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft het voorverkoop moment genaamd '" . $activity->subject->description . "' verwijderd."];
+		$text['title'] = ["Voorverkoop verwijderd"];
+		return $text;
+	}
+	protected function updated_presale(Activity $activity)
+	{
+		$text = [];
+		$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft het voorverkoop moment genaamd '" . $activity->subject->description . "' aangepast."];
+		$text['title'] = ["Voorverkoop aangepast"];
 		return $text;
 	}
 }

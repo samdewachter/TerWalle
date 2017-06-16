@@ -52,6 +52,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Ticket');
     }
 
+    public function CoreMember() {
+        return $this->hasOne('App\CoreMember');
+    }
+
     public function isHeadAdmin(){
         if ($this->Role->role == "headAdmin") {
             return true;

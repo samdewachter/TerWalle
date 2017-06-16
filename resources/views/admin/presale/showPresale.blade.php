@@ -34,7 +34,8 @@
 							<td>€{{ $presale->non_member_price }}</td> <!-- <a class="btn-custom-default"><i class="fa fa-edit"></i></a> -->
 							<td class="text-right">
 								<ul>
-									<li class="custom-tooltip custom-tooltip-arrow-right"><a href="{{ url('/admin/voorverkoop', [$presale->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-right">Aanpassen</span></li>
+									<li class="custom-tooltip custom-tooltip-arrow-bottom details-btn"><a href="{{ url('/admin/voorverkoop', [$presale->id]) }}" class="btn-custom btn-round"><i class="fa fa-info"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">details</span></li>
+									<li class="custom-tooltip custom-tooltip-arrow-bottom edit-btn"><a href="{{ url('/admin/voorverkoop', [$presale->id, 'edit']) }}" class="btn-custom btn-round"><i class="fa fa-edit"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Aanpassen</span></li>
 									<!-- <li class="custom-tooltip custom-tooltip-arrow-bottom"><a class="btn-custom btn-round"><i class="fa fa-trash"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Verwijderen</span></li> -->
 									<li class="custom-tooltip custom-tooltip-arrow-bottom">
 										<form action="{{ url('/admin/voorverkoop', [$presale->id, 'delete']) }}" method="POST">

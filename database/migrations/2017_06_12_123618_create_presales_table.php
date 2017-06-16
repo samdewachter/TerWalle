@@ -20,6 +20,7 @@ class CreatePresalesTable extends Migration
             $table->integer('non_member_price');
             $table->integer('event_id');
             $table->date('deadline');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

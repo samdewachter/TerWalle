@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+	<meta name="description" content="{{ (strlen($event->description) > 100)? substr($event->description, 0, 100) . '...': $event->description }}">
+	<title>Ter Walle | Evenement: {{ $event->title }}</title>
+
+@endsection
+
 @section('content')
 
 	<div class="event-wrapper clearfix">
@@ -17,7 +24,15 @@
 					@endif
 					<div class="panel-body">
 						<div class="subtitle">
-							<p>Evenement start op: {{ $event->start_time }}</p>
+							<?php $now = date('Y-m-d H:i:s') ?>
+							<p>
+								Evenement start op: {{ $event->start_time }}
+								@if($event->start_time < $now && $event->end_time > $now)
+                                    <span class="event-ongoing">(bezig)</span>
+                                @elseif($event->end_time < $now)
+                                    <span class="event-over">(afgelopen)</span>
+                                @endif
+							</p>
 						</div>
 						<div class="text">
 							<p>{{ $event->description }}</p>
@@ -38,19 +53,19 @@
 						@endif
 					</div>
 				</div>
-				@if(count($event->albums) > 0)
+				@if(count($albums) > 0)
 					<div class="album-wrapper">
 						<div class="page-heading">
 							<h1>Gerelateerde Albums</h1>
 						</div>
-						@foreach($event->albums as $album)
+						@foreach($albums as $album)
 							<div class="col-md-4 album">
 								<div class="panel">
 									<div class="panel-heading" style="background-image: url('{{ url('/uploads/photos', [$album->id, $album->Photos[0]->photo]) }}')">
 									</div>
 									<div class="panel-body">
 										<h3>{{ $album->album_name }}</h3>
-										<div class="read-more"><a href="{{ url('/fotos', [$album->id]) }}">Bekijk album</a></div>
+										<div class="read-more"><a href="{{ url('/fotos', [$album->id . '-' . $album->title_url]) }}">Bekijk album</a></div>
 									</div>
 								</div>
 							</div>

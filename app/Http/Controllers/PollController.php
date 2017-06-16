@@ -27,6 +27,18 @@ class PollController extends Controller
 
     public function addPoll(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'deadline' => 'required|date|after:yesterday',
+            'answers.*' => 'required',
+        ], [
+            'title.required' => 'Het titel veld is verplicht.',
+            'deadline.required' => 'Het deadline veld is verplicht.',
+            'deadline.date' => 'Het deadline veld moet een datum formaat zijn.',
+            'deadline.after' => 'De deadline datum moet vandaag of een datum na vandaag zijn.',
+            'answers.*.required' => 'Het antwoord veld is verplicht.'
+        ]);
+
     	$poll = new Poll();
 
     	$poll->title = $request->title;
@@ -47,7 +59,7 @@ class PollController extends Controller
     		}
     	}
 
-    	return redirect('/admin/polls')->with('message', ['success', 'Poll succesvol aangemaakt.']);
+    	return redirect('/admin/polls')->with('message', ['gelukt', 'Poll succesvol aangemaakt.']);
     }
 
     public function addResult(Request $request, $poll)
@@ -71,7 +83,7 @@ class PollController extends Controller
     	$result->user_id = $userId;
 
     	if ($result->save()) {
-    		return redirect('/admin/polls')->with('message', ['success', 'Antwoord succesvol opgeslagen.']);
+    		return redirect('/admin/polls')->with('message', ['gelukt', 'Antwoord succesvol opgeslagen.']);
     	}
     	return redirect('/admin/polls')->with('message', ['error', 'Er liep iets fout bij het verzenden van jouw antwoord.']);
     }
@@ -95,7 +107,7 @@ class PollController extends Controller
     public function deletePoll(Poll $poll)
     {
         if ($poll->delete()) {
-            return redirect('/admin/polls')->with('message', ['success', 'Poll succesvol verwijderd.']);
+            return redirect('/admin/polls')->with('message', ['gelukt', 'Poll succesvol verwijderd.']);
         }
         return redirect('/admin/polls')->with('message', ['error', 'Er liep iets fout bij het verwijderen van de poll.']);
     }
@@ -107,8 +119,20 @@ class PollController extends Controller
 
     public function updatePoll(Request $request, Poll $poll)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'deadline' => 'required|date|after:yesterday',
+            'oldAnswers.*' => 'required',
+        ], [
+            'title.required' => 'Het titel veld is verplicht.',
+            'deadline.required' => 'Het deadline veld is verplicht.',
+            'deadline.date' => 'Het deadline veld moet een datum formaat zijn.',
+            'deadline.after' => 'De deadline datum moet vandaag of later zijn.',
+            'oldAnswers.*.required' => 'Het antwoord veld is verplicht.'
+        ]);
+        
         $poll->title = $request->title;
-
+        $poll->deadline = $request->deadline;
         $oldAnswers = $poll->Answers;
 
         foreach ($oldAnswers as $oldAnswer) {
@@ -128,7 +152,7 @@ class PollController extends Controller
         }
 
         if ($poll->save()) {
-            return redirect('/admin/polls')->with('message', ['success', 'Poll succesvol aangepast.']);
+            return redirect('/admin/polls')->with('message', ['gelukt', 'Poll succesvol aangepast.']);
         }
         return redirect('/admin/polls')->with('message', ['error', 'Er liep iets fout bij het aanpassen van de poll.']);
     }

@@ -13,18 +13,33 @@
 				<div class="well white admin-form">
 					<form action="{{ url('/admin/polls/add') }}" method="POST">
 						{{ csrf_field() }}
-						<div class="form-group">
-							<input type="text" name="title" class="form-control input-label-float">
+						<div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
+							<input type="text" name="title" value="{{ old('title') }}" class="form-control input-label-float <?= ($errors->has('title'))? 'input-error' : ''; ?>">
 							<label class="label-float label-float ">Titel poll</label>
+							@if ($errors->has('title'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('title') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
-						<div class="form-group">
-							<input type="date" name="deadline" class="form-control input-label-float">
+						<div class="form-group {{ $errors->has('deadline') ? ' has-error' : '' }}">
+							<input type="date" name="deadline" value="{{ old('deadline') }}" class="form-control input-label-float <?= ($errors->has('deadline'))? 'input-error' : ''; ?>">
 							<label class="label-float label-float-date ">Deadline</label>
+							@if ($errors->has('deadline'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('deadline') }}</strong>
+		                        </span>
+		                    @endif
 						</div>
 						<div class="poll-answers">
-							<div class="form-group clearfix">
-								<input type="text" name="answers[]" class="form-control input-label-float">
+							<div class="form-group {{ $errors->has('answers.*') ? ' has-error' : '' }} clearfix">
+								<input type="text" name="answers[]" value="{{ old('answers.0') }}" class="form-control input-label-float <?= ($errors->has('answers.*'))? 'input-error' : ''; ?>">
 								<label class="label-float">Antwoord 1</label>
+								@if ($errors->has('answers.*'))
+			                        <span class="help-block">
+			                            <strong>{{ $errors->first('answers.*') }}</strong>
+			                        </span>
+			                    @endif
 							</div>
 						</div>
 						<div class="form-group custom-tooltip custom-tooltip-arrow-bottom">
@@ -35,7 +50,7 @@
 						</div>
 						<div class="form-group">
 							<span class="btn-ripple-wrapper"><button type="submit" class="btn-custom btn-custom-primary btn-fat">voeg toe</button></span>
-							<span class="btn-ripple-wrapper"><a href="{{ URL::previous() }}" class="btn-custom btn-fat">ga terug</a></span>
+							<span class="btn-ripple-wrapper"><a href="{{ url('/admin/polls') }}" class="btn-custom btn-fat">ga terug</a></span>
 						</div>
 					</form>
 				</div>

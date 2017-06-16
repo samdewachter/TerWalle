@@ -1,6 +1,12 @@
 $( document ).ready(function() {
 	var scroll = $(window).scrollTop();
 
+	if ($('.alert').length != 0) {
+		setTimeout(function(){
+		    $('.alert').fadeOut();
+		}, 6000);
+	}
+
      //>=, not <=
     if (scroll >= 100) {
         $(".navbar").addClass('fixMargin');

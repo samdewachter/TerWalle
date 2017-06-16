@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+	<meta name="description" content="{{ (strlen($news->subtitle) > 100)? substr($news->subtitle, 0, 100) . '...': $news->subtitle }}">
+	<title>Ter Walle | Nieuws: {{ $news->title }}</title>
+
+@endsection
+
 @section('content')
 
 	<div class="news-item-wrapper clearfix">

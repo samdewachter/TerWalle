@@ -29,6 +29,7 @@ Route::get('/account/{user}/wijzigdetails', 'AccountController@editAccount');
 Route::post('/account/{user}/wijzigdetails', 'AccountController@updateAccount');
 Route::get('/account/{user}/wijzigpaswoord', 'AccountController@editPassword');
 Route::post('/account/{user}/wijzigpaswoord', 'AccountController@updatePassword');
+Route::get('/kernleden', 'MemberController@index');
 
 Route::get('/test', 'AdminController@test');
 
@@ -53,6 +54,9 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::post('/leden/betaald', 'MemberController@paidMember');
     Route::get('/leden/add', 'MemberController@newMember')->name('lid aanmaken');
     Route::post('/leden/add', 'MemberController@addMember');
+    Route::get('/kernleden', 'MemberController@showCoreMembers')->name('kernleden');
+    Route::get('/kernleden/{core_member}/edit', 'MemberController@editCoreMember')->name('kernlid aanpassen');
+    Route::post('/kernleden/{core_member}/edit', 'MemberController@updateCoreMember');
 
     /* GROCERY ROUTES */
     Route::get('/boodschappen', 'GroceryController@showGroceries')->name('boodschappenlijsten');
@@ -71,6 +75,8 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/taplijst/getTapList', 'TapController@getTapList');
     Route::delete('/taplijst/{event}/delete', 'TapController@deleteEvent');
     Route::post('/taplijst/{event}/update', 'TapController@updateEvent');
+    Route::get('/taplijst/grafiek', 'TapController@graphic')->name('grafiek');
+    Route::get('/taplijst/grafiek/data', 'TapController@getData');
 
     /* FILE UPLOAD ROUTES */
     Route::get('/verslagen', 'ReportController@showReports')->name('verslagen');
@@ -132,6 +138,12 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::delete('/voorverkoop/{presale}/delete', 'PresaleController@deletePresale');
     Route::get('/voorverkoop/{presale}/edit', 'PresaleController@editPresale')->name('voorverkoop aanpassen');
     Route::post('/voorverkoop/{presale}/edit', 'PresaleController@updatePresale');
+    Route::get('/voorverkoop/{presale}', 'PresaleController@showDetails')->name('voorverkoop details');
+    Route::get('/voorverkoop/{presale}/downloadPaidMember', 'PresaleController@downloadPaidMember');
+    Route::get('/voorverkoop/{presale}/downloadNonPaidMember', 'PresaleController@downloadNonPaidMember');
+
+    /* CONTACT ROUTES */
+    Route::get('/contactBerichten', 'ContactController@showMessages')->name('contact berichten');
 
     /* TEST ROUTE */
     Route::get('/test', 'PhotoController@test');

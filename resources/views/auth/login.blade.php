@@ -29,7 +29,7 @@
             <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <input type="text" name="email" class="form-control input-label-float" value="{{ old('email') }}">
+                    <input type="text" name="email" class="form-control input-label-float <?= ($errors->has('email'))? 'input-error' : ''; ?>" value="{{ old('email') }}">
                     <label class="label-float">Email</label>
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -38,7 +38,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" name="password" class="form-control input-label-float">
+                    <input type="password" name="password" class="form-control input-label-float <?= ($errors->has('password'))? 'input-error' : ''; ?>">
                     <label class="label-float">Paswoord</label>
                     @if ($errors->has('password'))
                         <span class="help-block">

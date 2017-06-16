@@ -32,4 +32,21 @@ $( document ).ready(function() {
 		$(this).hide();
 	});
 
+	/* INPUT LABEL */
+
+	$('.input-label-float').each(function() {
+		if ($(this).val() != '') {
+			$(this).addClass('valid');
+		}
+	});
+
+	$(document).on("blur", '.input-label-float',function(){
+		value = $(this).val();
+		if (value.length > 0) {
+			$(this).addClass('valid');
+		} else if (value.length == 0 && $(this).hasClass('valid')) {
+			$(this).removeClass('valid');
+		} 
+	});
+
 });

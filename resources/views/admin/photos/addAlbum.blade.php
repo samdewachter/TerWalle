@@ -19,22 +19,42 @@
 						<div role="tabpanel" class="tab-pane active" id="home">
 							<form action="{{ url('/admin/fotos/add') }}" method="POST" enctype="multipart/form-data">
 								{{ csrf_field() }}
-								<div class="form-group">
-									<input type="text" name="album_name" class="form-control input-label-float">
+								<div class="form-group {{ $errors->has('album_name') ? ' has-error' : '' }}">
+									<input type="text" name="album_name" value="{{ old('album_name') }}" class="form-control input-label-float <?= ($errors->has('album_name'))? 'input-error' : ''; ?>">
 									<label class="label-float label-float ">Naam album</label>
+									@if ($errors->has('album_name'))
+				                        <span class="help-block">
+				                            <strong>{{ $errors->first('album_name') }}</strong>
+				                        </span>
+				                    @endif
 								</div>
-								<div class="form-group filled-static">
+								<div class="form-group {{ $errors->has('date') ? ' has-error' : '' }} filled-static">
 									<label class="control-label">Datum</label>
-									<input type="date" class="form-control" name="date">
+									<input type="date" value="{{ old('date') }}" class="form-control <?= ($errors->has('date'))? 'input-error' : ''; ?>" name="date">
+									@if ($errors->has('date'))
+				                        <span class="help-block">
+				                            <strong>{{ $errors->first('date') }}</strong>
+				                        </span>
+				                    @endif
 								</div>
-								<div class="form-group">
-									<select name="event_id" class="form-control input-label-float">
+								<div class="form-group {{ $errors->has('event_id') ? ' has-error' : '' }}">
+									<select name="event_id" class="form-control input-label-float <?= ($errors->has('event_id'))? 'input-error' : ''; ?>">
+											<option value="0" >Geen evenement</option>
 										@foreach($events as $event)
-											<option value="{{ $event->id }}">{{ $event->title }}</option>
+											<option <?=  (old('event_id') == $event->id)? 'selected' : ''; ?> value="{{ $event->id }}">{{ $event->title }}</option>
 										@endforeach
 										
 									</select>
 									<label class="label-float label-float ">Evenement</label>
+									@if ($errors->has('event_id'))
+				                        <span class="help-block">
+				                            <strong>{{ $errors->first('event_id') }}</strong>
+				                        </span>
+				                    @endif
+								</div>
+								<div class="form-group">
+									<label class="col-md-12">Publish</label>
+									<input type="checkbox" id="publish_check" class="regular-checkbox publish" name="publish" /><label for="publish_check"><i class="fa fa-check"></i></label>
 								</div>
 								<div class="form-group">
 							  		<div id="my-awesome-dropzone" class="dropzone">

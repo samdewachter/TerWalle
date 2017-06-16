@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/weather-icons-wind.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}" >
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/c3.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/dropzone.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/jquery-ui.min.css') }}">
@@ -22,11 +22,13 @@
 	</div>
 	<aside>
 		<div class="brand-logo">
-			<div id="logo">
-				<img src="{{ asset('images/tw_logo.png') }}">
-				
-			</div>
-			Ter Walle
+			<a href="{{ url('/') }}">
+				<div id="logo">
+					<img src="{{ asset('images/tw_logo.png') }}">
+					
+				</div>
+				Ter Walle
+			</a>
 		</div>
 		<div class="user-logged-in">
 			<div class="content">
@@ -38,7 +40,7 @@
 					{{ Auth::user()->email }}
 				</div>
 				<div class="user-actions">
-					<a href="">settings</a>
+					<a href="{{ url('/account', [Auth::User()->id]) }}">account</a>
 					<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">logout</a>
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
@@ -48,19 +50,25 @@
 		</div>
 		<ul>
 			<li><a href="{{ url('/admin') }}" class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-			<li>
-				<a class="treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="{{ url('/admin/taplijst') }}">Overzicht</a></li>
-					<li><a>Grafieken</a></li>
-				</ul>
-			</li>
+			@if(Auth::User()->role_id == 1)
+				<li>
+					<a class="treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="{{ url('/admin/taplijst') }}">Overzicht</a></li>
+						<li><a href="{{ url('/admin/taplijst/grafiek') }}">Grafiek</a></li>
+					</ul>
+				</li>
+			@else
+				<li><a href="{{ url('/admin/taplijst') }}"><i class="fa fa-beer"></i>Taplijst</a></li>
+			@endif
 			<li><a href="{{ url('/admin/polls') }}"><i class="fa fa-pencil-square-o"></i>Polls</a></li>
 			<li>
 				<a href="{{ url('/admin/verslagen') }}"><i class="fa fa-upload"></i>Verslagen</a>
 			</li>
 			<li><a href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
 			<li><a href="{{ url('/admin/voorverkoop') }}"><i class="fa fa-ticket"></i>Voorverkoop</a></li>
+			<li><a href="{{ url('/admin/kernleden') }}"><i class="fa fa-users"></i>Kernleden</a></li>
+			<li><a href="{{ url('/admin/contactBerichten') }}"><i class="fa fa-envelope"></i>Contact berichten</a></li>
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">

@@ -27,6 +27,16 @@ class ReportController extends Controller
 
     	$this->validate($request, [
             'report_file' => 'required|mimes:doc,docx',
+            'name' => 'required',
+            'date' => 'required|date|before:tomorrow',
+            'kind_of_report' => 'required'
+        ], [
+            'report_file.required' => 'Het verslag veld is verplicht',
+            'report_file.mimes' => 'Het verslag moet een .doc of .docx file zijn.',
+            'name.required' => 'Het naam veld is verplicht',
+            'date.required' => 'Het datum veld is verplicht',
+            'date.before' => 'de datum moet vandaag of een datum voor morgen zijn.',
+            'kind_of_report.required' => 'Het soort verslag veld is verplicht',
         ]);
 
         $uploaded_file = $request->file('report_file');
@@ -39,7 +49,7 @@ class ReportController extends Controller
     	$report->kind_of_report = $kind_of_report;
 
     	if ($report->save()) {
-    		return redirect('/admin/verslagen')->with('message', ['success', 'Verslag succesvol aangemaakt.']);
+    		return redirect('/admin/verslagen')->with('message', ['gelukt', 'Verslag succesvol aangemaakt.']);
     	}
     	return redirect('/admin/verslagen')->with('message', ['error', 'Verslag niet succesvol aangemaakt.']);
     }
@@ -78,6 +88,19 @@ class ReportController extends Controller
     }
 
     public function updateReport(Request $request, Report $report){
+        $this->validate($request, [
+            'report_file' => 'mimes:doc,docx',
+            'name' => 'required',
+            'date' => 'required|date|before:tomorrow',
+            'kind_of_report' => 'required'
+        ], [
+            'report_file.mimes' => 'Het verslag moet een .doc of .docx file zijn.',
+            'name.required' => 'Het naam veld is verplicht',
+            'date.required' => 'Het datum veld is verplicht',
+            'date.before' => 'de datum moet vandaag of een datum voor morgen zijn.',
+            'kind_of_report.required' => 'Het soort verslag veld is verplicht',
+        ]);
+
     	$report->name = $request->name;
     	$report->date = $request->date;
     	$report->kind_of_report = $request->kind_of_report;
@@ -93,7 +116,7 @@ class ReportController extends Controller
     	}
 
 		if ($report->save()) {
-			return redirect('/admin/verslagen')->with('message', ['success', 'Verslag succesvol aangepast.']);
+			return redirect('/admin/verslagen')->with('message', ['gelukt', 'Verslag succesvol aangepast.']);
 		}
     	return redirect('/admin/verslagen')->with('message', ['error', 'Verslag niet succesvol aangepast.']);
     }
@@ -101,7 +124,7 @@ class ReportController extends Controller
     public function deleteReport(Report $report){
         if (Storage::delete($report->file_path)) {
             if ($report->delete()) {
-                return redirect('/admin/verslagen')->with('message', ['success', 'Verslag succesvol verwijderd.']);
+                return redirect('/admin/verslagen')->with('message', ['gelukt', 'Verslag succesvol verwijderd.']);
             }
             return redirect('/admin/verslagen')->with('message', ['error', 'Verslag niet succesvol verwijderd.']);
         }

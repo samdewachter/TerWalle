@@ -342,10 +342,13 @@ class ComposerStaticInitf4aeae2c3811b0d38d25f831a3af9e0e
     );
 
     public static $classMap = array (
+        'CoreMembersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CoreMembersTableSeeder.php',
         'CreateActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_06_174020_create_activities_table.php',
         'CreateAlbumEventTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_30_170228_create_album_event_table.php',
         'CreateAlbumsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_30_115646_create_albums_table.php',
         'CreateAnswerPollsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_16_161855_create_answer_polls_table.php',
+        'CreateContactMessagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_15_112128_create_contact_messages_table.php',
+        'CreateContactsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_15_111709_create_contacts_table.php',
         'CreateCoreEventsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_191157_create_core_events_table.php',
         'CreateCoreMembersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190531_create_core_members_table.php',
         'CreateEventPhotosTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_18_190300_create_event_photos_table.php',

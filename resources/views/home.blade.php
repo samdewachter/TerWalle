@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+    <meta name="description" content="Welkom op de website van Jeugdhuis Ter Walle!">
+    <title>Ter Walle | Home</title>
+
+@endsection
+
 @section('content')
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/homepageStyle.css') }}">
@@ -46,7 +53,7 @@
         </div>
         <div class="row">
             @foreach($events as $event)
-                <div class="col-lg-6 col-md-6 col-sm-12 event-item">
+                <div class="<?= (count($events) == 1)? 'col-md-12' : 'col-lg-6 col-md-6 col-sm-12'; ?> event-item">
                     <div class="panel">
                         <?php $cover = substr($event->cover, 0, 4); ?>
                         @if($cover == 'http')
@@ -57,7 +64,15 @@
                         <div class="panel-body">
                             <div class="panel-body-heading">
                                 <h3>{{ $event->title }}</h3>
-                                <span>{{ $event->start_time }}</span>
+                                <?php $now = date('Y-m-d H:i:s') ?>
+                                <span>
+                                    {{ $event->start_time }}
+                                    @if($event->start_time < $now && $event->end_time > $now)
+                                        <span class="event-ongoing">(bezig)</span>
+                                    @elseif($event->end_time < $now)
+                                        <span class="event-over">(afgelopen)</span>
+                                    @endif
+                                </span>
                             </div>
                             <p>
                                 @if( strlen($event->description) > 200)

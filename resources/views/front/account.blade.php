@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+
+	<meta name="description" content="Dit is het account van {{ $user->first_name . ' ' . $user->last_name }}">
+	<title>Ter Walle | Account: {{ $user->first_name . ' ' . $user->last_name }}</title>
+
+@endsection
+
 @section('content')
 
 	<div class="account-wrapper">
@@ -20,10 +27,12 @@
 							<p><strong>Achternaam</strong>: {{ $user->last_name }}</p>
 							<p><strong>Email</strong>: {{ $user->email }}</p>
 							<p><strong>Verjaardag</strong>: {{ $user->birth_year }}</p>
-							<ul class="account-actions">
-								<li><div class="read-more"><a href="{{ url('/account', [$user->id, 'wijzigdetails']) }}">Account wijzigen</a></div></li>
-								<li><div class="read-more"><a href="{{ url('/account', [$user->id, 'wijzigpaswoord']) }}">Paswoord wijzigen</a></div></li>
-							</ul>							
+							@if(Auth::User()->id == $user->id)
+								<ul class="account-actions">
+									<li><div class="read-more"><a href="{{ url('/account', [$user->id, 'wijzigdetails']) }}">Account wijzigen</a></div></li>
+									<li><div class="read-more"><a href="{{ url('/account', [$user->id, 'wijzigpaswoord']) }}">Paswoord wijzigen</a></div></li>
+								</ul>
+							@endif
 						</div>
 					</div>
 				</div>

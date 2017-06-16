@@ -19,7 +19,7 @@ class EventController extends Controller
 
     public function getFacebookEvents()
     {
-    	$graph_url = "https://graph.facebook.com/v2.9/404178786353325/events?fields=id,start_time,end_time,name,cover,description&access_token=EAADGadxtjdABAILwDECdzzhaveNDQJ7F6ABFe1H4ZCqbU2TZCJQQLmDwxlT6uvnvpZAyN7LAZAepXr4KafWkrVPX6YtROhlxN0bbV57sokI49RZCLbTxZCcwZAOTWqge627JhlyGGuOcS1PHbnXLnrcCOksZBndl12gZD&limit=10";
+    	$graph_url = "https://graph.facebook.com/v2.9/404178786353325/events?fields=id,start_time,end_time,name,cover,description&access_token=EAADGadxtjdABAILwDECdzzhaveNDQJ7F6ABFe1H4ZCqbU2TZCJQQLmDwxlT6uvnvpZAyN7LAZAepXr4KafWkrVPX6YtROhlxN0bbV57sokI49RZCLbTxZCcwZAOTWqge627JhlyGGuOcS1PHbnXLnrcCOksZBndl12gZD&limit=5";
 
     	$ch = curl_init();
 
@@ -41,6 +41,7 @@ class EventController extends Controller
                     $event = new Event();
 
                     $event->title = $data->name;
+                    $event->title_url = clean($event->title);
                     $event->cover = $data->cover->source;
                     $event->description = $data->description;
                     $event->facebook_id = $data->id;
@@ -56,13 +57,13 @@ class EventController extends Controller
                     $count++;
                 }
             }
-            if ($count == 10) {
-                return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er zijn geen nieuwe facebook evenementen om toe te voegen.']);
+            if ($count == 5) {
+                return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Er zijn geen nieuwe facebook evenementen om toe te voegen.']);
             }
-            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Facebook evenementen succesvol toegevoegd.']);
+            return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Facebook evenementen succesvol toegevoegd.']);
         }
 
-        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er zijn geen facebook evenementen gevonden.']);		
+        return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Er zijn geen facebook evenementen gevonden.']);		
     }
 
     private function checkEventExists($facebook_id)
@@ -86,9 +87,9 @@ class EventController extends Controller
 
     public function deleteEvent(Event $event){
         if ($event->delete()) {
-            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol verwijderen.']);
+            return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Evenement succesvol verwijderd.']);
         }
-        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het verwijderen van het evenement']);
+        return redirect(url('/admin/evenementen'))->with('message', ['error', 'Er is iets fout gegaan bij het verwijderen van het evenement']);
     }
 
     public function newEvent(){
@@ -96,9 +97,31 @@ class EventController extends Controller
     }
 
     public function addEvent(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'start_time' => 'required',
+            'start_date' => 'required|after:yesterday',
+            'end_time' => 'required',
+            'end_date' => 'required|after:yesterday',
+            'cover_photo' => 'required|mimes:jpg,png,jpeg',
+        ], [
+            'title.required' => 'Het titel veld is verplicht',
+            'description.required' => "Het beschrijving veld is verplicht.",
+            'start_time.required' => "Het start tijd veld is verplicht.",
+            'start_date.required' => "Het start datum veld is verplicht.",
+            'start_date.after' => "De datum moet vandaag of een datum na vandaag zijn.",
+            'end_time.required' => "Het eind tijd veld is verplicht.",
+            'end_date.required' => "Het eind datum veld is verplicht.",
+            'end_date.after' => "De datum moet vandaag of een datum na vandaag zijn.",
+            'cover_photo.required' => "Het cover foto veld is verplicht.",
+            'cover_photo.mimes' => "De cover foto mag enkel jpg, png of jpeg zijn.",
+        ]);
+
         $event = new Event();
 
         $event->title = $request->title;
+        $event->title_url = clean($event->title);
         $event->description = $request->description;
 
         if ($request->file('cover_photo')) {
@@ -124,9 +147,9 @@ class EventController extends Controller
         }
 
         if ($event->save()) {
-            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol gemaakt.']);
+            return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Evenement succesvol gemaakt.']);
         }
-        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het maken van het evenement']);
+        return redirect(url('/admin/evenementen'))->with('message', ['error', 'Er is iets fout gegaan bij het maken van het evenement']);
 
     }
 
@@ -135,7 +158,27 @@ class EventController extends Controller
     }
 
     public function updateEvent(Request $request, Event $event){
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'start_time' => 'required',
+            'start_date' => 'required|after:yesterday',
+            'end_time' => 'required',
+            'end_date' => 'required|after:yesterday',
+        ], [
+            'title.required' => 'Het titel veld is verplicht',
+            'description.required' => "Het beschrijving veld is verplicht.",
+            'start_time.required' => "Het start tijd veld is verplicht.",
+            'start_date.required' => "Het start datum veld is verplicht.",
+            'start_date.after' => "De datum moet vandaag of een datum na vandaag zijn.",
+            'end_time.required' => "Het eind tijd veld is verplicht.",
+            'end_date.required' => "Het eind datum veld is verplicht.",
+            'end_date.after' => "De datum moet vandaag of een datum na vandaag zijn.",
+            'cover_photo.mimes' => "De cover foto mag enkel jpg, png of jpeg zijn.",
+        ]);
+
         $event->title = $request->title;
+        $event->title_url = clean($event->title);
         $event->description = $request->description;
 
         $cover = substr($event->cover, 0, 4);
@@ -166,9 +209,9 @@ class EventController extends Controller
         }
 
         if ($event->save()) {
-            return redirect(url('/admin/evenementen'))->with('message', ['success', 'Evenement succesvol aangepast.']);
+            return redirect(url('/admin/evenementen'))->with('message', ['gelukt', 'Evenement succesvol aangepast.']);
         }
-        return redirect(url('/admin/evenementen'))->with('message', ['success', 'Er is iets fout gegaan bij het aanpassen van het evenement']);
+        return redirect(url('/admin/evenementen'))->with('message', ['error', 'Er is iets fout gegaan bij het aanpassen van het evenement']);
     }
 
     public function searchEvents(Request $request)
@@ -193,6 +236,11 @@ class EventController extends Controller
 
     public function showEvent(Event $event)
     {
-        return view('front.event', compact('event'));
+        if ($event->publish) {
+            $albums = $event->Albums()->where("publish", true)->get();
+
+            return view('front.event', compact('event', 'albums'));
+        }
+        return back()->with('message', ['error', 'U probeert een evenement te bekijken dat niet meer is gepubliceerd']);
     }
 }

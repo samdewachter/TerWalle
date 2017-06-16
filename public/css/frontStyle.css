@@ -104,6 +104,18 @@ body {
 	margin-top: 15px;
 }
 
+.event-ongoing {
+	color: green;
+}
+
+.event-over {
+	color: red;
+}
+
+.nav-active {
+	background-color: #e27311;
+}
+
 /* NAVBAR STYLING */
 
 .navbar-default {
@@ -124,6 +136,11 @@ body {
 
 .navbar-nav>li>a {
 	padding-top: 23px;
+	padding-bottom: 18.5px;
+}
+
+.navbar-nav>li:hover {
+	background-color: #e27311;
 }
 
 .navbar-default .navbar-nav {
@@ -231,6 +248,21 @@ body {
 
 .contact-wrapper .contact-body form .submit-btn {
 	text-align: center;
+}
+
+.contact-wrapper .contact-body {
+	margin-bottom: 40px;
+}
+
+.contact-wrapper .panel .panel-body input.input-error, .contact-wrapper .panel .panel-body textarea.input-error {
+	border: 1px solid #a94442;
+	border-radius: 4px;
+}
+
+#map {
+	width: 100%;
+	height: 300px;
+	margin-bottom: 40px;
 }
 
 /* NEWS STYLING */
@@ -501,6 +533,29 @@ body {
 	text-align: center;
 }
 
+/* CORE MEMBER STYLING */
+
+.core-members-wrapper .core-member {
+	padding: 10px;
+}
+
+.core-members-wrapper .core-member .panel {
+	margin-bottom: 0;
+}
+
+.core-members-wrapper .core-member .panel-body {
+	text-align: center;
+}
+
+.core-members-wrapper .core-member .panel-body img {
+	border-radius: 50%;
+	width: 80%;
+}
+
+.core-members-wrapper .core-member .panel-body h3 {
+	font-weight: 300;
+}
+
 /* FOOTER STYLING */
 
 .footer-wrapper {
@@ -520,9 +575,24 @@ body {
 
 /* RESPONSIVE DESIGN */
 
-@media (max-width: 768px) {
+@media (max-width: 810px) {
+	.navbar-default {
+		font-size: 14px;
+	}
+}
+
+
+@media (max-width: 767px) {
 	.navbar-default {
 		padding-right: 0;
+		font-size: 16px
+	}
+
+	.navbar-collapse {
+		position: absolute;
+		z-index: 100;
+		background-color: #0C7F8A;
+		width: 100%;
 	}
 
 	.navbar-header {

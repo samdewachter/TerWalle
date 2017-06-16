@@ -16,8 +16,10 @@ class CreateTapListsTable extends Migration
         Schema::create('tap_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title'); // name of user that opens TW
-            $table->date('start'); // date of opening
+            $table->datetime('start'); // date of opening
+            $table->datetime('end');
             $table->integer('user_id');
+            $table->boolean('allDay');
             $table->softDeletes();
             $table->timestamps();
         });
