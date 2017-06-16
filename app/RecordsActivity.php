@@ -32,7 +32,7 @@ trait RecordsActivity
 	 */
 	public function recordActivity($event)
 	{
-		if (Auth::check()) {
+		if (Auth::check() && strtolower(((new ReflectionClass($this))->getShortName())) == "user") {
 			$activity = Activity::create([
 				'subject_id' => $this->id,
 				'subject_type' => get_class($this),
@@ -40,41 +40,59 @@ trait RecordsActivity
 				'user_id' => Auth::user()->id
 			]);
 
+			// $this->sendMail('user', $activity);
+
+			event(new ActivityLogged($activity));
+		} elseif(strtolower(((new ReflectionClass($this))->getShortName())) != "user") {
+
+			if (strtolower(((new ReflectionClass($this))->getShortName())) == "contactmessage") {
+				$user_id = 0;
+			} else {
+				$user_id = Auth::user()->id;
+			}
+
+			$activity = Activity::create([
+				'subject_id' => $this->id,
+				'subject_type' => get_class($this),
+				'name' => $this->getActivityName($this, $event),
+				'user_id' => $user_id
+			]);
+
 			switch ($activity->name) {
 				case 'created_event':
-					$this->sendMail('event', $activity);
+					// $this->sendMail('event', $activity);
 					break;
 
 				case 'created_album':
-					$this->sendMail('album', $activity);
+					// $this->sendMail('album', $activity);
 					break;
 
 				case 'created_grocery':
-					$this->sendMail('grocery', $activity);
+					// $this->sendMail('grocery', $activity);
 					break;
 
 				case 'created_news':
-					$this->sendMail('news', $activity);
+					// $this->sendMail('news', $activity);
 					break;
 
 				case 'created_poll':
-					$this->sendMail('poll', $activity);
+					// $this->sendMail('poll', $activity);
 					break;
 
 				case 'created_presale':
-					$this->sendMail('presale', $activity);
-					break;
-
-				case 'created_user':
-					$this->sendMail('user', $activity);
+					// $this->sendMail('presale', $activity);
 					break;
 
 				case 'created_taplist':
-					$this->sendMail('tapList', $activity);
+					// $this->sendMail('tapList', $activity);
 					break;
 
 				case 'created_report':
-					$this->sendMail('report', $activity);
+					// $this->sendMail('report', $activity);
+					break;
+
+				case 'created_contactmessage':
+					// $this->sendMail('contactMessage', $activity);
 					break;
 				
 				default:

@@ -7,6 +7,7 @@ use App\Event;
 use App\Presale;
 use App\Ticket;
 use Auth;
+use Mail;
 
 class PresaleController extends Controller
 {
@@ -134,6 +135,13 @@ class PresaleController extends Controller
 		    	$ticket->presale_id = $presale->id;
 
 		    	if ($ticket->save()) {
+                    $event = $ticket->Presale->Event->title;
+                    $email = $user->email;
+                    Mail::send('emails.presaleConfirm', ['ticket' => $ticket], function ($message) use ($email, $event)
+                    {
+                        $message->from('me@gmail.com', 'Christian Nwamba');
+                        $message->to($email)->subject('Voorverkoop ticket voor ' . $event);  
+                    });
 		    		return back()->with('message', ['gelukt', 'U staat succesvol op de gastenlijst, u krijgt zodadelijk een bevestigingsemail.']);
 		        }
 		        return back()->with('message', ['error', 'Er liep iets fout bij de voorverkoop. Neem contact op met het jeugdhuis zodat wij het probleem kunnen verhelpen.']);

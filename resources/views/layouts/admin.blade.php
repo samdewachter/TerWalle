@@ -6,6 +6,7 @@
 	<meta name="csrf-token" id="csrf_token" content="{{ csrf_token() }}" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/weather-icons-wind.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/libs/fullcalendar.min.css') }}" >
@@ -69,6 +70,10 @@
 			<li><a href="{{ url('/admin/voorverkoop') }}"><i class="fa fa-ticket"></i>Voorverkoop</a></li>
 			<li><a href="{{ url('/admin/kernleden') }}"><i class="fa fa-users"></i>Kernleden</a></li>
 			<li><a href="{{ url('/admin/contactBerichten') }}"><i class="fa fa-envelope"></i>Contact berichten</a></li>
+			<li><a href="{{ url('/admin/mailLeden') }}"><i class="fa fa-address-book"></i>Mail leden</a></li>
+			@if(Auth::User()->role_id == 1)
+				<li><a href="{{ url('/admin/resetLeden') }}"><i class="fa fa-repeat"></i>Leden omzetten</a></li>
+			@endif
 			<li>
 				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
 				<ul class="treeview-menu">

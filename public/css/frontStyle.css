@@ -569,6 +569,16 @@ body {
 	margin-bottom: 10px;
 }
 
+.footer-wrapper .social-media ul li {
+	display: inline-block;
+}
+
+.footer-wrapper .social-media ul li a {
+	color: #c6c6c6;
+	font-size: 30px;
+	padding: 5px 10px;
+}
+
 .footer-wrapper .made-by p {
 	margin: 0;
 }

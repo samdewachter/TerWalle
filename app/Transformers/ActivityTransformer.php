@@ -222,4 +222,27 @@ class ActivityTransformer extends TransformerAbstract
 		$text['title'] = ["Voorverkoop aangepast"];
 		return $text;
 	}
+
+	/* CONTACT */
+	protected function created_contactMessage(Activity $activity)
+	{
+		$text = [];
+		$text['description'] = [$activity->subject->name ." heeft een contact bericht verstuurd."];
+		$text['title'] = ["Nieuw contact bericht"];
+		return $text;
+	}
+	// protected function deleted_presale(Activity $activity)
+	// {
+	// 	$text = [];
+	// 	$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft het voorverkoop moment genaamd '" . $activity->subject->description . "' verwijderd."];
+	// 	$text['title'] = ["Voorverkoop verwijderd"];
+	// 	return $text;
+	// }
+	// protected function updated_presale(Activity $activity)
+	// {
+	// 	$text = [];
+	// 	$text['description'] = [$activity->user->first_name . " " . $activity->user->last_name . " heeft het voorverkoop moment genaamd '" . $activity->subject->description . "' aangepast."];
+	// 	$text['title'] = ["Voorverkoop aangepast"];
+	// 	return $text;
+	// }
 }

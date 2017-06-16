@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/frontStyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/libs/lightbox.css') }}">
@@ -108,12 +109,12 @@
     </div>
     <div class="footer-wrapper">
             <div class="social-media">
-                <img src="{{ asset('/images/socialMediaIcons.png') }}">
-                <!-- <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul> -->
+                <!-- <img src="{{ asset('/images/socialMediaIcons.png') }}"> -->
+                <ul class="social-media-icons">
+                    <li><a href="https://www.facebook.com/terwalle" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/jh_ter_walle" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                </ul>
             </div>
             <div class="made-by">
                 <p>This website is powered by Samdewachter</p>

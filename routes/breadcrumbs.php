@@ -289,4 +289,18 @@
 	    $breadcrumbs->push('Contact berichten', url('admin/contactBerichten'));
 	});
 
+	/* RESET MEMBERS */
+	Breadcrumbs::register('reset leden', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Reset leden', url('admin/resetLeden'));
+	});
+
+	/* MAIL MEMBERS */
+	Breadcrumbs::register('mail leden', function($breadcrumbs)
+	{
+	    $breadcrumbs->parent('dashboard');
+	    $breadcrumbs->push('Mail leden', url('admin/mailLeden'));
+	});
+
 ?>

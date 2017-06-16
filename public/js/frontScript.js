@@ -12,6 +12,11 @@ $( document ).ready(function() {
 		$(".alert").fadeOut();
 	});
 
+	if ($('.alert').length != 0) {
+		setTimeout(function(){
+		    $('.alert').fadeOut();
+		}, 6000);
+	}	
 
 	/* PROFILE PICTURE EDIT */
 
