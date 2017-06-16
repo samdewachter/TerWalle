@@ -595,6 +595,10 @@ body {
 		width: 100%;
 	}
 
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		color: white;
+	}
+
 	.navbar-header {
 		height: 65px;
 	}
