@@ -39,12 +39,16 @@
 	margin-bottom: 30px;
 }*/
 
-.login-wrapper, .register-wrapper {
+.login-wrapper .panel, .register-wrapper .panel {
+	margin: 0 auto;
+}
+/*
+.login, .register {
 	position: absolute;
 	top: 40%;
 	left: 50%;
-	-webkit-transform: translate(-50%, -50%); 
-}
+	-webkit-transform: translate(-50%, -50%);
+}*/
 
 .login-wrapper .panel, .register-wrapper .panel {
 	width: 430px;

@@ -54,7 +54,7 @@ class PhotoController extends Controller
     		$album->date = $date;
     		$album->save();
             if ($request->event_id != 0) {
-                $album->Events()->attach();
+                $album->Events()->attach($request->event_id);
             }    		
     	}
 
@@ -64,12 +64,12 @@ class PhotoController extends Controller
             $storageName = uniqid() . $imageName;
             $file = Image::make($file);
             $file->encode($extension);
-            if (!file_exists(public_path('uploads\\photos\\' . $album->id))) {
-                mkdir(public_path('uploads\\photos\\' . $album->id), 666, true);
+            if (!file_exists(base_path() . '/public/uploads/photos/' . $album->id)) {
+                File::makeDirectory(base_path() . '/public/uploads/photos/' . $album->id, $mode = 0777, true, true);
             }
-            $path = public_path('uploads\\photos\\' . $album->id . '\\' . $storageName);
-
-            $file->save($path, 65);
+            // $path = public_path('uploads\\photos\\' . $album->id . '\\' . $storageName);
+            $file->save(base_path() . '/public/uploads/photos/' . $album->id . '/' .$storageName, 65);
+            // $file->save($path, 65);
 
     		$photo = new EventPhoto();
     		$photo->album_id = $album->id;

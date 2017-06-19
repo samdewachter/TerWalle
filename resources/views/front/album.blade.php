@@ -3,7 +3,7 @@
 @section('meta')
 
 	<meta name="description" content="Hier vind je de foto's van het album {{ $album->album_name }}">
-	<title>Ter Walle | Album: {{ $album->album_name }}</title>
+	<title>Jeugdhuis Ter Walle | Album: {{ $album->album_name }}</title>
 
 @endsection
 
@@ -17,7 +17,8 @@
 			<div class="col-md-12 album">
 				<div class="grid">
 					@foreach($album->Photos as $photo)
-						<div class="<?= (getimagesize(url('uploads/photos', [$album->id, $photo->photo]))[0] > getimagesize(url('uploads/photos', [$album->id, $photo->photo]))[1])? 'grid-item--width2' : 'grid-item--width1'; ?> grid-item">
+						<!--<div class="<?= (getimagesize(url('uploads/photos', [$album->id, $photo->photo]))[0] > getimagesize(url('uploads/photos', [$album->id, $photo->photo]))[1])? 'grid-item--width2' : 'grid-item--width1'; ?> grid-item">-->
+						<div class="grid-item--width1 grid-item">
 							<div class="photo">
 								<a href="{{ url('/uploads/photos', [$album->id, $photo->photo]) }}" data-lightbox="{{ $album->album_name }}"><img src="{{ url('/uploads/photos', [$album->id, $photo->photo]) }}"></a>
 							</div>

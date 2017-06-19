@@ -19,6 +19,7 @@ class CreateContactMessagesTable extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->boolean('answered')->default(0);
             $table->timestamps();
         });
     }

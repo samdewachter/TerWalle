@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\PaidUser;
 use Mail;
+use App\Mail\MailMembers;
 
 
 class MailController extends Controller
@@ -50,11 +51,12 @@ class MailController extends Controller
     public function sendMail($members, $text, $subject){
     	foreach ($members as $member) {
     		$email = $member->email;
-			Mail::send('emails.mailMembers', ['text' => $text, 'subject' => $subject], function ($message) use ($email, $subject)
-			{
-				$message->from('me@gmail.com', 'Christian Nwamba');
-				$message->to($email)->subject($subject);  
-			});
+            Mail::to($email)->queue(new MailMembers($text, $subject));
+			// Mail::send('emails.mailMembers', ['text' => $text, 'subject' => $subject], function ($message) use ($email, $subject)
+			// {
+			// 	$message->from('me@gmail.com', 'Christian Nwamba');
+			// 	$message->to($email)->subject($subject);  
+			// });
 		}
     }
 }

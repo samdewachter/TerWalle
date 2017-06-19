@@ -5,7 +5,7 @@
 	<div class="core-members-wrapper admin-wrapper">
 
 		<div class="admin-header">
-			<h1>Kernleden</h1>
+			<h1><i class="fa fa-users"></i>Kernleden</h1>
 			<p>Een overzicht van de kernleden.</p>
 		</div>
 		<div class="admin-body">

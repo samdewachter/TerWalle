@@ -23,12 +23,14 @@
 										</li>
 									@endforeach
 								</ul>
-								<form class="pull-right" action="{{ url('/admin/boodschappen', [$grocery->id, 'delete']) }}" method="POST">
-									{{ csrf_field() }}
-									<input type="hidden" name="_method" value="DELETE" />
-	                                <button class="btn-custom btn-round btn-fat btn-custom-danger"><i class="fa fa-trash"></i></button>
-								</form>
-								<span class="btn-ripple-wrapper pull-right"><a href="{{ url('/admin/boodschappen', [$grocery->id, 'edit']) }}" class="btn-custom btn-round btn-custom-primary btn-fat"><i class="fa fa-edit"></i></a></span>
+								<div class="grocery-actions">
+									<form class="pull-right" action="{{ url('/admin/boodschappen', [$grocery->id, 'delete']) }}" method="POST">
+										{{ csrf_field() }}
+										<input type="hidden" name="_method" value="DELETE" />
+		                                <button class="btn-custom btn-round btn-fat btn-custom-danger"><i class="fa fa-trash"></i></button>
+									</form>
+									<span class="btn-ripple-wrapper pull-right"><a href="{{ url('/admin/boodschappen', [$grocery->id, 'edit']) }}" class="btn-custom btn-round btn-custom-primary btn-fat"><i class="fa fa-edit"></i></a></span>
+								</div>
 							</div>
 							<div class="card-footer admin-form clearfix">
 								<form action="{{ url('admin/boodschappen', [$grocery->id, 'addItem']) }}" method="POST">

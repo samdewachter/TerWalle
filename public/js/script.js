@@ -128,11 +128,11 @@ $( document ).ready(function() {
 		
 		$('.grocery-items').append('<div class="form-group clearfix">\
 									<div class="col-md-2">\
-										<input type="number" name="quantity[]" class="form-control input-label-float">\
+										<input type="number" name="quantity[]" class="form-control input-label-float" required>\
 										<label class="label-float">Hoeveel</label>\
 									</div>\
 									<div class="col-md-10">\
-										<input type="text" name="items[]" class="form-control input-label-float">\
+										<input type="text" name="items[]" class="form-control input-label-float" required>\
 										<label class="label-float">Item '+ (itemNumber+1) +'</label>\
 									</div>\
 								</div>');
@@ -768,6 +768,45 @@ $( document ).ready(function() {
 							);
 						}
 					}					
+				}
+				
+			},
+			error: function() {
+				console.log('error');
+			}
+		});
+	});
+
+	/* MESSAGE ANSWERED */
+
+	$(".message-answered").change(function(){
+		var answered = $(this).prop('checked');
+		var id = $(this).attr('message_id');
+
+		$.ajax({
+			url: 'contactBerichten/answered',
+			data: {
+				'answered': answered,
+				'id': id
+			},
+			type: 'POST',
+			success: function() {
+				if (answered) {
+					$('<div class="alert alert-gelukt">\
+						<button type="button" class="close">×</button>\
+						<h4>Gelukt!</h4>\
+						Bericht succesvol beantwoord.\
+					</div>').appendTo('.alert-wrapper').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
+				} else {
+					$('.alert-wrapper').appendTo('<div class="alert alert-gelukt">\
+						<button type="button" class="close">×</button>\
+						<h4>Gelukt!</h4>\
+						Bericht antwoord verwijderd.\
+					</div>').delay(6000).fadeOut(function(){
+						$(this).remove();
+					});
 				}
 				
 			},

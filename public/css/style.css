@@ -937,6 +937,20 @@ button.close {
 	margin-left: -58px;
 }
 
+.grocery-group {
+	margin-bottom: 5px;
+}
+
+.grocery-actions {
+	opacity: 0;
+	transition-duration: 0.2s;
+}
+
+.show-groceries-wrapper .card:hover .grocery-actions {
+	opacity: 1;
+	transition-duration: 0.2s;
+}
+
 /* TAPLIST */
 
 .taplist-wrapper .calendar-wrapper{
@@ -1021,7 +1035,7 @@ button.close {
 
 .report .card-body-hover {
 	transition-duration: 0.2s;
-	/*opacity: 0;*/
+	opacity: 0;
 }
 
 .report:hover .card-body-hover {
@@ -1171,7 +1185,7 @@ textarea.form-control {
 
 /* checkbox and radio button */
 
-.regular-checkbox, .regular-radio {
+.regular-checkbox, .regular-radio, .delete-checkbox {
     display: none;
 }
 
@@ -1209,6 +1223,37 @@ textarea.form-control {
 	color: white;
 	font-size: 18px;
 	margin-top: 3px;
+}
+
+.delete-checkbox + label {
+    /*background-color: #151515;*/
+    border: 2px solid #666;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition-duration: 0.1s;
+}
+
+.delete-checkbox + label i {
+	opacity: 0;
+	color: white;
+	font-size: 18px;
+	margin-top: 2px;
+	margin-left: 4px;
+}
+
+.delete-checkbox:checked + label {
+    background: #F44336;
+    border: 2px solid #F44336;
+	transition-duration: 0.2s;
+}
+
+.delete-checkbox:checked + label i {
+	opacity: 1;
 }
 
 .regular-radio:checked + label {

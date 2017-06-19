@@ -31,8 +31,6 @@ Route::get('/account/{user}/wijzigpaswoord', 'AccountController@editPassword');
 Route::post('/account/{user}/wijzigpaswoord', 'AccountController@updatePassword');
 Route::get('/kernleden', 'MemberController@index');
 
-Route::get('/test', 'AdminController@test');
-
 Route::post('/pusherauth', 'PusherController@auth');
 
 
@@ -144,6 +142,7 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
 
     /* CONTACT ROUTES */
     Route::get('/contactBerichten', 'ContactController@showMessages')->name('contact berichten');
+    Route::post('/contactBerichten/answered', 'ContactController@messageAnswered');
 
     /* RESET ROUTES */
     Route::get('/resetLeden', 'ResetController@index')->name('reset leden');
@@ -153,6 +152,4 @@ Route::group(['middleware' => ['subAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/mailLeden', 'MailController@index')->name('mail leden');
     Route::post('/mailLeden', 'MailController@mailMembers');
 
-    /* TEST ROUTE */
-    Route::get('/test', 'PhotoController@test');
 });

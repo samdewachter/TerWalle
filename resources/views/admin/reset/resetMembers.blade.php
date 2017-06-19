@@ -5,7 +5,7 @@
 	<div class="admin-wrapper">
 
 		<div class="admin-header">
-			<h1>Leden omzetten</h1>
+			<h1><i class="fa fa-repeat"></i>Leden omzetten</h1>
 			<p>Hier kan je een evenement met een voorverkoop moment aanduiden zodat alle leden die een ticket hebben gekocht omgezet kunnen worden naar een betalend lid. Dit is enkel voor Nieuwjaarsfuif bedoeld.</p>
 		</div>
 		<div class="admin-body">
@@ -31,11 +31,6 @@
 					</form>
 				</div>
 			</div>
-		</div>
-		<div class="footer-buttons">
-			<ul>
-				<li class="custom-tooltip custom-tooltip-arrow-bottom"><a href="{{ url('') }}" class="btn-custom btn-round btn-custom-primary"><i class="fa fa-plus"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Nieuw item</span></li>
-			</ul>
 		</div>
 	</div>
 

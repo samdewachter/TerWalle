@@ -5,7 +5,7 @@
 	<div class="admin-wrapper">
 
 		<div class="admin-header">
-			<h1>Mail leden</h1>
+			<h1><i class="fa fa-address-book"></i>Mail leden</h1>
 			<p>Hier kan je emails verzenden naar alle leden.</p>
 		</div>
 		<div class="admin-body">
@@ -45,11 +45,6 @@
 					</form>
 				</div>
 			</div>
-		</div>
-		<div class="footer-buttons">
-			<ul>
-				<li class="custom-tooltip custom-tooltip-arrow-bottom"><a href="{{ url('') }}" class="btn-custom btn-round btn-custom-primary"><i class="fa fa-plus"></i></a><span class="tooltip-text tooltip-text-arrow-bottom">Nieuw item</span></li>
-			</ul>
 		</div>
 	</div>
 

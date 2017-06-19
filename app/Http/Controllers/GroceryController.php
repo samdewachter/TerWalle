@@ -132,17 +132,36 @@ class GroceryController extends Controller
     }
 
     public function updateGrocery(Grocery $grocery, Request $request) {
+        $items = array_filter($request->items);
+        $quantity = array_filter($request->quantity);
 
-        $items = $request->items;
-        $quantity = $request->quantity;
+        foreach ($items as $key => $item) {
+            $exists = false;
+            foreach ($grocery->items as $groceryItem) {
+                if ($item == $groceryItem->item) {
+                    $exists = true;
+                }
+            }
+            if (!$exists) {
+                $newItem = new GroceryItem();
+                $newItem->item = $item;
+                $newItem->quantity = $quantity[$key];
+                $newItem->grocery_id = $grocery->id;
+                $newItem->save();
+            }
+        }
 
-        for ($i=0; $i < count($items); $i++) { 
-            $itemsWithQuantity[] = ["item" => $items[$i], "quantity" => $quantity[$i]];
+        if ($request->delete){
+            foreach ($request->delete as $itemIndex) {
+                // var_dump(intval($itemIndex));
+                $deleteItem = GroceryItem::find($itemIndex);
+                // var_dump($deleteItem);
+                $deleteItem->delete();
+            }
         }
 
         $grocery->name = $request->name;
         $grocery->needed_at = $request->needed_at;
-        $grocery->items = json_encode($itemsWithQuantity);
 
         if ($grocery->save()) {
             return redirect('/admin/boodschappen')->with('message', ['gelukt', 'Boodschappenlijst succesvol aangepast.']);

@@ -10,6 +10,8 @@ use File;
 use Illuminate\Http\Request;
 use Image;
 use App\CoreMember;
+use Mail;
+use App\Mail\MemberCreated;
 
 class MemberController extends Controller
 {
@@ -163,8 +165,8 @@ class MemberController extends Controller
 
         $member->first_name = $request->first_name; 
         $member->last_name = $request->last_name;
-        $title_url = clean($user->first_name) . '-' . clean($user->last_name);
-        $user->title_url = $title_url;
+        $title_url = clean($member->first_name) . '-' . clean($member->last_name);
+        $member->title_url = $title_url;
         $member->email = $request->email;
         $member->birth_year = $request->birth_year;
         $member->role_id = $request->role_id;
@@ -185,6 +187,7 @@ class MemberController extends Controller
         }
 
         if ($member->save()) {
+            Mail::to($member->email)->queue(new MemberCreated($member, $password));
             return redirect('/admin/leden')->with('message', ['gelukt', 'Profiel succesvol aangemaakt.']);
         }
         return redirect('/admin/leden')->with('message', ['error', 'Er liep iets fout bij het aanmaken van het profiel.']);

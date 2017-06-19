@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+FileETag MTime Size
+<ifmodule mod_expires.c>
+  <filesmatch "\.(jpg|gif|png|css|js|JPG)$">
+       ExpiresActive on
+       ExpiresDefault "access plus 1 week"
+   </filesmatch>
+</ifmodule>

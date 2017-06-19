@@ -75,6 +75,7 @@ class User extends Authenticatable
 
         static::deleting(function($user) { // before delete() method call this
              $user->Paid()->delete();
+             $user->CoreMember()->delete();
              // do the rest of the cleanup...
         });
     }

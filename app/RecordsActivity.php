@@ -7,6 +7,16 @@ use App\CoreMember;
 use ReflectionClass;
 use Auth;
 use Mail;
+use App\Mail\NewsCreated;
+use App\Mail\EventCreated;
+use App\Mail\AlbumCreated;
+use App\Mail\GroceryCreated;
+use App\Mail\PollCreated;
+use App\Mail\PresaleCreated;
+use App\Mail\ReportCreated;
+use App\Mail\TapListCreated;
+use App\Mail\ContactMessageCreated;
+
 
 trait RecordsActivity
 {
@@ -32,6 +42,14 @@ trait RecordsActivity
 	 */
 	public function recordActivity($event)
 	{
+		$emails = [];
+
+		$core_members = CoreMember::all();
+
+		foreach ($core_members as $core_member) {
+			$emails[] = $core_member->User->email;
+		}
+
 		if (Auth::check() && strtolower(((new ReflectionClass($this))->getShortName())) == "user") {
 			$activity = Activity::create([
 				'subject_id' => $this->id,
@@ -45,7 +63,7 @@ trait RecordsActivity
 			event(new ActivityLogged($activity));
 		} elseif(strtolower(((new ReflectionClass($this))->getShortName())) != "user") {
 
-			if (strtolower(((new ReflectionClass($this))->getShortName())) == "contactmessage") {
+			if (strtolower(((new ReflectionClass($this))->getShortName())) == "contactmessage" && !Auth::check()) {
 				$user_id = 0;
 			} else {
 				$user_id = Auth::user()->id;
@@ -60,39 +78,39 @@ trait RecordsActivity
 
 			switch ($activity->name) {
 				case 'created_event':
-					// $this->sendMail('event', $activity);
+					Mail::to($emails)->queue(new EventCreated($activity));
 					break;
 
 				case 'created_album':
-					// $this->sendMail('album', $activity);
+					Mail::to($emails)->queue(new AlbumCreated($activity));
 					break;
 
 				case 'created_grocery':
-					// $this->sendMail('grocery', $activity);
+					Mail::to($emails)->queue(new GroceryCreated($activity));
 					break;
 
 				case 'created_news':
-					// $this->sendMail('news', $activity);
+					Mail::to($emails)->queue(new NewsCreated($activity));
 					break;
 
 				case 'created_poll':
-					// $this->sendMail('poll', $activity);
+					Mail::to($emails)->queue(new PollCreated($activity));
 					break;
 
 				case 'created_presale':
-					// $this->sendMail('presale', $activity);
+					Mail::to($emails)->queue(new PresaleCreated($activity));
 					break;
 
 				case 'created_taplist':
-					// $this->sendMail('tapList', $activity);
+					Mail::to($emails)->queue(new TapListCreated($activity));
 					break;
 
 				case 'created_report':
-					// $this->sendMail('report', $activity);
+					Mail::to($emails)->queue(new ReportCreated($activity));
 					break;
 
 				case 'created_contactmessage':
-					// $this->sendMail('contactMessage', $activity);
+					Mail::to($emails)->queue(new ContactMessageCreated($activity));
 					break;
 				
 				default:
@@ -135,7 +153,7 @@ trait RecordsActivity
 		];
 	}
 
-	protected function sendMail($view, $activity)
+	protected function sendMail($mailName, $activity)
 	{
 		$emails = [];
 
@@ -145,10 +163,12 @@ trait RecordsActivity
 			$emails[] = $core_member->User->email;
 		}
 
-		Mail::send('emails.'. $view, ['activity' => $activity], function ($message) use ($emails)
-		{
-			$message->from('me@gmail.com', 'Christian Nwamba');
-			$message->to($emails)->subject('This is test e-mail');  
-		});
+		Mail::to('samdewachter@hotmail.be')->send(new $mailName($activity));
+
+		// Mail::queue('emails.'. $view, ['activity' => $activity], function ($message) use ($emails)
+		// {
+		// 	$message->from('me@gmail.com', 'Christian Nwamba');
+		// 	$message->to($emails)->subject('This is test e-mail');  
+		// });
 	}
 }

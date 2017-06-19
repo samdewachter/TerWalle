@@ -224,10 +224,23 @@ class ActivityTransformer extends TransformerAbstract
 	}
 
 	/* CONTACT */
-	protected function created_contactMessage(Activity $activity)
+	protected function created_contactmessage(Activity $activity)
 	{
 		$text = [];
 		$text['description'] = [$activity->subject->name ." heeft een contact bericht verstuurd."];
+		$text['title'] = ["Nieuw contact bericht"];
+		return $text;
+	}
+
+	protected function updated_contactmessage(Activity $activity)
+	{
+		$text = [];
+		if ($activity->subject->answered) {
+			$text['description'] = [$activity->user->first_name ." heeft een contact bericht van ". $activity->subject->name . " beantwoord."];
+		} else {
+			$text['description'] = [$activity->user->first_name ." heeft zijn antwoord naar ". $activity->subject->name . " verwijderd."];
+		}
+		
 		$text['title'] = ["Nieuw contact bericht"];
 		return $text;
 	}

@@ -1,9 +1,37 @@
 @extends('layouts.app')
-
+<?php $cover = substr($event->cover, 0, 4);?>
 @section('meta')
-
+    
 	<meta name="description" content="{{ (strlen($event->description) > 100)? substr($event->description, 0, 100) . '...': $event->description }}">
-	<title>Ter Walle | Evenement: {{ $event->title }}</title>
+	<title>Jeugdhuis Ter Walle | Evenement: {{ $event->title }}</title>
+	<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Event",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kruibeke",
+          "addressRegion": "Oost-Vlaanderen",
+          "postalCode": "9150",
+          "streetAddress": "Kattestraat 72"
+        },
+        "name": "Jeugdhuis Ter Walle"
+      },
+      "name": "{{ $event->title }}",
+      "startDate": "{{ $event->start_time }}",
+      "endDate": "{{ $event->end_time }}",
+      "description": "{{ (strlen($event->description) > 200)? substr($event->description, 0, 200) . '...': $event->description }}",
+      @if($cover == 'http')
+        "image": "{{ $event->cover }}"
+      @else
+        
+    	"image": "{{ url('/uploads/eventPhotos', [$event->cover]) }}"
+      @endif
+      
+    }
+    </script>
 
 @endsection
 
@@ -16,7 +44,7 @@
 			</div>
 			<div class="col-md-12 event-item">
 				<div class="panel">
-					<?php $cover = substr($event->cover, 0, 4); ?>
+					
 					@if($cover == 'http')
 						<div class="panel-heading" style="background-image: url('{{ $event->cover }}')"></div>
 					@else

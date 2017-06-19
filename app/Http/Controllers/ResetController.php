@@ -7,16 +7,23 @@ use App\Presale;
 use App\Event;
 use App\User;
 use App\PaidUser;
+use Auth;
 
 class ResetController extends Controller
 {
     public function index(){
+        if (Auth::User()->Role->role != 'headAdmin') {
+            return redirect('/admin')->with('message', ['waarschuwing', 'Je bent niet gemachtigd om hier naar toe te gaan.']);
+        }
     	$presales = Presale::orderBy('created_at', 'DESC')->limit(10)->get();
 
     	return view('admin.reset.resetMembers', compact('presales'));
     }
 
     public function resetMembers(Request $request){
+        if (Auth::User()->Role->role != 'headAdmin') {
+            return redirect('/admin')->with('message', ['waarschuwing', 'Je bent niet gemachtigd om hier naar toe te gaan.']);
+        }
     	if ($request->event_id == 0) {
     		return redirect('/admin')->with('message', ['gelukt', 'Er waren geen vvk momenten om leden om te zetten.']);
     	}

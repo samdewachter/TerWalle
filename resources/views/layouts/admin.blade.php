@@ -50,39 +50,37 @@
 			</div>
 		</div>
 		<ul>
-			<li><a href="{{ url('/admin') }}" class="active"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+			<li><a href="{{ url('/admin') }}" class="{{ Request::is('admin') ? 'active' : '' }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+			<li>
+				<a class="{{ (Request::is('admin/evenementen') || Request::is('admin/nieuwtjes') || Request::is('admin/leden') || Request::is('admin/albums') || Request::is('admin/evenementen/*') || Request::is('admin/nieuwtjes/*') || Request::is('admin/leden/*') || Request::is('admin/albums/*') ) ? 'active' : '' }} treeview"><i class="fa fa-archive"></i>Front<i class="fa fa-angle-down"></i></a>
+				<ul class="treeview-menu">
+					<li><a class="{{ (Request::is('admin/evenementen') || Request::is('admin/evenementen/*')) ? 'active' : '' }}" href="{{ url('/admin/evenementen') }}">Evenementen</a></li>
+					<li><a class="{{ (Request::is('admin/nieuwtjes') || Request::is('admin/nieuwtjes/*')) ? 'active' : '' }}" href="{{ url('/admin/nieuwtjes') }}">Nieuwtjes</a></li>
+					<li><a class="{{ (Request::is('admin/albums') || Request::is('admin/albums/*')) ? 'active' : '' }}" href="{{ url('/admin/albums') }}">Foto's</a></li>
+					<li><a class="{{ (Request::is('admin/leden') || Request::is('admin/leden/*')) ? 'active' : '' }}" href="{{ url('/admin/leden') }}">Leden</a></li>
+				</ul>
+			</li>
 			@if(Auth::User()->role_id == 1)
 				<li>
-					<a class="treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
+					<a class="{{ (Request::is('admin/taplijst') || Request::is('admin/taplijst/grafiek') || Request::is('admin/taplijst/*') || Request::is('admin/taplijst/grafiek/*') ) ? 'active' : '' }} treeview"><i class="fa fa-beer"></i>Taplijst<i class="fa fa-angle-down"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="{{ url('/admin/taplijst') }}">Overzicht</a></li>
-						<li><a href="{{ url('/admin/taplijst/grafiek') }}">Grafiek</a></li>
+						<li><a class="{{ Request::is('admin/taplijst') ? 'active' : '' }}" href="{{ url('/admin/taplijst') }}">Overzicht</a></li>
+						<li><a class="{{ Request::is('admin/taplijst/grafiek') ? 'active' : '' }}" href="{{ url('/admin/taplijst/grafiek') }}">Grafiek</a></li>
 					</ul>
 				</li>
 			@else
-				<li><a href="{{ url('/admin/taplijst') }}"><i class="fa fa-beer"></i>Taplijst</a></li>
+				<li><a class="{{ Request::is('admin/taplijst') ? 'active' : '' }}" href="{{ url('/admin/taplijst') }}"><i class="fa fa-beer"></i>Taplijst</a></li>
 			@endif
-			<li><a href="{{ url('/admin/polls') }}"><i class="fa fa-pencil-square-o"></i>Polls</a></li>
-			<li>
-				<a href="{{ url('/admin/verslagen') }}"><i class="fa fa-upload"></i>Verslagen</a>
-			</li>
-			<li><a href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
-			<li><a href="{{ url('/admin/voorverkoop') }}"><i class="fa fa-ticket"></i>Voorverkoop</a></li>
-			<li><a href="{{ url('/admin/kernleden') }}"><i class="fa fa-users"></i>Kernleden</a></li>
-			<li><a href="{{ url('/admin/contactBerichten') }}"><i class="fa fa-envelope"></i>Contact berichten</a></li>
-			<li><a href="{{ url('/admin/mailLeden') }}"><i class="fa fa-address-book"></i>Mail leden</a></li>
+			<li><a class="{{ (Request::is('admin/polls') || Request::is('admin/polls/*')) ? 'active' : '' }}" href="{{ url('/admin/polls') }}"><i class="fa fa-pencil-square-o"></i>Polls</a></li>
+			<li><a class="{{ (Request::is('admin/verslagen') || Request::is('admin/verslagen/*')) ? 'active' : '' }}" href="{{ url('/admin/verslagen') }}"><i class="fa fa-upload"></i>Verslagen</a></li>
+			<li><a class="{{ (Request::is('admin/boodschappen') || Request::is('admin/boodschappen/*')) ? 'active' : '' }}" href="{{ url('/admin/boodschappen') }}"><i class="fa fa-list"></i>Boodschappenlijstjes</a></li>
+			<li><a class="{{ (Request::is('admin/voorverkoop') || Request::is('admin/voorverkoop/*')) ? 'active' : '' }}" href="{{ url('/admin/voorverkoop') }}"><i class="fa fa-ticket"></i>Voorverkoop</a></li>
+			<li><a class="{{ (Request::is('admin/kernleden') || Request::is('admin/kernleden/*')) ? 'active' : '' }}" href="{{ url('/admin/kernleden') }}"><i class="fa fa-users"></i>Kernleden</a></li>
+			<li><a class="{{ Request::is('admin/contactBerichten') ? 'active' : '' }}" href="{{ url('/admin/contactBerichten') }}"><i class="fa fa-envelope"></i>Contact berichten</a></li>
+			<li><a class="{{ Request::is('admin/mailLeden') ? 'active' : '' }}" href="{{ url('/admin/mailLeden') }}"><i class="fa fa-address-book"></i>Mail leden</a></li>
 			@if(Auth::User()->role_id == 1)
-				<li><a href="{{ url('/admin/resetLeden') }}"><i class="fa fa-repeat"></i>Leden omzetten</a></li>
+				<li><a class="{{ Request::is('admin/resetLeden') ? 'active' : '' }}" href="{{ url('/admin/resetLeden') }}"><i class="fa fa-repeat"></i>Leden omzetten</a></li>
 			@endif
-			<li>
-				<a class="treeview"><i class="fa fa-archive"></i>CRUD<i class="fa fa-angle-down"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="{{ url('/admin/evenementen') }}">Evenementen</a></li>
-					<li><a href="{{ url('/admin/nieuwtjes') }}">Nieuwtjes</a></li>
-					<li><a href="{{ url('/admin/albums') }}">Foto's</a></li>
-					<li><a href="{{ url('/admin/leden') }}">Leden</a></li>
-				</ul>
-			</li>
 		</ul>
 	</aside>
 	<nav class="dashboard-nav">

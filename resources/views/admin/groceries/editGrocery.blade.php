@@ -19,16 +19,24 @@
 							<input type="date" name="needed_at" value="{{ $grocery->needed_at }}" class="form-control input-label-float">
 							<label class="label-float label-float-date ">Tenlaatste nodig op</label>
 						</div>
+						<div class="form-group">
+
+						</div>
 						<div class="grocery-items">
 							@foreach($grocery->items as $key => $item)
 								<div class="form-group clearfix">
-									<div class="col-md-2">
+									<div class="col-md-2 grocery-group">
 										<input type="number" value="{{ $item->quantity }}" name="quantity[]" class="form-control input-label-float">
 										<label class="label-float">Hoeveel</label>
 									</div>
-									<div class="col-md-10">
+									<div class="col-md-8 grocery-group">
 										<input type="text" name="items[]" value="{{ $item->item }}" class="form-control input-label-float">
 										<label class="label-float">Item <?= $key + 1 ?></label>
+									</div>
+									<div class="col-md-2 grocery-group">
+										<input type="checkbox" id="{{ $item->id }}" value="{{ $item->id }}" name="delete[]" class="delete-checkbox">
+										<label for="{{ $item->id }}"><i class="fa fa-times"></i></label>
+										<label>Verwijder</label>
 									</div>
 								</div>
 							@endforeach

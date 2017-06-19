@@ -43,4 +43,14 @@ class ContactController extends Controller
 
     	return view('admin.messages.showMessages', compact('messages'));
     }
+
+    public function messageAnswered(Request $request){
+        $message = ContactMessage::find($request->id);
+        if ($request->answered == 'true') {
+            $message->answered = true;
+        } else {
+            $message->answered = false;
+        }
+        $message->save();
+    }
 }

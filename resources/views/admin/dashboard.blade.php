@@ -373,7 +373,8 @@
 					<div class="col-lg-12 contact-message-widget">
 						<div class="card bordered contact-message">
 							<div class="card-header">
-								<span class="card-title"> Bericht van {{ $message->name }}</span>
+								<span class="card-title"> Bericht van {{ $message->name }} (<?= ($message->answered)? 'al beantwoord': 'nog niet beantwoord'; ?>)</span>
+
 								<div class="dropdown pull-right">
 								  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 								    <img class="more-btn" src="{{ asset('/images/more.png') }}">

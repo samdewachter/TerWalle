@@ -8,38 +8,38 @@ $( document ).ready(function() {
 	}
 
      //>=, not <=
-    if (scroll >= 100) {
-        $(".navbar").addClass('fixMargin');
-    } else {
+ //    if (scroll >= 100) {
+ //        $(".navbar").addClass('fixMargin');
+ //    } else {
     	
-    	$(".navbar").removeClass('fixMargin');
-    }
+ //    	$(".navbar").removeClass('fixMargin');
+ //    }
 
-    if (scroll >= 60) {	    	
-    	$(".navbar").addClass("showNavbar");	        
-        $(".background").addClass("fixBackground");
-    } else {
-    	$(".navbar").removeClass("showNavbar");
-    	$(".background").removeClass("fixBackground");
-    }
-	$(window).scroll(function() {    
-	    var scroll = $(window).scrollTop();
+ //    if (scroll >= 60) {	    	
+ //    	$(".navbar").addClass("showNavbar");	        
+ //        $(".background").addClass("fixBackground");
+ //    } else {
+ //    	$(".navbar").removeClass("showNavbar");
+ //    	$(".background").removeClass("fixBackground");
+ //    }
+	// $(window).scroll(function() {    
+	//     var scroll = $(window).scrollTop();
 
-	     //>=, not <=
-	    if (scroll >= 100) {
-	        $(".navbar").addClass('fixMargin');
-	    } else {
+	//      //>=, not <=
+	//     if (scroll >= 100) {
+	//         $(".navbar").addClass('fixMargin');
+	//     } else {
 	    	
-	    	$(".navbar").removeClass('fixMargin');
-	    }
+	//     	$(".navbar").removeClass('fixMargin');
+	//     }
 
-	    if (scroll >= 60) {	    	
-	    	$(".navbar").addClass("showNavbar");	        
-	        $(".background").addClass("fixBackground");
-	    } else {
-	    	$(".navbar").removeClass("showNavbar");
-	    	$(".background").removeClass("fixBackground");
-	    }
-	});
+	//     if (scroll >= 60) {	    	
+	//     	$(".navbar").addClass("showNavbar");	        
+	//         $(".background").addClass("fixBackground");
+	//     } else {
+	//     	$(".navbar").removeClass("showNavbar");
+	//     	$(".background").removeClass("fixBackground");
+	//     }
+	// });
 
 });

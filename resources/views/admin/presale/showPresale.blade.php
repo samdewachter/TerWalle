@@ -4,16 +4,11 @@
 
 	<div class="presales-wrapper">
 		<div class="admin-header">
-			<h1><i class="fa fa-users"></i>Voorverkoop</h1>
+			<h1><i class="fa fa-ticket"></i>Voorverkoop</h1>
 			<p>Hier heb je een overzicht van alle voorverkoop mogelijkheden voor een evenement.</p>
 		</div>
 		<div class="admin-body">
 			<h3 class="table-title pull-left">{{ $presales->total() }} Voorverkoop momenten</h3>
-			<div class="pull-right search search-admin">
-				<form action="{{ url('/admin/voorverkoop/zoeken') }}" method="GET">
-					<i class="fa fa-search search-button"></i><input placeholder="Zoeken" class="input-label-float" type="text" name="search_presale">
-				</form>
-			</div>
 			<table class="table">
 				<thead>
 					<tr>

@@ -52,8 +52,7 @@ class NewsController extends Controller
         $storageName = uniqid() . $imageName;
 		$file = Image::make($file);
 		$file->encode($extension);
-		$path = public_path('uploads\\newsPhotos\\' . $storageName);
-		$file->save($path, 65);
+		$file->save(base_path() . '/public/uploads/newsPhotos/' . $storageName, 65);
 
 		$news->cover_photo = $storageName;
 
@@ -97,8 +96,7 @@ class NewsController extends Controller
 	        $storageName = uniqid() . $imageName;
 			$file = Image::make($file);
 			$file->encode($extension);
-			$path = public_path('uploads\\newsPhotos\\' . $storageName);
-			$file->save($path, 65);
+			$file->save(base_path() . '/public/uploads/newsPhotos/' . $storageName, 65);
 
 			$news->cover_photo = $storageName;
     	}
