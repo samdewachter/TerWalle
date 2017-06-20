@@ -54,6 +54,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="subtitle">
+              <small>Geschreven op: {{ $news->created_at }}</small>
 							<p>{{ $news->subtitle }}</p>
 						</div>
 						<div class="text">

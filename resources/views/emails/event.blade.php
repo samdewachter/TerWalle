@@ -13,6 +13,7 @@
 			<p><span style="display: block;"><strong>Beschrijving</strong>:</span> {{ $activity->subject->description }}</p>
 			<p><span style="display: block;"><strong>Start</strong>:</span> {{ $activity->subject->start_time }}</p>
 			<p><span style="display: block;"><strong>Einde</strong>:</span> {{ $activity->subject->end_time }}</p>
+			<a href="http://eindwerk.local/TerWalle/public/admin/nieuwtjes">Bekijk het nieuw evenement</a>
 		</div>
 	</div>
 

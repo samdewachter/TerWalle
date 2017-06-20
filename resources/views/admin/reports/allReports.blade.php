@@ -35,7 +35,7 @@
 										</ul>
 									</div>
 								</div>
-								<img src="{{ asset('images/wordlogo.png') }}">
+								<img class="report-photo" src="{{ asset('images/wordlogo.png') }}">
 							</div>
 						</div>
 					</div>

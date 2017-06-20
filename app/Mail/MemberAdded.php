@@ -2,13 +2,14 @@
 
 namespace App\Mail;
 
-use App\Activity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
+use App\Activity;
 
-class EventCreated extends Mailable
+class MemberAdded extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,6 +33,6 @@ class EventCreated extends Mailable
     public function build()
     {
         return $this->from('postmaster@terwalle.be')
-                    ->view('emails.event');
+                    ->view('emails.user');
     }
 }

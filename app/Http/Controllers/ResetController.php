@@ -31,7 +31,7 @@ class ResetController extends Controller
     	$year = date("Y");
     	$month = date("m");
 
-    	if ($month == "06") {
+    	if ($month == "01") {
     		$event = Event::find($request->event_id);
 	    	foreach ($event->Presales as $presale) {
 	    		foreach ($presale->Tickets as $ticket) {

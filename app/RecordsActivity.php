@@ -16,6 +16,7 @@ use App\Mail\PresaleCreated;
 use App\Mail\ReportCreated;
 use App\Mail\TapListCreated;
 use App\Mail\ContactMessageCreated;
+use App\Mail\MemberAdded;
 
 
 trait RecordsActivity
@@ -58,7 +59,7 @@ trait RecordsActivity
 				'user_id' => Auth::user()->id
 			]);
 
-			// $this->sendMail('user', $activity);
+			Mail::to($emails)->queue(new memberAdded($activity));
 
 			event(new ActivityLogged($activity));
 		} elseif(strtolower(((new ReflectionClass($this))->getShortName())) != "user") {

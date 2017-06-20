@@ -10,7 +10,7 @@
 	<div class="card">
 		<div class="card-body">
 			<h2>{{ $activity->subject->album_name }}</h2>
-			<a href="http://eindwerk.local/TerWalle/public/admin/albums">Bekijk het nieuwe album</a>
+			<a href="http://eindwerk.local/TerWalle/public/admin/album/{{ $album->id }}">Bekijk het nieuwe album</a>
 		</div>
 	</div>
 

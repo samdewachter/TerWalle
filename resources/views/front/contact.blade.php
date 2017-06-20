@@ -60,7 +60,7 @@
 			</div>
 			<div class="page-heading">
 				<h1>Ligging</h1>
-				<p>Kattestraat 47, 9150 Kruibeke</p>
+				<p>Kattestraat 72, 9150 Kruibeke</p>
 			</div>
 			
 		</div>
@@ -79,7 +79,7 @@
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          title: 'Kattestraat 47, 9150 Kruibeke'
+          title: 'Kattestraat 72, 9150 Kruibeke'
         });
       }
     </script>

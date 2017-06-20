@@ -31,14 +31,15 @@ class MemberController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'birth_year' => 'required',
             'role_id' => 'required'
         ], [
-            'first_name.required' => 'Het voornaam veld is verplicht',
-            'last_name.required' => 'Het achternaam veld is verplicht',
-            'email.required' => 'Het email veld is verplicht',
-            'email.email' => 'Dit is een ongeldig emailadres',
+            'first_name.required' => 'Het voornaam veld is verplicht.',
+            'last_name.required' => 'Het achternaam veld is verplicht.',
+            'email.required' => 'Het email veld is verplicht.',
+            'email.email' => 'Dit is een ongeldig emailadres.',
+            'email.unique' => "Het email adres is al in gebruik.",
             'birth_year.required' => 'Het geboortejaar veld is verplicht.',
             'role_id' => "Het role veld is verplicht."
         ]);
@@ -87,6 +88,7 @@ class MemberController extends Controller
             $storageName = uniqid() . $imageName;
             $file = Image::make($file);
             $file->encode($extension);
+            $file->fit(500);
             $path = public_path('uploads\\profilePhotos\\' . $storageName);
             $file->save($path, 65);
 
@@ -147,18 +149,20 @@ class MemberController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'birth_year' => 'required',
             'role_id' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ], [
-            'first_name.required' => 'Het voornaam veld is verplicht',
-            'last_name.required' => 'Het achternaam veld is verplicht',
-            'email.required' => 'Het email veld is verplicht',
-            'email.email' => 'Dit is een ongeldig emailadres',
+            'first_name.required' => 'Het voornaam veld is verplicht.',
+            'last_name.required' => 'Het achternaam veld is verplicht.',
+            'email.required' => 'Het email veld is verplicht.',
+            'email.email' => 'Dit is een ongeldig emailadres.',
+            'email.unique' => "Het email adres is al in gebruik.",
             'birth_year.required' => 'Het geboortejaar veld is verplicht.',
             'role_id.required' => "Het role veld is verplicht.",
-            'password.required' => "Het paswoord veld is verplicht."
+            'password.required' => "Het paswoord veld is verplicht.",
+            'password.min' => "Het paswoord moet minstens :min karakters hebben."
         ]);
 
         $member = new User();
@@ -180,10 +184,13 @@ class MemberController extends Controller
             $storageName = uniqid() . $imageName;
             $file = Image::make($file);
             $file->encode($extension);
+            $file->fit(500);
             $path = public_path('uploads\\profilePhotos\\' . $storageName);
             $file->save($path, 65);
 
             $member->photo = $storageName;
+        } else {
+            $member->photo = "default.png";
         }
 
         if ($member->save()) {

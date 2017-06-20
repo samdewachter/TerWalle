@@ -14,7 +14,6 @@
 				Dag {{ $ticket->User->first_name }} u staat succesvol op de gastenlijst voor {{ $ticket->Presale->Event->title }}. U hoeft enkel en alleen
 				maar naar de kassa te gaan op de dag van het evenement, uw naam zeggen en het bedrag van de voorverkoop betalen. Tot dan!
 			</p>
-			<!-- <a href="http://eindwerk.local/TerWalle/public/admin/albums">Bekijk het nieuwe album</a> -->
 		</div>
 	</div>
 

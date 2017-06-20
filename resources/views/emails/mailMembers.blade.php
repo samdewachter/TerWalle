@@ -11,7 +11,6 @@
 		<div class="card-body">
 			<h2>{{ $subject }}</h2>
 			<p>{{ $text }}</p>
-			<!-- <a href="http://eindwerk.local/TerWalle/public/admin/albums">Bekijk het nieuwe album</a> -->
 		</div>
 	</div>
 

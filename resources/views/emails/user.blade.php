@@ -12,7 +12,7 @@
 			<h2>Nieuw lid '{{ $activity->subject->first_name . ' ' . $activity->subject->last_name }}'</h2>
 			<p><span style="display: block;"><strong>Email</strong>:</span> {{ $activity->subject->email }}</p>
 			<p><span style="display: block;"><strong>Geboortedatum</strong>:</span> {{ $activity->subject->birth_year }}</p>
-			<a href="http://eindwerk.local/TerWalle/public/admin/leden">Bekijk het nieuwe lid</a>
+			<a href="http://eindwerk.local/TerWalle/public/admin/leden/zoeken?search_member={{ str_replace(' ', '+', $activity->subject->first_name . ' ' . $activity->subject->last_name) }}">Bekijk het nieuwe lid</a>
 		</div>
 	</div>
 

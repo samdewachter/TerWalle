@@ -10,7 +10,7 @@
 						<div class="card bordered white">
 							<div class="card-header">
 								<span class="card-title" id="{{ $grocery->id . $grocery->name }}">
-									Boodschappenlijst
+									Boodschappenlijst: <small>{{ $grocery->name }}</small>
 									<div class="dropdown pull-right">
 									  <button class="btn-custom more-btn-color btn-round dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									    <img class="more-btn" src="{{ asset('/images/more.png') }}">
@@ -256,7 +256,7 @@
 						<div class="card-body">
 							@foreach($tappers as $tapper)
 								<div class="tapper">
-									<img class="pull-left tapper-photo" src="{{ asset('/uploads/profilePhotos/default.png') }}">
+									<img class="pull-left tapper-photo" src="{{ asset('/uploads/profilePhotos/' . $tapper->User->photo) }}">
 									<div class="tap-date">
 										<?php
 											$numberOfDays = floor((time() - strtotime($tapper->start)) / (60*60*24));
