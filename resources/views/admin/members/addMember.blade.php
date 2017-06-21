@@ -49,9 +49,14 @@
 			                    </span>
 			                @endif
 						</div>
-						<div class="form-group">
+						<div class="form-group {{ $errors->has('photo') ? ' has-error' : '' }}">
 							<label>Foto</label>
-							<input type="file" class="form-control input-label-float" name="photo">							
+							<input type="file" class="form-control input-label-float <?= ($errors->has('photo'))? 'input-error' : ''; ?>" name="photo">
+							@if ($errors->has('photo'))
+			                    <span class="help-block">
+			                        <strong>{{ $errors->first('photo') }}</strong>
+			                    </span>
+			                @endif						
 						</div>
 						<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
 							<input type="text" name="password" class="form-control input-label-float <?= ($errors->has('password'))? 'input-error' : ''; ?>">

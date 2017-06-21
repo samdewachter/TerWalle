@@ -38,7 +38,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
                         <input type="text" name="last_name" class="form-control input-label-float <?= ($errors->has('last_name'))? 'input-error' : ''; ?>" value="{{ old('last_name') }}">
                         <label class="label-float">Achternaam</label>
                         @if ($errors->has('last_name'))
@@ -47,7 +47,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                         <input type="text" name="email" class="form-control input-label-float <?= ($errors->has('email'))? 'input-error' : ''; ?>" value="{{ old('email') }}">
                         <label class="label-float">Email</label>
                         @if ($errors->has('email'))
@@ -56,7 +56,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('birth_year') ? ' has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('birth_year') ? ' has-error' : '' }}">
                         <input type="date" name="birth_year" class="form-control input-label-float <?= ($errors->has('birth_year'))? 'input-error' : ''; ?>" value="{{ old('birth_year') }}">
                         <label class="label-float label-float-date">Geboortedatum</label>
                         @if ($errors->has('birth_year'))
@@ -65,11 +65,16 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('profile_photo') ? ' has-error' : '' }}">
                         <label>Profiel foto</label>
-                        <input type="file" name="profile_photo" class="form-control">
+                        <input type="file" name="profile_photo" class="form-control <?= ($errors->has('profile_photo'))? 'input-error' : ''; ?>">
+                        @if ($errors->has('profile_photo'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('profile_photo') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                         <input type="password" name="password" class="form-control input-label-float <?= ($errors->has('password'))? 'input-error' : ''; ?>">
                         <label class="label-float">Paswoord</label>
                         @if ($errors->has('password'))

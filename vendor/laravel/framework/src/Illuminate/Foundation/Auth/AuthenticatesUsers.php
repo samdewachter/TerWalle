@@ -59,7 +59,11 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
+            $this->username() => 'required|email', 'password' => 'required',
+        ], [
+            $this->username().'.required' => 'Het email veld is verplicht',
+            $this->username().'.email' => 'Gelieve een geldig email adres in te geven.',
+            'password.required' => 'Het paswoord veld is verplicht.'
         ]);
     }
 

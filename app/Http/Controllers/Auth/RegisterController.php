@@ -55,6 +55,15 @@ class RegisterController extends Controller
             'birth_year' => 'required',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'profile_photo' => 'max:1999',
+        ], [
+            'first_name.required' => 'Het voornaam veld is verplicht.',
+            'last_name.required' => 'Het achternaam veld is verplicht.',
+            'email.required' => 'Het email veld is verplicht.',
+            'email.email' => 'Dit is een ongeldig emailadres.',
+            'email.unique' => "Het email adres is al in gebruik.",
+            'birth_year.required' => 'Het geboortejaar veld is verplicht.',
+            'profile_photo.max' => "De foto mag maximum 2MB groot zijn."
         ]);
     }
 
